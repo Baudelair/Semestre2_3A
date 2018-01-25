@@ -1,0 +1,10 @@
+   	ORG	0x0000
+	WORD 	0x400	; initialisation SP
+	WORD 	loop 	; initialisation PC
+
+	ORG	0x000A
+loop: 	;; swap R1 et R2 via R3 
+	WORD	0x3031	 ; MOV R3, R1 (R3 ← R1) 
+	WORD    0x0000   ; MOV R1, R2 (R1 ← R2) 
+	WORD    0x0000   ; MOV R2, R3 (R2 ← R3)
+	WORD    0x0000   ; B loop

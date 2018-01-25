@@ -1,0 +1,11 @@
+
+public class TestEleve {
+	public static void main(String[] args) {
+		Eleve eleve1 = new Eleve("Ferrandi", 12);
+		Eleve eleve2 = new Eleve("Vialars", 9);
+		
+		System.out.println(eleve1);
+		eleve2.setNom("Bonjour");
+		System.out.println(eleve2);
+	}
+}
