@@ -39,3 +39,15 @@ int main()
 
 	return 0;
 }
+
+
+
+/*
+1) Toutes les itérations des boucles for sont réalisées car les threads se finissent en même temps
+2) Le thread créé se termine avant la fonction main, donc le thread se quitte et laisse place au processus principale
+3) Le processus du main se finit avant et fait un return 0 ce qui tue tous les threads esclaves aux programmes. 
+Donc le thread de la fonction boucle ne pourra pas se finir
+4) pthread_join va attendre que le thread esclave se termine avant de passer à la ligne suivannte
+5) pthread cancel ferme le thread même si il n'est pas encore finis
+
+*/

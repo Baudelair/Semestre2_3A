@@ -9,7 +9,7 @@ void * boucle(void *arg){
 
 	for(int j=0; j< *(int *)arg;j++){
 		printf("%f \n", *px);
-		
+		sleep(1);
 	}
 
 	
@@ -18,20 +18,23 @@ void * boucle(void *arg){
 
 int main()
 {
-	int M =3;
+	int max =3;
 	float x=1;
 	px= &x;
 
-
+	printf("px : %d\n",px);
 	//Creation d'un thread pour la fonction boucle
 	pthread_t tid;
-	pthread_create(&tid,NULL,&boucle, &M);
+	pthread_create(&tid,NULL,&boucle, &max);
 
 
-	for(int i=0; i<M ;i++){
+	for(int i=0; i<max ;i++){
 		px=NULL;
-		printf("i :%d\n",i);
+		printf("px : %d\n",px);
+		printf("i : %d\n",i);
 		px = &x;
+		printf("px : %d\n",px);
+		sleep(1);
 	}
 
 	//int k = pthread_join(tid,NULL);
