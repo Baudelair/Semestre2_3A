@@ -4,11 +4,15 @@
 #include <unistd.h>
 
 float * px =NULL;
+pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 
 void * boucle(void *arg){
 
+	
 	for(int j=0; j< *(int *)arg;j++){
-		printf("%f \n", *px);
+		pthread_mutex_lock (&mut);
+		printf("*px : %f \n", *px);
+		pthread_mutex_unlock(&mut);
 		sleep(1);
 	}
 
@@ -18,23 +22,26 @@ void * boucle(void *arg){
 
 int main()
 {
-	int max =3;
-	float x=1;
+	int max =4;
+
+	float x=2;
 	px= &x;
 
-	printf("px : %d\n",px);
+
 	//Creation d'un thread pour la fonction boucle
-	pthread_t tid;
-	pthread_create(&tid,NULL,&boucle, &max);
+	pthread_t tidx;
+	pthread_create(&tidx,NULL, &boucle, &max);
 
 
 	for(int i=0; i<max ;i++){
+		pthread_mutex_lock (&mut);
 		px=NULL;
-		printf("px : %d\n",px);
 		printf("i : %d\n",i);
 		px = &x;
-		printf("px : %d\n",px);
+		*px = *px +i;
+		pthread_mutex_unlock(&mut);
 		sleep(1);
+		
 	}
 
 	//int k = pthread_join(tid,NULL);
