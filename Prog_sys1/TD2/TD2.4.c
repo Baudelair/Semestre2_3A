@@ -16,6 +16,7 @@ void * bouclex(void *arg){
 		pthread_mutex_lock (&mut1);
 		printf("x) *px : %f \n", *px);
 		*px= *px +2;
+		sleep(2);
 		pthread_mutex_unlock(&mut1);
 		sleep(1);
 	}
