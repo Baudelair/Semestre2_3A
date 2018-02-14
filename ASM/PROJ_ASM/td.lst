@@ -1,0 +1,104 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 thumb
+    2 00000000                 area             reset, data, readonly ;déclarat
+                                                            ion zone mémoire (R
+                                                            AM/ROM) /readonly -
+                                                            > stockage dans la 
+                                                            ROM
+    3 00000000                 export           __Vectors
+    4 00000000         __Vectors
+    5 00000000 20004000        dcd              0x20004000  ; stack en fin de l
+                                                            a zone de 20k de RA
+                                                            M
+    6 00000004 00000000        dcd              Reset_Handler ; point d'entree 
+                                                            de notre programme 
+                                                            / réservation de do
+                                                            nnée en mémoire
+    7 00000008         ;
+    8 00000008                 area             moncode, code, readonly
+    9 00000000         ;
+   10 00000000         ; procedure principale
+   11 00000000         ;
+   12 00000000                 export           Reset_Handler
+   13 00000000         Reset_Handler
+                               proc
+   14 00000000         
+   15 00000000 F04F 0101 
+                       boo     mov              r1, #1
+   16 00000004 F04F 0264       mov              r2, #100
+   17 00000008 440A            add              r2, r1
+   18 0000000A E7F9            b                boo
+   19 0000000C                 endp                         ; indique la fin de
+                                                             procédure pour le 
+                                                            débuggueur, aucun e
+                                                            ffet sur le program
+                                                            me
+   20 0000000C         ;
+   21 0000000C                 end                          ; fin du texte (auc
+                                                            un effet sur le cod
+                                                            e)
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\td.d -o.\td.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\ST\STM32F10x --predefine="__EVAL SETA 1" --predefin
+e="__UVISION_VERSION SETA 524" --list=.\td.lst td.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file td.s
+   Uses
+      At line 3 in file td.s
+Comment: __Vectors used once
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 2 in file td.s
+   Uses
+      None
+Comment: reset unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 13 in file td.s
+   Uses
+      At line 6 in file td.s
+      At line 12 in file td.s
+
+boo 00000000
+
+Symbol: boo
+   Definitions
+      At line 15 in file td.s
+   Uses
+      At line 18 in file td.s
+Comment: boo used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 8 in file td.s
+   Uses
+      None
+Comment: moncode unused
+3 symbols
+337 symbols in table
