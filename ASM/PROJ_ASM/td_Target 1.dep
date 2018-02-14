@@ -1,0 +1,2 @@
+Dependencies for Project 'td', Target 'Target 1': (DO NOT MODIFY !)
+F (.\td.s)(0x5A83E65D)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\INC\ST\STM32F10x--pd "__UVISION_VERSION SETA 524"--list .\td.lst --xref -o .\td.o --depend .\td.d)
