@@ -27,6 +27,8 @@ public class Robot {
     public java.awt.Color col;
     
     public int count ;
+    
+    private int num_serie;
 
     /* 
      *  Constructeur de Robot. 
@@ -35,21 +37,22 @@ public class Robot {
     /** Cree un nouveau robot avec l'image indiquee, a la position indiquee sur le plateau
      *  La vitesse de depart est aleatoire
      */
-    public Robot (String nomImage, int init_x, int init_y, Plateau pt, java.awt.Color color) {
-	this.x = init_x ;
-	this.y = init_y ;
-	this.vivant = true ;
-	this.vx = this.randomV() ;
-	this.vy = this.randomV() ;
-	this.plat = pt ;
-	this.image = pt.addSprite (nomImage, this.x, this.y) ;
-	this.arrete = false ;
-	this.col= color;
-	this.count=0;
+    public Robot (String nomImage, int init_x, int init_y, Plateau pt, java.awt.Color color, int num_ser) {
+		this.x = init_x ;
+		this.y = init_y ;
+		this.vivant = true ;
+		this.vx = this.randomV() ;
+		this.vy = this.randomV() ;
+		this.plat = pt ;
+		this.image = pt.addSprite (nomImage, this.x, this.y) ;
+		this.arrete = false ;
+		this.col= color;
+		this.count=0;
+		this.num_serie=num_ser;
     }
 
     /*
-     *  Méthodes
+     *  MÃ©thodes
      */
 
 
@@ -134,7 +137,7 @@ public class Robot {
 	}
     }
 
-    /** Arrêter ce robot. */
+    /** ArrÃªter ce robot. */
     public void arreterRobot() {
 	this.vx = 0 ;
 	this.vy = 0 ;
@@ -150,5 +153,9 @@ public class Robot {
     /** Reaction a une collision : on s'arrete */
     public void collision(Robot autre) {
 	this.arreterRobot() ;
+    }
+    
+    public int getserie () {
+    	return(this.num_serie);
     }
 }
