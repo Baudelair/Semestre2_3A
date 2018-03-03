@@ -17,7 +17,7 @@ public class Anim {
 	Robot[] robots ;
 
 	plat = new Plateau(1080, 800) ;
-	robots = new Robot[9] ;
+	robots = new Robot[10] ;
 
 	robots[0] = new Robot("Images/mini1.png", 80, 100, plat, Color.blue,0) ; 
 	robots[1] = new Robot("Images/mini1.png", 480, 250, plat, Color.blue,1) ; 
@@ -28,6 +28,7 @@ public class Anim {
 	robots[6] = new Killer("Images/mini3.png", 480, 300, plat, Color.black, 6, 9, 1);
 	robots[7] = new Killer("Images/mini3.png", 480, 450, plat, Color.red, 7, 9, 5);
 	robots[8] = new Killer("Images/mini3.png", 80, 250, plat, Color.red, 8, 9, 10);
+	robots[9] = new Indestructible("Images/mini4.png", 100, 400, plat, Color.yellow, 9);
 
 
 	// On repete la boucle d'animation sans arret
