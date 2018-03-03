@@ -5,21 +5,16 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <time.h>
+#include <math.h>
 
-#define MAX 10
+#define MAX 1000
 
-int fct1 (void *agr){
-	
-	while(1){
-		sleep(1);
-		agr++;	
-		printf("%d\n", agr);
-	}
-	pthread_exit(NULL);
-}
 
 int main (){
 	int pid;
+
+	int i =0;
 
 	int pipe_fils[2];
 	int pipe_pere[2];
@@ -37,11 +32,10 @@ int main (){
 	pid=fork();
 
 	int entier=0;
-	int i=0;
-	int *ptime= 0;
 
-	pthread_t tid1;
-	pthread_create(&tid1,NULL, &fct1, (void *) ptime);
+	struct timeval debut;
+	struct timeval arrivee;
+
 
 	switch(pid){
 		case -1 : 
@@ -53,36 +47,50 @@ int main (){
 			printf("pid fils %d\n", getpid());
 			read(pipe_fils[0], &entier,sizeof(int));
 			sleep(1);
-			
+
 			while(i<MAX){
 				read(pipe_fils[0], &entier,sizeof(int));
-				printf("reçu fils : %d\n", entier);
+				//printf("reçu fils : %d\n", entier);
 				entier++;
 				write(pipe_pere[1], &entier,sizeof(int));
-				printf("envoyer fils : %d\n", entier);
+				//printf("envoyer fils : %d\n", entier);
 				i++;
 			}
+
 			close(pipe_pere[1]);
 			close(pipe_fils[0]);
+
 			break;
 
 		default : 
 			printf("pere pid : %d\n", getpid());
+			gettimeofday(&debut, NULL);
 			write(pipe_fils[1], &entier, sizeof(int));
+
 			while(i<MAX){
 				write(pipe_fils[1], &entier, sizeof(int));
-				printf("envoyer père : %d\n", entier);					
+				//printf("envoyer père : %d\n", entier);					
 				read(pipe_pere[0], &entier, sizeof(int));
-				printf("reçu père : %d\n", entier);
+				//printf("reçu père : %d\n", entier);
 				i++;
 				entier++;
 			}
+
+			gettimeofday(&arrivee, NULL);
+
+			long tempsd = debut.tv_sec*pow(10, -6) + debut.tv_usec;
+			long tempsa = arrivee.tv_sec*pow(10, -6) + arrivee.tv_usec;
+			long temps = tempsa - tempsd;
+			printf("Temps : %ld us\n", temps);
+
+			long debit = ((1000*2*4*8)*pow(10, -6))/ temps;
+			printf("Débit : %ld Mb/s\n", debit);
 			close(pipe_pere[0]);
 			close(pipe_fils[1]);
 			break;
 
 	}
-	printf("time : %d\n", *ptime);
+	
 	return 0;
 }
 
