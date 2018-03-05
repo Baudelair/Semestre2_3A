@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><config>
-<jar path="/home/commetud/3eme Annee MIC/APPSFO/LILASHOME/lib"/>
-<var name="javaLibraryPath" value="/home/commetud/3eme Annee MIC/APPSFO/LILASHOME/lib"/>
-<var name="dirSrc" value="/home/commetud/3eme Annee MIC"/>
-<var name="logLevel" value="SEVERE"/>
-<var name="ms6LoadCmd" value="lilas"/>
-<var name="nexys3LoadCmd" value="lilas"/>
-<var name="ftdiJava" value="ftdi"/>
-</config>
