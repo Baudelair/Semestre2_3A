@@ -9,7 +9,8 @@ public class Anim {
 	} catch (InterruptedException e) {
 	} 
     }
-
+    
+    
     /** Boucle principale */
     public void go() {
 	
@@ -28,7 +29,7 @@ public class Anim {
 	robots[6] = new Killer("Images/mini3.png", 480, 300, plat, Color.black, 6, 9, 1);
 	robots[7] = new Killer("Images/mini3.png", 480, 450, plat, Color.red, 7, 9, 5);
 	robots[8] = new Killer("Images/mini3.png", 80, 250, plat, Color.red, 8, 9, 10);
-	robots[9] = new Indestructible("Images/mini4.png", 100, 400, plat, Color.yellow, 9);
+	robots[9] = new Indestructible("Images/mini4.png", 1000, 700, plat, Color.yellow, 9);
 
 
 	// On repete la boucle d'animation sans arret

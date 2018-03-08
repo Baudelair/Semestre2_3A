@@ -29,6 +29,11 @@ public class Robot {
     public int count ;
     
     private int num_serie;
+    
+    public static int nbexplose = 0;
+    public static final int maxExplosions = 3 ;	
+    
+    public static int nbRobots = 1;
 
     /* 
      *  Constructeur de Robot. 
@@ -48,7 +53,9 @@ public class Robot {
 		this.arrete = false ;
 		this.col= color;
 		this.count=0;
-		this.num_serie=num_ser;
+		this.num_serie= nbRobots;
+		nbRobots++;
+		
     }
 
     /*
@@ -146,13 +153,21 @@ public class Robot {
 
     /** Fait exploser ce robot */
     public void explose() {
-	this.image.playSequence(Images.explosion, false) ;
-	this.vivant = false ;
+    	nbexplose++;
+    	if (nbexplose < maxExplosions) {
+    		this.image.playSequence(Images.explosion, false) ;
+    		this.vivant = false ;
+    	}
     }
 
     /** Reaction a une collision : on s'arrete */
     public void collision(Robot autre) {
+    System.out.println("Collision entre : " + this + " et "+ autre);
 	this.arreterRobot() ;
+    }
+    
+    public  String  toString() {
+    	return "ROBOT x : " + this.x + ", y : " + this.y; 
     }
     
     public int getserie () {

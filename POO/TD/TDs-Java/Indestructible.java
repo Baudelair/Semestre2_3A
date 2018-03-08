@@ -4,6 +4,7 @@ class Indestructible extends Robot {
 		super (nomImage, init_x, init_y, pt, color, num_serie) ;
 	}
 	
-	public void collision(Robot autre) {
+	public void explose() {
+		
 	}
 }
