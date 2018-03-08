@@ -5,13 +5,16 @@
 ;
 subtest	proc
 	push	{lr}
+	push	{r0}
+	ldr	r0, [r0]
 	bl	subtest2
-	;j'ai le cube de i dans r0 et l'adresse de j dans r1
-	ldr	r2, [r1]
-	;add de r0 qui a la valeur du cube
-	add	r2, r0 
-	;
-	str 	r2, [r1]
+	pop	{r2}
+	; jai le cube de i dans r0
+	; ladr de la struct dans r2
+	; je dois récupérer j
+	ldr 	r1, [r2, #4]
+	add	r1, r0
+	str	r1, [r2, #4]
 	pop	{pc}
 	endp
 ;
