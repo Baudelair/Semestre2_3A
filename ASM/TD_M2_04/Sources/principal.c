@@ -18,8 +18,11 @@ Run_Timer( TIM4 );
 // boucle principale
 while	(1)
 	{
-	if	( ( compteur4 & 0x7 ) == 5 )
+	if	( ( compteur4 & 0x7 ) == 5 ) //Récupére les trois derniers bits de poids faibles (7 = 111) correspond à un modulo 8
 		GPIO_Set( GPIOB, 1 );
 	else	GPIO_Clear( GPIOB, 1 );
 	}
 }
+
+//Il faudrait éxecuter 12000fois pour voir la fonction callback s'afficher
+//
