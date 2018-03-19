@@ -5,6 +5,5 @@ class Indestructible extends Robot {
 	}
 	
 	public void explose() {
-		
 	}
 }

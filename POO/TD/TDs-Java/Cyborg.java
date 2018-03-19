@@ -1,7 +1,7 @@
 class Cyborg extends Robot {
 	
-	protected int nb_collisions;
-	protected int max_collisions;
+	private int nb_collisions;
+	private int max_collisions;
 	public Cyborg (String nomImage, int init_x, int init_y, Plateau pt, java.awt.Color color, int num_serie) {
 		super (nomImage, init_x, init_y, pt, color, num_serie) ;
 		this.max_collisions=6;
@@ -19,7 +19,7 @@ class Cyborg extends Robot {
 		this.vy = this.randomV() ;
 		this.nb_collisions= nb_collisions+1;
 		if(this.nb_collisions<this.max_collisions) {
-			this.explose();
+			this.explose(autre);
 		}
 	}
 }

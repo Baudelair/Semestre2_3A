@@ -1,4 +1,5 @@
 import java.awt.Color ;
+import java.util.Stack;
 
 public class Robot {
 
@@ -24,16 +25,20 @@ public class Robot {
     /** Ce robot est-il arrete' ? */
     private boolean arrete ;
 
-    public java.awt.Color col;
+    private java.awt.Color col;
     
-    public int count ;
+    private int count ;
     
     private int num_serie;
     
-    public static int nbexplose = 0;
-    public static final int maxExplosions = 3 ;	
+    private static int nbexplose = 0;
+    private static final int maxExplosions = 3 ;	
     
-    public static int nbRobots = 1;
+    private static int nbRobots = 1;
+    
+    public static Logs logsCollision = new Logs();
+    public static Logs logsExplosion = new Logs();
+   
 
     /* 
      *  Constructeur de Robot. 
@@ -152,18 +157,21 @@ public class Robot {
     }
 
     /** Fait exploser ce robot */
-    public void explose() {
+    public void explose(Robot autre) {
     	nbexplose++;
-    	if (nbexplose < maxExplosions) {
-    		this.image.playSequence(Images.explosion, false) ;
-    		this.vivant = false ;
-    	}
+    	this.image.playSequence(Images.explosion, false) ;
+    	this.vivant = false ;
+       	Robot.logsExplosion.add(" Explosion entre " + this.num_serie + " et " +autre.num_serie, this, autre);
     }
 
     /** Reaction a une collision : on s'arrete */
+    /** Affiche le String à la place des this et autre */
     public void collision(Robot autre) {
-    System.out.println("Collision entre : " + this + " et "+ autre);
-	this.arreterRobot() ;
+    	this.direBonjour(autre);
+    	Robot.logsCollision.add(" Collisions entre " + this.num_serie + " et " +autre.num_serie, this, autre);
+    	System.out.println("Collision entre : " + this + " et "+ autre);
+    	this.arreterRobot() ;
+    	
     }
     
     public  String  toString() {
@@ -173,4 +181,16 @@ public class Robot {
     public int getserie () {
     	return(this.num_serie);
     }
+    
+    public void direBonjour(Robot autre) {
+    	LogLine l = logsCollision.trouveLigne(this, autre);
+    	if(l != null) {
+    		System.out.println("Rebonjour, on s'est déjà croisé le " + l.date);
+    	}
+    	else {
+    		System.out.println("Bonjour, on ne se connaît pas!");
+    	}
+    }
+    
+    Stack<Robot> pileRobot = new Stack<Robot> () ;
 }
