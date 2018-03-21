@@ -14,12 +14,12 @@ public class Logs {
 		}
 	}
 	
-	public LogLine trouveLigne(Robot emetteur, Robot tiers) {
+	public LogLine trouveLigne(Robot emetteur, Robot tiers) throws PasTrouve {
 		for (LogLine ligne : pileLog) {
 			if(ligne.emetteur == emetteur && ligne.tiers == tiers) {
 				return (ligne);
 			}
 		}
-		return(null);
+		throw (new PasTrouve("Pas trouvé")) ;
 	}
 }

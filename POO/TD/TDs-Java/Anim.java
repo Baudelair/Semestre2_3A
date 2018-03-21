@@ -26,9 +26,9 @@ public class Anim {
 	robots[3] = new Cyborg("Images/mini2.png", 100, 300, plat, Color.pink,3);
 	robots[4] = new Cyborg("Images/mini2.png", 160, 450, plat, Color.pink, 4, 5);
 	robots[5] = new Cyborg("Images/mini2.png", 92, 532, plat, Color.pink,5 ,15);
-	robots[6] = new Killer("Images/mini3.png", 480, 300, plat, Color.black, 6, 9, 1);
-	robots[7] = new Killer("Images/mini3.png", 480, 450, plat, Color.red, 7, 9, 5);
-	robots[8] = new Killer("Images/mini3.png", 80, 250, plat, Color.red, 8, 9, 10);
+	robots[6] = new Indestructible("Images/mini3.png", 480, 300, plat, Color.black, 6);
+	robots[7] = new Indestructible("Images/mini3.png", 480, 450, plat, Color.red, 7);
+	robots[8] = new Indestructible("Images/mini3.png", 80, 250, plat, Color.red, 8);
 	//robots[9] = new Indestructible("Images/mini4.png", 1000, 700, plat, Color.yellow, 9);
 
 

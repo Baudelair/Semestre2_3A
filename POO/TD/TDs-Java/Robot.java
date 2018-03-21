@@ -183,13 +183,15 @@ public class Robot {
     }
     
     public void direBonjour(Robot autre) {
-    	LogLine l = logsCollision.trouveLigne(this, autre);
-    	if(l != null) {
-    		System.out.println("Rebonjour, on s'est déjà croisé le " + l.date);
-    	}
-    	else {
-    		System.out.println("Bonjour, on ne se connaît pas!");
-    	}
+		try 
+		{
+			LogLine l = logsCollision.trouveLigne(this, autre);
+			System.out.println("Rebonjour, on s'est déjà croisé le " + l.date);
+	    }
+	    catch (PasTrouve e) 
+		{
+	        System.out.println("Bonjour, on ne se connaît pas!");
+	    }
     }
     
     Stack<Robot> pileRobot = new Stack<Robot> () ;
