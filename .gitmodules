@@ -1,0 +1,3 @@
+[submodule "be-graphes"]
+	path = be-graphes
+	url = http://github.com/Baudelair/be-graphes.git
