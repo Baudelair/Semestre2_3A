@@ -1,7 +1,11 @@
+import java.io.IOException;
+
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		String chemin = args[0];
 		
-		Node initial = new Node("C:\\Users\\Manu\\Documents\\Cours\\Semestre 2\\POO\\TD\\JavaDoc");
+		Dossier dos = new Dossier(chemin);
+		dos.afficher();
 	}
 }
