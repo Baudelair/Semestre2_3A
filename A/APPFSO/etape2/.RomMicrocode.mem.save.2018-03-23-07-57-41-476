@@ -99,10 +99,9 @@
 	<Word val="0x0_0000_0000_880C_0000/ "/>
 	<Word val="0x1_6100_0000_0800_0000/ "/>
 	<Word val="0x1_6100_0003_8800_0000/ "/>
-	<Word val="0x1_0300_003C_0804_0000/ "/>
-	<Word val="0x0_0000_0000_0000_08F0/ "/>
+	<Word val="0x0_0300_003C_0804_0000/ "/>
 	<Word val="0x0_0000_0000_0000_0000/ "/>
-	<Word val="0x0_0000_0000_0001_0CE0/ Fetch : BR"/>
+	<Word adr="240" val="0x0_0000_0000_0001_04E0/ Fetch : BR"/>
 	<Word val="0x0_0000_0000_0000_0000/  va en E0 si IT"/>
 	<Word val="0x0_0000_0203_C024_0EF2/ "/>
 	<Word val="0x1_2100_023F_C802_08FF/ PC ← PC+2, clear BBY, aller à Decode"/>

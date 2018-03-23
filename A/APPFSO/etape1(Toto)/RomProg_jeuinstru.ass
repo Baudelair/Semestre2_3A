@@ -1,0 +1,9 @@
+  		ORG		0x0
+		WORD    0x400	; initialisation SP
+		WORD	debut	; initialisation PC
+debut: 	ADD     R1, R2
+		CMP     R1, R2
+		BC      retenue
+fin1:   B       fin1
+retenue:ASR     R1
+fin2:   B       fin2

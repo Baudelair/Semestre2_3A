@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><MemoryImage>
+	<Word adr="0" val="0xUU/ "/>
+	<Word adr="18" val="0x2A/ SUB "/>
+	<Word val="0xUU/ "/>
+	<Word adr="65" val="0x10/ LDI"/>
+	<Word val="0x20/ ST "/>
+	<Word val="0xUU/ "/>
+	<Word adr="74" val="0x1A// LDB "/>
+	<Word val="0xUU/ "/>
+	<Word val="0x3A/ STB "/>
+	<Word val="0xUU/ "/>
+	<Word adr="81" val="0x40/ B "/>
+	<Word val="0xUU/ "/>
+	<Word adr="94" val="0x30/ BNC "/>
+	<Word val="0xUU/ "/>
+</MemoryImage>

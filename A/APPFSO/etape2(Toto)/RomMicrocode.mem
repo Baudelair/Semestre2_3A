@@ -86,25 +86,30 @@
 	<Word val="0x0_0000_003F_4804_0E56/   PC ← M[SP], attente DA"/>
 	<Word val="0x1_2100_0237_4802_08F0/   SP ← SP+2, libération du Bus, aller à fetch"/>
 	<Word val="0x0_0000_0000_0000_0000/ "/>
-	<Word adr="224" val="0x1_21FF_FE37_4800_0000/ "/>
-	<Word val="0x0_41FF_FE3F_4014_0000/ "/>
-	<Word val="0x1_21FF_FE37_4800_0000/ "/>
-	<Word val="0x0_8000_003C_0800_0000/ "/>
-	<Word val="0x0_4100_003F_4014_0000/ "/>
-	<Word val="0x1_21FF_FE37_4800_0000/ "/>
-	<Word val="0x0_4000_0007_4014_0000/ "/>
-	<Word val="0x1_21FF_FE37_4800_0000/ "/>
-	<Word val="0x0_4000_0003_4014_0000/ "/>
-	<Word val="0x1_2020_0008_0800_0000/ "/>
-	<Word val="0x0_0000_0000_880C_0000/ "/>
-	<Word val="0x1_6100_0000_0800_0000/ "/>
-	<Word val="0x1_6100_0003_8800_0000/ "/>
-	<Word val="0x1_0300_003C_0804_0000/ "/>
-	<Word val="0x0_0000_0000_0000_08F0/ "/>
+	<Word adr="208" val="0x0_0000_0000_0001_0000/ BR = 1"/>
+	<Word val="0x0_0000_0003_4804_0000/ R0 &lt;- M[SP]"/>
+	<Word val="0x1_2100_0237_4800_0000/ SP &lt;- SP + 2"/>
+	<Word val="0x0_0000_0007_4804_0000/ R1 &lt;- M[SP]"/>
+	<Word val="0x1_2100_0237_4800_0000/ SP &lt;- SP + 2"/>
 	<Word val="0x0_0000_0000_0000_0000/ "/>
-	<Word val="0x0_0000_0000_0001_0CE0/ Fetch : BR"/>
-	<Word val="0x0_0000_0000_0000_0000/  va en E0 si IT"/>
-	<Word val="0x0_0000_0203_C024_0EF2/ "/>
+	<Word adr="224" val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP-2"/>
+	<Word val="0x1_4000_003F_4014_0000/ PC -&gt; M[SP]"/>
+	<Word val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP - 2"/>
+	<Word val="0x0_8000_003F_4800_0000/ PC &lt;- CNZV"/>
+	<Word val="0x0_4000_003F_4014_0000/ PC -&gt; M[SP]"/>
+	<Word val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP - 2"/>
+	<Word val="0x0_4000_0007_4014_0000/ R1 -&gt; M[SP]"/>
+	<Word val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP - 2"/>
+	<Word val="0x0_4000_0003_4014_0000/ R0 -&gt; M[SP]"/>
+	<Word val="0x1_0020_0000_0800_0000/ R0 &lt;- 0x2000"/>
+	<Word val="0x0_0000_0000_080C_0000/ R0 &lt;- M[R0]"/>
+	<Word val="0x3_2100_0000_0800_0000/ R0 &lt;- 2*R0"/>
+	<Word val="0x1_6100_0003_8800_0000/ R0 &lt;- R14 + R0"/>
+	<Word val="0x0_0000_003C_0804_08F1/ PC &lt;- M[R0]"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="240" val="0x0_0000_0000_0001_0CF0/ Fetch : BR"/>
+	<Word val="0x0_0000_0000_0000_05E0/ attente IT, aller à E0 si IT sinon F2"/>
+	<Word val="0x0_0000_0203_C024_0EF2/  RI ← mem[PC]; DA"/>
 	<Word val="0x1_2100_023F_C802_08FF/ PC ← PC+2, clear BBY, aller à Decode"/>
 	<Word val="0x0_0000_0000_0000_0000/ "/>
 	<Word adr="255" val="0x0_0000_0000_0000_1800/ Decode : microPC  ← romTranscode(CO, SCO)"/>

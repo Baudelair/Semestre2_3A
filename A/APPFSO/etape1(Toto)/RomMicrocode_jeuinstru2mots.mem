@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><MemoryImage>
+	<Word adr="0" val="0x1_0000_0000_0801_0000/ R0 ← 0, BR=1"/>
+	<Word val="0x0_0000_0034_0804_0000/ SP ← M[R0], DR=1"/>
+	<Word val="0x1_0000_0204_0800_0000/ R1 ← 2"/>
+	<Word val="0x0_0000_003C_4804_0000/ PC ← M[R1], DR=1"/>
+	<Word val="0x0_0000_0000_0002_08F0/ ClrBBY = 1, goto Fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="16" val="0x0_0000_0000_0001_0000/ BR = 1"/>
+	<Word val="0x0_0000_0083_C804_0000/ DR = 1, RI_A &lt;- M[PC]"/>
+	<Word val="0x1_2100_023F_C800_0000/ PC &lt;- PC + 2"/>
+	<Word val="0x0_0000_0000_0002_08F0/ ClrBBY = 1, goto Fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="26" val="0x0_0000_0000_0001_0000/ BR = 1"/>
+	<Word val="0x0_0000_000B_C804_0000/ DR = 1, R2 &lt;- M[PC]"/>
+	<Word val="0x0_0000_0080_880C_0000/ MO = 1, DR = 1, RI_A &lt;- M[R2]"/>
+	<Word val="0x1_2100_023F_C800_0000/ PC &lt;- PC + 2 "/>
+	<Word val="0x0_0000_0000_0002_08F0/ ClrBBY = 1, goto Fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word val="0x0_0000_0000_0001_0000/ BR = 1"/>
+	<Word val="0x0_0000_000B_C804_0000/ DR = 1, R2 &lt;- M[PC]"/>
+	<Word val="0x0_4000_0080_8014_0000/ LE = 1, DR = 1, RI_A -&gt; M[R2]"/>
+	<Word val="0x1_2100_023F_C800_0000/ PC &lt;- PC + 2"/>
+	<Word val="0x0_0000_0000_0002_08F0/ ClrBBY = 1, goto Fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="42" val="0x1_6200_0080_1840_08F0/ LdCNZV = 1, RI_A &lt;- RI_A - RI_B, goto Fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="48" val="0x1_0100_0000_0100_01F0/ si retenue, goto Fetch"/>
+	<Word val="0x1_4100_003C_0800_08F0/ sinon Pc &lt;- PC + ExtSign(), gotoFetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="58" val="0x0_0000_0000_0001_0000/ BR = 1"/>
+	<Word val="0x0_0000_000B_C804_0000/ DR = 1, R2 &lt;- M[PC]"/>
+	<Word val="0x0_4000_0080_801C_0000/ MO = 1, LE = 1, DR = 1, RI_A -&gt; M[R2]"/>
+	<Word val="0x1_2100_023F_C840_0000/ PC &lt;- PC + 2"/>
+	<Word val="0x0_0000_0000_0002_08F0/ ClrBBY = 1, goto Fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word val="0x1_4100_003C_0800_08F0/ PC &lt;- PC + ExtSign(), goto fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="240" val="0x0_0000_0000_0001_0000/ BR = 1"/>
+	<Word val="0x0_0000_0003_C024_0000/ DR = 1, LdRI = 1, RI ← M[PC]"/>
+	<Word val="0x1_2100_023F_C800_08FF/ PC &lt;- PC + 2, goto 0xFF"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="255" val="0x0_0000_0000_0002_1800/ ClrBBY = 1, goto @romtranscode"/>
+</MemoryImage>
