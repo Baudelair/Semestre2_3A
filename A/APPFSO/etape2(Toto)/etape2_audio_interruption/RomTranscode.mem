@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><MemoryImage>
+	<Word adr="0" val="0xUU"/>
+	<Word adr="17" val="0x0A/ ADD"/>
+	<Word val="0x0A/ SUB"/>
+	<Word val="0x0A/ COPY"/>
+	<Word val="0x0A/ OR"/>
+	<Word val="0x0A/ XOR"/>
+	<Word val="0x0A/ AND"/>
+	<Word val="0x0A/ NOT"/>
+	<Word val="0xUU"/>
+	<Word adr="32" val="0x0B/ LSR"/>
+	<Word val="0x0B/ LSL"/>
+	<Word val="0x0B/ ASR"/>
+	<Word val="0x0B/ ASL"/>
+	<Word val="0x0B/ CSR"/>
+	<Word val="0x0B/ CSL"/>
+	<Word val="0x0B/ CSRC"/>
+	<Word val="0x0B/ CSLC"/>
+	<Word val="0xUU"/>
+	<Word adr="48" val="0x08/ MOV"/>
+	<Word val="0x09/ CMP"/>
+	<Word val="0x0C/ MUL"/>
+	<Word val="0x12/ DIV"/>
+	<Word val="0xUU"/>
+	<Word adr="64" val="0x16"/>
+	<Word val="0x1D"/>
+	<Word val="0x20"/>
+	<Word val="0x26"/>
+	<Word val="0x2C"/>
+	<Word val="0x45/PUSH"/>
+	<Word val="0x49/POP"/>
+	<Word val="0x4C/LDCC"/>
+	<Word val="0x4D/STCC"/>
+	<Word val="0xUU"/>
+	<Word val="0x2F/LDB"/>
+	<Word val="0xUU"/>
+	<Word val="0x36/ STB"/>
+	<Word val="0x3C/ LDRB"/>
+	<Word val="0x42/STRB"/>
+	<Word val="0xUU"/>
+	<Word adr="81" val="0x10/ B"/>
+	<Word val="0x10/ BN"/>
+	<Word val="0x10/ BNN"/>
+	<Word val="0x10/ BV"/>
+	<Word val="0x10/ BNV"/>
+	<Word val="0x10/ BZ"/>
+	<Word val="0x10/ BNZ"/>
+	<Word val="0x10/ BG"/>
+	<Word val="0x10/ BLE"/>
+	<Word val="0x10/ BGE"/>
+	<Word val="0x10/ BL"/>
+	<Word val="0x10/ BGNS"/>
+	<Word val="0x10/ BLENS"/>
+	<Word val="0x10/ BNC"/>
+	<Word val="0x10/ BC"/>
+	<Word val="0x4E/CALL"/>
+	<Word val="0x55/RETURN"/>
+	<Word val="0x58/RTI"/>
+	<Word val="0xUU"/>
+</MemoryImage>

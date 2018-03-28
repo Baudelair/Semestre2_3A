@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><MemoryImage>
+	<Word adr="0" val="0x1_0000_0000_0801_0C00/ R0 ← 0, BR=1 (Bus Request)"/>
+	<Word val="0x0_0000_0034_0804_0E01/ SP ← M[R0], DR=1 (Data Ready)"/>
+	<Word val="0x1_0000_0204_0800_0000/ R1 ← 2"/>
+	<Word val="0x0_0000_003C_4804_0E03/ PC ← M[R1], DR=1 (Data Ready)"/>
+	<Word val="0x0_0000_0000_0002_08F0/ ClrBBY, aller à Fetch"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="8" val="0x1_2100_0080_1800_08F0/ MOVE: Ra ← Rb, aller à Fetch"/>
+	<Word val="0x0_6200_0080_1040_08F0/ CMP:  ← Ra - Rb, aller à Fetch"/>
+	<Word val="0x1_7200_0080_1840_08F0/ opAL: Ra ← Ra SCO Rb, aller à Fetch"/>
+	<Word val="0x3_7200_0080_1840_08F0/ opD: Ra ← Ra SCO Rb, aller à Fetch"/>
+	<Word val="0x0_6800_0080_1000_C00F/ MUL: init P,A,B ctr  ← 16"/>
+	<Word val="0x1_0C00_0080_1000_8F0D/  cycle mult 16 fois"/>
+	<Word val="0x1_0900_0080_1800_00F0/  Ra  ← P"/>
+	<Word val="0x1_0A00_0040_1800_08F0/  Rb  ← A, aller à fetch"/>
+	<Word val="0x0_0000_0000_0500_09F0/ brCond: si ¬cond aller à fetch"/>
+	<Word val="0x1_4100_003C_0800_08F0/ PC ← PC+ extensionSigne(RIadr), aller à fetch"/>
+	<Word val="0x0_6800_0080_1000_C00F/ DIV: init P,A,B ctr  ← 16"/>
+	<Word val="0x1_0D00_0080_1000_8F13/  cycle div 16 fois"/>
+	<Word val="0x1_0900_0040_1800_00F0/  Rb  ← P"/>
+	<Word val="0x1_0A00_0080_1800_08F0/  Ra  ← A, aller à fetch"/>
+	<Word val="0x0_6800_0000_4001_0C16/ LD: BR, P←0, Aalu←R0, Balu←R1 (sauvegarde R0 et R1)"/>
+	<Word val="0x0_0000_0003_C804_0E17/   R0 ← M[PC] (dddd), attente DA"/>
+	<Word val="0x0_0000_0004_0804_0E18/   R1 ← M[R0] (M[dddd]), attente DA"/>
+	<Word val="0x1_2100_023F_C802_0000/   PC ← PC+2, libération bus"/>
+	<Word val="0x1_2E00_0000_0800_0000/   Aalu ↔ Y (restauration R0)"/>
+	<Word val="0x1_2F00_0004_4800_0000/ LDfin:  Balu ↔ Y (restauration R1)"/>
+	<Word val="0x1_0B00_0080_0800_08F0/   Ra ← Balu, aller à fetch"/>
+	<Word val="0x0_6800_0000_4001_0C16/ LDI: BR, P←0, Aalu←R0, Balu←R1 (sauvegarde R0 et R1)"/>
+	<Word val="0x0_0000_0007_C804_0E1E/   R1 ← M[PC] (dddd), attente DA"/>
+	<Word val="0x1_2100_023F_C802_081B/   PC ← PC+2, libération bus, aller à LDfin"/>
+	<Word val="0x0_6800_0080_4001_0C20/ ST: BR, P←0, Aalu←Ra, Balu←R1 (sauvegarde Ra et R1)"/>
+	<Word val="0x0_0000_0007_C804_0E21/   R1 ← M[PC] (dddd), attente DA"/>
+	<Word val="0x0_0A00_0000_4014_0E22/   M[R1]  ← Aalu, attente DA"/>
+	<Word val="0x1_2100_023F_C802_0000/   PC ← PC+2, libérer le bus"/>
+	<Word val="0x1_0B00_0004_0800_0000/   restaurer R1"/>
+	<Word val="0x1_0A00_0080_0800_08F0/   restaurer Ra, aller à fetch"/>
+	<Word val="0x0_6800_0000_4001_0C26/ LDR: BR, P←0, Aalu←R0, Balu←R1 (sauvegarde R0 et R1)"/>
+	<Word val="0x1_2100_0007_D800_0000/   R1 ← Rb"/>
+	<Word val="0x0_0000_0000_4804_0E28/   R0 ← M[R1] (M[dddd]), attente DA"/>
+	<Word val="0x1_2E00_0200_0802_0000/   R0 ↔ Aalu, libération bus"/>
+	<Word val="0x1_2F00_0004_4800_0000/   R1 ↔ Balu (restauration R0)"/>
+	<Word val="0x1_0A00_0080_0800_08F0/   Ra ← Aalu, aller à fetch"/>
+	<Word val="0x0_6800_0000_4001_0C2C/ STR: BR"/>
+	<Word val="0x0_4000_0084_1014_0E2D/   M[Rb] ← Ra (M[dddd]), attente DA"/>
+	<Word val="0x1_0000_0200_0002_08F0/   libération bus, aller à fetch"/>
+	<Word val="0x0_6800_0000_4001_0C2F/ LDB: BR, P←0, Aalu←R0, Balu←R1 (sauvegarde R0 et R1)"/>
+	<Word val="0x0_0000_0003_C804_0E30/   R0 ← M[PC] (dddd), attente DA"/>
+	<Word val="0x0_0000_0004_080C_0E31/   R1 ← (BYTE) M[R0] (M[dddd]), attente DA"/>
+	<Word val="0x1_2100_023F_C802_0000/   PC ← PC+2, libération bus"/>
+	<Word val="0x1_2E00_0000_0800_0000/   Aalu ↔ Y (restauration R0)"/>
+	<Word val="0x1_2F00_0004_4800_0000/   Balu ↔ Y (restauration R1)"/>
+	<Word val="0x1_0B00_0080_0800_08F0/   Ra ← Balu, aller à fetch"/>
+	<Word val="0x0_6800_0080_4001_0C36/ STB: BR, P←0, Aalu←Ra, Balu←R1 (sauvegarde Ra et R1)"/>
+	<Word val="0x0_0000_0007_C804_0E37/   R1 ← M[PC] (dddd), attente DA"/>
+	<Word val="0x0_0A00_0000_401C_0E38/   M[R1] (BYTE) ← Aalu, attente DA"/>
+	<Word val="0x1_2100_023F_C802_0000/   PC ← PC+2, libérer le bus"/>
+	<Word val="0x1_0B00_0004_0800_0000/   restaurer R1"/>
+	<Word val="0x1_0A00_0080_0800_08F0/   restaurer Ra, aller à fetch"/>
+	<Word val="0x0_6800_0000_4001_0C3C/ LDRB: BR, P←0, Aalu←R0, Balu←R1 (sauvegarde R0 et R1)"/>
+	<Word val="0x1_2100_0007_D800_0000/   R1 ← Rb"/>
+	<Word val="0x0_0000_0000_480C_0E3E/   R0 ← M[R1] (M[dddd]), attente DA"/>
+	<Word val="0x1_2E00_0200_0802_0000/   R0 ↔ Aalu, libération bus"/>
+	<Word val="0x1_2F00_0004_4800_0000/   R1 ↔ Balu (restauration R0)"/>
+	<Word val="0x1_0A00_0080_0800_08F0/   Ra ← Aalu, aller à fetch"/>
+	<Word val="0x0_6800_0000_4001_0C42/ STRB: BR"/>
+	<Word val="0x0_4000_0084_101C_0E43/   M[Rb] (BYTE) ← Ra (M[dddd]), attente DA"/>
+	<Word val="0x1_0000_0200_0002_08F0/   libération bus, aller à fetch"/>
+	<Word val="0x0_0800_0000_4001_0C45/ PUSH: BR"/>
+	<Word val="0x1_21FF_FE37_4800_0000/   SP ← SP-2"/>
+	<Word val="0x0_4000_0087_4014_0E47/   M[SP] ← Ra, attente DA"/>
+	<Word val="0x1_0000_0200_0002_08F0/   libération bus, aller à fetch"/>
+	<Word val="0x0_0800_0000_4001_0C49/ POP: BR"/>
+	<Word val="0x0_0000_0083_4804_0E4A/   Ra ← M[SP], attente DA"/>
+	<Word val="0x1_2100_0237_4802_08F0/   SP ← SP+2, liberation Bu, aller à fetch"/>
+	<Word val="0x0_8000_0080_1800_08F0/ LDCC: Ra ← CNZV, aller à Fetch"/>
+	<Word val="0x1_4000_0080_00C0_08F0/ STCC: CNZV ← Ra, aller à Fetch"/>
+	<Word val="0x0_6800_0000_4001_0C4E/ CALL: BR, P←0, Aalu←R0, Balu←R1 (sauvegarde R0 et R1)"/>
+	<Word val="0x1_21FF_FE37_4800_0000/   SP ← SP-2"/>
+	<Word val="0x0_0000_0003_C804_0E50/   R0 ← M[PC], attente DA"/>
+	<Word val="0x1_2100_023F_C800_0000/   PC ← PC+2"/>
+	<Word val="0x0_4000_003F_4014_0E52/   M[SP] ← PC, attente DA"/>
+	<Word val="0x1_2300_003C_0802_0000/   PC ← R0, libérer bus"/>
+	<Word val="0x1_2E00_0000_0800_08F0/   Aalu ↔ Y (restauration R0), aller à fetch"/>
+	<Word val="0x0_0000_0000_4001_0C55/ RETURN: BR"/>
+	<Word val="0x0_0000_003F_4804_0E56/   PC ← M[SP], attente DA"/>
+	<Word val="0x1_2100_0237_4802_08F0/   SP ← SP+2, libération du Bus, aller à fetch"/>
+	<Word val="0x1_0020_0004_0801_0000/ RTI: R1 &lt;- 2000 BR"/>
+	<Word val="0x0_0000_0000_401C_0000/ M(0x2000) &lt;- 0x00"/>
+	<Word val="0x0_0000_0007_4804_0000/ R1 &lt;- M(SP)"/>
+	<Word val="0x1_2100_0237_4800_0000/ SP &lt;- SP +2"/>
+	<Word val="0x0_0000_0003_4804_0000/ R0 &lt;- M(SP)"/>
+	<Word val="0x1_2100_0237_4800_0000/ SP &lt;- SP +2"/>
+	<Word val="0x0_0000_0F3F_4804_0000/ PC &lt;- M(SP)"/>
+	<Word val="0x1_2100_0237_4800_0000/ SP &lt;- SP +2"/>
+	<Word val="0x0_4000_0F3F_48C4_0000/ CNZV &lt;- PC PC &lt;-M(SP)"/>
+	<Word val="0x1_2100_0237_4802_08F0/ SP &lt;- SP +2, go to F0"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="224" val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP -2"/>
+	<Word val="0x0_4000_003F_4014_00E0/ M(SP) &lt;- PC"/>
+	<Word val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP -2"/>
+	<Word val="0x0_C000_003C_0800_0000/ PC &lt;- CNZV"/>
+	<Word val="0x0_4000_443F_4014_0000/ M(SP) &lt;- PC"/>
+	<Word val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP -2"/>
+	<Word val="0x0_4000_0403_4014_0000/ M(SP) &lt;- R0"/>
+	<Word val="0x1_21FF_FE37_4800_0000/ SP &lt;- SP -2"/>
+	<Word val="0x0_4000_0007_4014_0000/ M(SP) &lt;- R1"/>
+	<Word val="0x1_0020_0004_0800_0000/ R1 &lt;- 2000"/>
+	<Word val="0x0_0000_0000_480C_0000/ RO &lt;- M(R1) MO =1"/>
+	<Word val="0x1_6100_0200_0800_0000/ R0 &lt;- R0 + R0"/>
+	<Word val="0x1_6100_0003_8800_0000/ RO &lt;- R0 + TabIT"/>
+	<Word val="0x0_0000_003C_0804_08F1/ PC &lt;- M(R0); go to F1"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="240" val="0x0_0000_0000_0001_0CF0/ Fetch : BR"/>
+	<Word val="0x0_0000_0000_0000_05E0/ go to E0 if IT=1"/>
+	<Word val="0x0_0000_0203_C024_0EF2/  RI ← mem[PC]; DA"/>
+	<Word val="0x1_2100_023F_C802_08FF/ PC ← PC+2, clear BBY, aller à Decode"/>
+	<Word val="0x0_0000_0000_0000_0000/ "/>
+	<Word adr="255" val="0x0_0000_0000_0000_1800/ Decode : microPC  ← romTranscode(CO, SCO)"/>
+</MemoryImage>

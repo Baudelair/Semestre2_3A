@@ -1,0 +1,14 @@
+; déclarations pour carte Audio 
+SPI_Data:	EQU		0x1000 
+SPI_PWM:	EQU 	0x1001 
+SPI_Status: EQU 	0x1002
+
+IO_DIGITS 	EQU		0x4004
+
+IT	proc
+			LDB		R3, [SPI_DATA]
+			STB 	R3, [SPI_PWM]
+			STB		R3, [IO_DIGITS]
+
+While proc
+			
