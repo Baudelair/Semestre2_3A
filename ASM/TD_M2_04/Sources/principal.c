@@ -15,8 +15,8 @@ Timer_1234_Init_ff( TIM4, 72000 );
 Active_IT_Debordement_Timer( TIM4, 2, t4_callback );
 // lancement du timer
 Run_Timer( TIM4 );
-// boucle principale
-while	(1)
+// boucle principale                                                        
+while	(1)                                                                
 	{
 	if	( ( compteur4 & 0x7 ) == 5 ) //Récupére les trois derniers bits de poids faibles (7 = 111) correspond à un modulo 8
 		GPIO_Set( GPIOB, 1 );
