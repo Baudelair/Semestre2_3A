@@ -37,7 +37,12 @@ public class tache_chrono extends tache{
  
      @Override
      public void setBonus() {
-          //implémenter la méthode setBonus
+          if (this.dateRealisation > this.dateEcheance))
+          {
+          		//tache accompli
+          		this.accompli = true;
+          		this.bonus ++; 
+          }
      }
      
      //...

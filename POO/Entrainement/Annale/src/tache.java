@@ -21,6 +21,7 @@ public abstract class tache {
      private int bonus;
      private Date dateDebut;
      private Date dateRealisation;
+     private boolean accompli;
      
      public tache(String descriptif){
           this.descriptif=descriptif;
@@ -35,7 +36,7 @@ public abstract class tache {
      
      public String toString(){
           //comme pour le TD sur les robots, il faut retourner les informations d'une tâche
-    	 return "Descriptif " + this.descriptif; 
+    	     return "Descriptif " + this.descriptif; 
      
      }
      //...

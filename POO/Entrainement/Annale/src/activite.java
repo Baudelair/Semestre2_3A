@@ -25,7 +25,7 @@ public class activite {
      
      public String toString(){
 //comme pour le TD sur les robots, il faut retourner les   informations d'une activité
-    	 return "Intitule " + this.intitule;
+    	     return "Intitule " + this.intitule;
      }
      //...
  
