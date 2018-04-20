@@ -15,7 +15,7 @@ void initialisation(int x){
 	int listeMag[x] ={0};
 	int shm = shmget((key_t) key, sizeof(int)*sizeof(listeMag),066|IPC_CREAT);
 	int *ptr = shmat(shm, NULL, 0);
-	*ptr = listeMag;
+	ptr = listeMag;
 }
 
 void* magicien(void* arg){
@@ -55,3 +55,12 @@ int main(int argc, char const *argv[])
 	shmctl(shm, IPC_RMID, NULL);
 	return 0;
 }
+
+
+// Je créer une liste en mémoire partagée afin que chaque magicien puisse y déposer son PID à l'initialisation.
+// Chaque magicien sera en attente d'un signal pendant x secondes sinon il envoie un sort.
+// Pour l'envoi de sort, le magicien va choisir au hasard dans la liste un pid et il va lui envoyer un sort en fonction de son camp.
+// Ce sort sera représenté par un signal. 
+// Lorsqu'un magicien n'a plus de force, il va bloquer tous les autres magiciens afin de supprimer son pid de la liste 
+// Fin de la bataille lorsqu'il ne restera plus qu'un seul magicien dans la liste
+			
