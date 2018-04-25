@@ -1,0 +1,175 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000         
+    3 00000000         
+    4 00000000                 thumb
+    5 00000000         
+    6 00000000                 area             maram, data, readwrite
+    7 00000000 00000000 
+                       signal1 dcd              0
+    8 00000004         
+    9 00000004                 area             moncode, code, readonly
+   10 00000000                 export           Temporisation
+   11 00000000                 export           timer_callback
+   12 00000000         
+   13 00000000         
+   14 00000000         
+   15 00000000         Temporisation
+                               proc
+   16 00000000 F04F 0200       mov              r2, #0      ; 1ere instruction 
+                                                            de la fonction (exe
+                                                            mple)
+   17 00000004         
+   18 00000004 4770            bx               lr          ; dernière instruct
+                                                            ion de la fonction
+   19 00000006                 endp
+   20 00000006         ;
+   21 00000006         
+   22 00000006 40010C10 
+                       GPIOB_BSRR
+                               equ              0x40010C10  ; Bit Set/Reset reg
+                                                            ister
+   23 00000006         
+   24 00000006         timer_callback
+                               proc
+   25 00000006         ; if signal 1 = 0, passe a 1 et envoie a GPIO_BSRR, sino
+                       n 0 et envoie
+   26 00000006         
+   27 00000006 490B            ldr              r1, =signal1 ; r1 adresse de si
+                                                            gnal1
+   28 00000008 680A            ldr              r2, [r1]    ; r5 valeur de sign
+                                                            al1
+   29 0000000A         
+   30 0000000A         
+   31 0000000A B14A            CBZ              r2 , misea1
+   32 0000000C         
+   33 0000000C B406            push             {r1,r2}
+   34 0000000E         ; mise a zero de PB1
+   35 0000000E 4B0A            ldr              r3, =GPIOB_BSRR
+   36 00000010 F45F 3100       movs             r1, #0x00020000
+   37 00000014 6019            str              r1, [r3]
+   38 00000016         
+   39 00000016 BC06            pop              {r1,r2}
+   40 00000018 F04F 0200       mov              r2 , #0     ;signal a 0
+   41 0000001C 600A            str              r2, [r1]
+   42 0000001E E007            b                lafin
+   43 00000020         misea1
+   44 00000020 B406            push             {r1,r2}
+   45 00000022         ; mise a 1 de PB1
+   46 00000022 4B05            ldr              r3, =GPIOB_BSRR
+   47 00000024 2102            movs             r1, #0x00000002
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   48 00000026 6019            str              r1, [r3]
+   49 00000028         
+   50 00000028 BC06            pop              {r1,r2}
+   51 0000002A F04F 0201       mov              r2 , #1     ;signal a 1
+   52 0000002E 600A            str              r2, [r1]
+   53 00000030         
+   54 00000030         lafin
+   55 00000030 4770            bx               lr
+   56 00000032                 endp
+   57 00000032                 end
+              00 00 00000000 
+              40010C10 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\tempo.d -o.\tempo.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\C
+MSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F10x --predefine="__EVAL SETA 1" --pr
+edefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" --list=.\t
+empo.lst Sources\Tempo.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+maram 00000000
+
+Symbol: maram
+   Definitions
+      At line 6 in file Sources\Tempo.s
+   Uses
+      None
+Comment: maram unused
+signal1 00000000
+
+Symbol: signal1
+   Definitions
+      At line 7 in file Sources\Tempo.s
+   Uses
+      At line 27 in file Sources\Tempo.s
+Comment: signal1 used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Temporisation 00000000
+
+Symbol: Temporisation
+   Definitions
+      At line 15 in file Sources\Tempo.s
+   Uses
+      At line 10 in file Sources\Tempo.s
+Comment: Temporisation used once
+lafin 00000030
+
+Symbol: lafin
+   Definitions
+      At line 54 in file Sources\Tempo.s
+   Uses
+      At line 42 in file Sources\Tempo.s
+Comment: lafin used once
+misea1 00000020
+
+Symbol: misea1
+   Definitions
+      At line 43 in file Sources\Tempo.s
+   Uses
+      At line 31 in file Sources\Tempo.s
+Comment: misea1 used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 9 in file Sources\Tempo.s
+   Uses
+      None
+Comment: moncode unused
+timer_callback 00000006
+
+Symbol: timer_callback
+   Definitions
+      At line 24 in file Sources\Tempo.s
+   Uses
+      At line 11 in file Sources\Tempo.s
+Comment: timer_callback used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+GPIOB_BSRR 40010C10
+
+Symbol: GPIOB_BSRR
+   Definitions
+      At line 22 in file Sources\Tempo.s
+   Uses
+      At line 35 in file Sources\Tempo.s
+      At line 46 in file Sources\Tempo.s
+
+1 symbol
+343 symbols in table

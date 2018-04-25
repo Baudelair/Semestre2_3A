@@ -1,0 +1,318 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 include          Lib\etat.inc
+    1 00000000         ;typedef struct {
+    2 00000000         ;int position;  // 0
+    3 00000000         ;int taille;  // 4
+    4 00000000         ;void * son;  // 8
+    5 00000000         ;int resolution; // 12
+    6 00000000         ;int periode_ticks; // 16
+    7 00000000         ;} type_etat;
+    8 00000000         
+    9 00000000         ;/*
+   10 00000000 00000000 
+                       E_POS   equ              0
+   11 00000000 00000004 
+                       E_TAI   equ              4
+   12 00000000 00000008 
+                       E_SON   equ              8
+   13 00000000 0000000C 
+                       E_RES   equ              12
+   14 00000000 00000010 
+                       E_PER   equ              16
+   15 00000000                 end
+    3 00000000         ;include bruitverre.asm
+    4 00000000                 thumb
+    5 00000000         
+    6 00000000                 area             maram, data, readwrite
+    7 00000000 00000000 
+                       signal1 dcd              0
+    8 00000004         
+    9 00000004         
+   10 00000004                 export           Temporisation
+   11 00000004                 export           timer_callback
+   12 00000004                 import           etat
+   13 00000004                 import           LongueurSon
+   14 00000004                 import           PeriodeSonMicroSec
+   15 00000004                 import           Son
+   16 00000004         
+   17 00000004                 area             moncode, code, readonly
+   18 00000000         
+   19 00000000 480C            ldr              r0,=etat
+   20 00000002 490D            ldr              r1,=LongueurSon
+   21 00000004 6041            str              r1 , [r0, #E_TAI]
+   22 00000006 490D            ldr              r1,=Son
+   23 00000008 6081            str              r1,[r0, #E_SON]
+   24 0000000A         
+   25 0000000A 00008000 
+                       DECALAGE
+                               equ              32768       ; 
+   26 0000000A 40010C10 
+                       GPIOB_BSRR
+                               equ              0x40010C10  ; Bit Set/Reset reg
+                                                            ister
+   27 0000000A 4000043C 
+                       TIM3_CCR3
+                               equ              0x4000043C  ; adresse registre 
+                                                            PWM
+   28 0000000A         
+   29 0000000A         
+   30 0000000A         Temporisation
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                               proc
+   31 0000000A F04F 0200       mov              r2, #0      ; 1ere instruction 
+                                                            de la fonction (exe
+                                                            mple)
+   32 0000000E         
+   33 0000000E 4770            bx               lr          ; dernière instruct
+                                                            ion de la fonction
+   34 00000010                 endp
+   35 00000010         
+   36 00000010         
+   37 00000010         timer_callback
+                               proc
+   38 00000010         
+   39 00000010 4808            ldr              r0,=etat
+   40 00000012         ;///RECUPERATION SON
+   41 00000012 6802            ldr              r2, [r0,#E_POS] ; chargement de
+                                                             ce qu'il y a a adr
+                                                            esse pos dans r2// 
+                                                            r2=etat.pos
+   42 00000014 6883            ldr              r3,[r0,#E_SON] ; adresse de *so
+                                                            n = etat.son
+   43 00000016         ;ldr r3,[r3];adresse de son[0]
+   44 00000016 5E99            ldrsh            r1,[r3,r2]  ; chargement du son
+                                                             a la pos son[0] + 
+                                                            r2 (pos)
+   45 00000018         
+   46 00000018         ;///DECALAGE
+   47 00000018         
+   48 00000018 F501 4100       add              r1,#32768   ; decalage du son 
+   49 0000001C         
+   50 0000001C         ;///multiplication par res
+   51 0000001C         
+   52 0000001C 68C3            ldr              r3, [r0,#E_RES] ;
+   53 0000001E FB01 F103       mul              r1, r3
+   54 00000022         
+   55 00000022         ;///on divise par 65536 = 2^16
+   56 00000022 EA4F 4101       mov              r1,r1 ,LSL #16
+   57 00000026         
+   58 00000026 4B06            ldr              r3,=TIM3_CCR3
+   59 00000028 6019            str              r1, [r3]
+   60 0000002A         ; reste a BALANCER DANS PWM
+   61 0000002A         ;A CHAQUE INTERRUPTION ON PASSE A LA LIGNE SUIVANTE DU F
+                       ICHIER AUDIO
+   62 0000002A         
+   63 0000002A 6802            ldr              r2, [r0,#E_POS] ; chargement de
+                                                             ce qu'il y a a adr
+                                                            esse pos dans r2// 
+                                                            r2=etat.pos
+   64 0000002C F102 0202       add              r2, #2
+   65 00000030 6002            str              r2, [r0,#E_POS] ; renvoie dans 
+                                                            la structure pos + 
+                                                            2
+   66 00000032         
+   67 00000032 4770            bx               lr
+   68 00000034                 endp
+   69 00000034         
+   70 00000034                 end
+              00000000 
+              00000000 
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+              00000000 
+              4000043C 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\tempo.d -o.\tempo.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\C
+MSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F10x --predefine="__EVAL SETA 1" --pr
+edefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" --list=.\t
+empo.lst Sources\Tempo.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+maram 00000000
+
+Symbol: maram
+   Definitions
+      At line 6 in file Sources\Tempo.s
+   Uses
+      None
+Comment: maram unused
+signal1 00000000
+
+Symbol: signal1
+   Definitions
+      At line 7 in file Sources\Tempo.s
+   Uses
+      None
+Comment: signal1 unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Temporisation 0000000A
+
+Symbol: Temporisation
+   Definitions
+      At line 30 in file Sources\Tempo.s
+   Uses
+      At line 10 in file Sources\Tempo.s
+Comment: Temporisation used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 17 in file Sources\Tempo.s
+   Uses
+      None
+Comment: moncode unused
+timer_callback 00000010
+
+Symbol: timer_callback
+   Definitions
+      At line 37 in file Sources\Tempo.s
+   Uses
+      At line 11 in file Sources\Tempo.s
+Comment: timer_callback used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+DECALAGE 00008000
+
+Symbol: DECALAGE
+   Definitions
+      At line 25 in file Sources\Tempo.s
+   Uses
+      None
+Comment: DECALAGE unused
+E_PER 00000010
+
+Symbol: E_PER
+   Definitions
+      At line 14 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_PER unused
+E_POS 00000000
+
+Symbol: E_POS
+   Definitions
+      At line 10 in file Lib\etat.inc
+   Uses
+      At line 41 in file Sources\Tempo.s
+      At line 63 in file Sources\Tempo.s
+      At line 65 in file Sources\Tempo.s
+
+E_RES 0000000C
+
+Symbol: E_RES
+   Definitions
+      At line 13 in file Lib\etat.inc
+   Uses
+      At line 52 in file Sources\Tempo.s
+Comment: E_RES used once
+E_SON 00000008
+
+Symbol: E_SON
+   Definitions
+      At line 12 in file Lib\etat.inc
+   Uses
+      At line 23 in file Sources\Tempo.s
+      At line 42 in file Sources\Tempo.s
+
+E_TAI 00000004
+
+Symbol: E_TAI
+   Definitions
+      At line 11 in file Lib\etat.inc
+   Uses
+      At line 21 in file Sources\Tempo.s
+Comment: E_TAI used once
+GPIOB_BSRR 40010C10
+
+Symbol: GPIOB_BSRR
+   Definitions
+      At line 26 in file Sources\Tempo.s
+   Uses
+      None
+Comment: GPIOB_BSRR unused
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
+TIM3_CCR3 4000043C
+
+Symbol: TIM3_CCR3
+   Definitions
+      At line 27 in file Sources\Tempo.s
+   Uses
+      At line 58 in file Sources\Tempo.s
+Comment: TIM3_CCR3 used once
+8 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+LongueurSon 00000000
+
+Symbol: LongueurSon
+   Definitions
+      At line 13 in file Sources\Tempo.s
+   Uses
+      At line 20 in file Sources\Tempo.s
+Comment: LongueurSon used once
+PeriodeSonMicroSec 00000000
+
+Symbol: PeriodeSonMicroSec
+   Definitions
+      At line 14 in file Sources\Tempo.s
+   Uses
+      None
+Comment: PeriodeSonMicroSec unused
+Son 00000000
+
+Symbol: Son
+   Definitions
+      At line 15 in file Sources\Tempo.s
+   Uses
+      At line 22 in file Sources\Tempo.s
+Comment: Son used once
+etat 00000000
+
+Symbol: etat
+   Definitions
+      At line 12 in file Sources\Tempo.s
+   Uses
+      At line 19 in file Sources\Tempo.s
+      At line 39 in file Sources\Tempo.s
+
+4 symbols
+352 symbols in table
