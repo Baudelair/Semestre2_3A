@@ -6094,8 +6094,8 @@ ARM Macro Assembler    Page 94
  5526 00002B18                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\bruitverre.d -o.\bruitverre.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Kei
-l_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F10x --predefine="__EVAL SE
-TA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" 
+l_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\INC\ST\STM32F10x --predefine="__EVAL SE
+TA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" 
 --list=.\bruitverre.lst Sources\bruitverre.asm
 
 

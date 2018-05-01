@@ -64,10 +64,23 @@ timer_callback proc
 	add r2, #2
 	str r2, [r0,#E_POS]; renvoie dans la structure pos + 2
 	
-	bx lr 
+	
+
+	ldr r1,=LongueurSon
+IF:	
+	CMP r2,r1
+	
+THEN: 
+	MOV r2,#0
+ELSE: 	
+	bx lr
+
+
+
+	;bx lr 
 	endp
 	
-	//TRAITER CAS FIN
+	;TRAITER CAS FIN
 	
 	end
 	
