@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
 	pthread_create(&tid2,NULL, &fct2, NULL);
 
 	//thread principale
-	int *r;
+	int *r = malloc(int *);
 	r = pthread_self();
 	pthread_setspecific(&key, *r);
 	for (int i=0; i<3;i++){
