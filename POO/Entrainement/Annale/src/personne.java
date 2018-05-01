@@ -38,6 +38,7 @@ public class personne {
      private String prenom;
      private ArrayList<activite> listeActivites;
      private ArrayList<tache> listeTaches;
+     
      public personne(int numIdentite,String nom, String prenom){
           this.numIdentite=numIdentite;
           this.nom=nom;
@@ -47,7 +48,15 @@ public class personne {
      }
      
      public void afficherActivites(){
-          //afficher les activités
+    	 for( activite a : listeActivites)
+    	 {
+    	 	if (a.accompli)
+    	 	{
+    		 	System.out.println("	" + activite.toString());
+    		 	System.out.println("		" + tache.toString());	
+    	 	}
+    	 }
+          
      }
      
      public void afficherTachesRealisees(){

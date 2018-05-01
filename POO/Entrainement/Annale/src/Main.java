@@ -11,10 +11,10 @@ public class Main {
 		
 		pers[0] = new personne(0, "abc", "def");
 		pers[1] = new personne(1, "def", "azfd");
-		pers[2] = new personne(2, "fnjf", "azfakf);
+		pers[2] = new personne(2, "fnjf", "azfakf");
 		
 		for(i=0; i < 3; i++) {
-			pers[i].afficher();
+			pers[i].afficherActivites();
 		}
 		
 	}

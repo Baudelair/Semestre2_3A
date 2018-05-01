@@ -34,7 +34,17 @@ public class tache_libre extends tache{
  
      @Override
      public void setBonus() {
-          // Implémentation de la méthode
+          if (this.duree < (this.dateRealisation - this.dateDebut))
+          {
+          		//tache accompli
+          		this.accompli = true;
+          		this.bonus ++; 
+          }
+          else
+          {
+          	this.accompli =false;
+          	this.bonus--;
+          }
           
      }
      
