@@ -22,30 +22,39 @@ signal1 dcd 0
 	ldr r1,=Son
 	str	r1,[r0, #E_SON]
 	
-DECALAGE	equ 32768;	
+OFFSET	equ 32768;	
 GPIOB_BSRR	equ	0x40010C10	; Bit Set/Reset register
 TIM3_CCR3	equ	0x4000043C	; adresse registre PWM
 
 	
 Temporisation	proc
 	mov	r2, #0	; 1ere instruction de la fonction (exemple)
-
 	bx	lr	; dernière instruction de la fonction
 	endp
 	
 	
 timer_callback proc
 	
-	ldr	r0,=etat	
+	push{lr} ; Empiler LR
+   	ldr	r0,=etat	
 	;///RECUPERATION SON
+	
+	;//TEST SI DEPASSE  POS
 	ldr r2, [r0,#E_POS] ; chargement de ce qu'il y a a adresse pos dans r2// r2=etat.pos
-	ldr r3,[r0,#E_SON]; adresse de *son = etat.son
-	;ldr r3,[r3];adresse de son[0]
+	ldr r3, [r0,#E_TAI]
+	add r3,#1
+	cmp r2,r3
+	BEQ Fin_Son
+	
+	
+	ldr r2, [r0,#E_POS]; On copie la position actuel dans r2
+	ldr r3,[r0,#E_SON]; On récupére les échantillons du son dans r2
+	
 	ldrsh r1,[r3,r2]; chargement du son a la pos son[0] + r2 (pos)
 	
 	;///DECALAGE
 
-	add r1,#32768; decalage du son 
+	add r1,#OFFSET; decalage du son 
 	
 	;///multiplication par res
 	
@@ -53,7 +62,8 @@ timer_callback proc
 	mul r1, r3
 	
 	;///on divise par 65536 = 2^16
-	mov r1,r1 ,LSL #16
+	;mov r1,r1 ,LSL #16
+	lsr r1, #16
 	
 	ldr r3,=TIM3_CCR3
 	str r1, [r3]
@@ -63,29 +73,17 @@ timer_callback proc
 	ldr r2, [r0,#E_POS] ; chargement de ce qu'il y a a adresse pos dans r2// r2=etat.pos
 	add r2, #2
 	str r2, [r0,#E_POS]; renvoie dans la structure pos + 2
+	B Sortie
 	
+Fin_Son	
+	MOV R4, #0 ; Mettre R4 à 0
+	STR R4,[R3] ; Mettre le PWM à 0 (afin de ne plus avoir de son à la fin du signal)
+Sortie 	
 	
+	pop {pc} ; Dépiler LR dans PC
+	endp ; Fin de la procédure
 
-	ldr r1,=LongueurSon
-IF:	
-	CMP r2,r1
-	
-THEN: 
-	MOV r2,#0
-ELSE: 	
-	bx lr
-
-
-
-	;bx lr 
-	endp
-	
-	;TRAITER CAS FIN
-	
-	end
-	
-	
-	
+	end ; Fin du programme
 	
 	
 	

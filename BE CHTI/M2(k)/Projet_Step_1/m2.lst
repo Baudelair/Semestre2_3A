@@ -1,0 +1,213 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 include          Lib\etat.inc
+    1 00000000         ;typedef struct {
+    2 00000000         ;int position;  // 0
+    3 00000000         ;int taille;  // 4
+    4 00000000         ;void * son;  // 8
+    5 00000000         ;int resolution; // 12
+    6 00000000         ;int periode_ticks; // 16
+    7 00000000         ;} type_etat;
+    8 00000000         
+    9 00000000         ;/*
+   10 00000000 00000000 
+                       E_POS   equ              0
+   11 00000000 00000004 
+                       E_TAI   equ              4
+   12 00000000 00000008 
+                       E_SON   equ              8
+   13 00000000 0000000C 
+                       E_RES   equ              12
+   14 00000000 00000010 
+                       E_PER   equ              16
+   15 00000000                 end
+    3 00000000                 thumb
+    4 00000000         
+    5 00000000                 area             maram, data, readwrite
+    6 00000000                 import           TabSin
+    7 00000000                 import           TabCos
+    8 00000000                 import           LeSignal
+    9 00000000                 import           Somme
+   10 00000000         
+   11 00000000         
+   12 00000000         RAM
+   13 00000000 20004000        dcd              0x20004000  ; stack en fin de l
+                                                            a zone de 20k de RA
+                                                            M
+   14 00000004         
+   15 00000004                 area             moncode, code, readonly
+   16 00000000                 export           M2
+   17 00000000         
+   18 00000000         M2      proc
+   19 00000000         ;r0 = adresse du signal
+   20 00000000         ;r1 = valeur de i 
+   21 00000000 B500            push             {lr}
+   22 00000002 F85F 2004       ldr              r2, TabCos
+   23 00000006 B402            push             {r1}
+   24 00000008 F7FF FFFE       bl               Somme
+   25 0000000C F04F 0300       mov              r3, #0
+   26 00000010 FB00 3400       MLA              r4,r0,r0,r3 ; carre de COS (MLA
+                                                             => r4 = r0*r0 +r3
+   27 00000014 F85F 2004       ldr              r2, TabSin
+   28 00000018 BC02            pop              {r1}
+   29 0000001A B402            push             {r1}
+   30 0000001C F7FF FFFE       bl               Somme
+   31 00000020 FB00 3500       MLA              r5,r0,r0,r3 ; carre de SIN (MLA
+                                                             => r4 = r0*r0 +r3
+   32 00000024 BC02            pop              {r1}
+   33 00000026 EB04 0005       add              r0, r4, r5
+   34 0000002A         
+   35 0000002A BD00            pop              {pc}
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   36 0000002C 4770            bx               lr
+   37 0000002E                 endp
+   38 0000002E                 end
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\m2.d -o.\m2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
+nclude -IC:\Keil_v5\ARM\INC\ST\STM32F10x --predefine="__EVAL SETA 1" --predefin
+e="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" --list=.\m2.lst 
+Sources\M2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RAM 00000000
+
+Symbol: RAM
+   Definitions
+      At line 12 in file Sources\M2.s
+   Uses
+      None
+Comment: RAM unused
+maram 00000000
+
+Symbol: maram
+   Definitions
+      At line 5 in file Sources\M2.s
+   Uses
+      None
+Comment: maram unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+M2 00000000
+
+Symbol: M2
+   Definitions
+      At line 18 in file Sources\M2.s
+   Uses
+      At line 16 in file Sources\M2.s
+Comment: M2 used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 15 in file Sources\M2.s
+   Uses
+      None
+Comment: moncode unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+E_PER 00000010
+
+Symbol: E_PER
+   Definitions
+      At line 14 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_PER unused
+E_POS 00000000
+
+Symbol: E_POS
+   Definitions
+      At line 10 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_POS unused
+E_RES 0000000C
+
+Symbol: E_RES
+   Definitions
+      At line 13 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_RES unused
+E_SON 00000008
+
+Symbol: E_SON
+   Definitions
+      At line 12 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_SON unused
+E_TAI 00000004
+
+Symbol: E_TAI
+   Definitions
+      At line 11 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_TAI unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+LeSignal 00000000
+
+Symbol: LeSignal
+   Definitions
+      At line 8 in file Sources\M2.s
+   Uses
+      None
+Comment: LeSignal unused
+Somme 00000000
+
+Symbol: Somme
+   Definitions
+      At line 9 in file Sources\M2.s
+   Uses
+      At line 24 in file Sources\M2.s
+      At line 30 in file Sources\M2.s
+
+TabCos 00000000
+
+Symbol: TabCos
+   Definitions
+      At line 7 in file Sources\M2.s
+   Uses
+      At line 22 in file Sources\M2.s
+Comment: TabCos used once
+TabSin 00000000
+
+Symbol: TabSin
+   Definitions
+      At line 6 in file Sources\M2.s
+   Uses
+      At line 27 in file Sources\M2.s
+Comment: TabSin used once
+4 symbols
+346 symbols in table

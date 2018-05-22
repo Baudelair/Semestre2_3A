@@ -1,0 +1,172 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 include          Lib\etat.inc
+    1 00000000         ;typedef struct {
+    2 00000000         ;int position;  // 0
+    3 00000000         ;int taille;  // 4
+    4 00000000         ;void * son;  // 8
+    5 00000000         ;int resolution; // 12
+    6 00000000         ;int periode_ticks; // 16
+    7 00000000         ;} type_etat;
+    8 00000000         
+    9 00000000         ;/*
+   10 00000000 00000000 
+                       E_POS   equ              0
+   11 00000000 00000004 
+                       E_TAI   equ              4
+   12 00000000 00000008 
+                       E_SON   equ              8
+   13 00000000 0000000C 
+                       E_RES   equ              12
+   14 00000000 00000010 
+                       E_PER   equ              16
+   15 00000000                 end
+    3 00000000         ;include bruitverre.asm
+    4 00000000                 thumb
+    5 00000000         
+    6 00000000                 area             maram, data, readwrite
+    7 00000000                 import           TabSin
+    8 00000000                 import           TabCos
+    9 00000000         
+   10 00000000         
+   11 00000000         
+   12 00000000         
+   13 00000000                 area             moncode, code, readonly
+   14 00000000                 export           test
+   15 00000000         
+   16 00000000         
+   17 00000000         test    proc
+   18 00000000         
+   19 00000000 4906            ldr              r1,=TabSin
+   20 00000002 F931 1010       ldrsh            r1,[r1,r0,lsl #1]
+   21 00000006 4A06            ldr              r2,=TabCos
+   22 00000008 F932 2010       ldrsh            r2,[r2,r0,lsl #1]
+   23 0000000C F04F 0300       mov              r3, #0
+   24 00000010 FB01 3101       MLA              r1,r1,r1,r3
+   25 00000014 FB02 1002       MLA              r0,r2,r2,r1
+   26 00000018         
+   27 00000018 4770            bx               lr
+   28 0000001A                 endp
+   29 0000001A         
+   30 0000001A                 end
+              00 00 00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\tempo.d -o.\tempo.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\C
+MSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F10x --predefine="__EVAL SETA 1" --pr
+edefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" --list=.\t
+empo.lst Sources\Tempo.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+maram 00000000
+
+Symbol: maram
+   Definitions
+      At line 6 in file Sources\Tempo.s
+   Uses
+      None
+Comment: maram unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 13 in file Sources\Tempo.s
+   Uses
+      None
+Comment: moncode unused
+test 00000000
+
+Symbol: test
+   Definitions
+      At line 17 in file Sources\Tempo.s
+   Uses
+      At line 14 in file Sources\Tempo.s
+Comment: test used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+E_PER 00000010
+
+Symbol: E_PER
+   Definitions
+      At line 14 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_PER unused
+E_POS 00000000
+
+Symbol: E_POS
+   Definitions
+      At line 10 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_POS unused
+E_RES 0000000C
+
+Symbol: E_RES
+   Definitions
+      At line 13 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_RES unused
+E_SON 00000008
+
+Symbol: E_SON
+   Definitions
+      At line 12 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_SON unused
+E_TAI 00000004
+
+Symbol: E_TAI
+   Definitions
+      At line 11 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_TAI unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+TabCos 00000000
+
+Symbol: TabCos
+   Definitions
+      At line 8 in file Sources\Tempo.s
+   Uses
+      At line 21 in file Sources\Tempo.s
+Comment: TabCos used once
+TabSin 00000000
+
+Symbol: TabSin
+   Definitions
+      At line 7 in file Sources\Tempo.s
+   Uses
+      At line 19 in file Sources\Tempo.s
+Comment: TabSin used once
+2 symbols
+345 symbols in table

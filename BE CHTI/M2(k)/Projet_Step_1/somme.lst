@@ -1,0 +1,234 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 include          Lib\etat.inc
+    1 00000000         ;typedef struct {
+    2 00000000         ;int position;  // 0
+    3 00000000         ;int taille;  // 4
+    4 00000000         ;void * son;  // 8
+    5 00000000         ;int resolution; // 12
+    6 00000000         ;int periode_ticks; // 16
+    7 00000000         ;} type_etat;
+    8 00000000         
+    9 00000000         ;/*
+   10 00000000 00000000 
+                       E_POS   equ              0
+   11 00000000 00000004 
+                       E_TAI   equ              4
+   12 00000000 00000008 
+                       E_SON   equ              8
+   13 00000000 0000000C 
+                       E_RES   equ              12
+   14 00000000 00000010 
+                       E_PER   equ              16
+   15 00000000                 end
+    3 00000000                 thumb
+    4 00000000         
+    5 00000000                 area             maram, data, readwrite
+    6 00000000                 import           TabSin
+    7 00000000                 import           TabCos
+    8 00000000                 import           LeSignal
+    9 00000000         
+   10 00000000         RAM
+   11 00000000 20004000        dcd              0x20004000  ; stack en fin de l
+                                                            a zone de 20k de RA
+                                                            M
+   12 00000004         
+   13 00000004                 area             moncode, code, readonly
+   14 00000000                 export           Somme
+   15 00000000         
+   16 00000000         
+   17 00000000         Somme   proc
+   18 00000000         
+   19 00000000         ;r0 = l'adresse du signal
+   20 00000000         ;r1 = la valeur de i
+   21 00000000         ;r2 = l'adresse de la tab de COS/SIN
+   22 00000000 B500            push             {lr}
+   23 00000002 F04F 0400       mov              r4,#0       ; notre k, on parco
+                                                            urt a l envers  F
+   24 00000006 F04F 0300       mov              r3,#0       ; ;r3 est la somme 
+                                                            F
+   25 0000000A 460F            mov              r7, r1
+   26 0000000C         ;r5 sert a stocker sig, r6 cos
+   27 0000000C         
+   28 0000000C         
+   29 0000000C         debut
+   30 0000000C         
+   31 0000000C         
+   32 0000000C         
+   33 0000000C F930 5014       ldrsh            r5,[r0,r4, lsl #1] ;chargement 
+                                                            signal F
+   34 00000010 FB04 F607       mul              r6,r4,r7    ; multiplie i par k
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                             F
+   35 00000014 F006 063F       and              r6,r6,#0x3F ;modulo 64 (#63)de 
+                                                            r6 F
+   36 00000018 F932 6016       ldrsh            r6,[r2,r6, lsl #1] ;chargement 
+                                                            cos/sin F
+   37 0000001C FB05 F506       mul              r5,r5,r6    ; multiplie cos/sin
+                                                             et signal 
+   38 00000020 442B            add              r3,r3,r5    ; ajoute au total
+   39 00000022         
+   40 00000022         
+   41 00000022 F104 0401       add              r4,#1       ;
+   42 00000026 2C40            cmp              r4,#64
+   43 00000028 BF18            IT               NE          ;if not equal then.
+                                                            ..
+   44 0000002A E7EF            BNE              debut       ; on va au debut
+   45 0000002C         
+   46 0000002C 463C            mov              r4, r7      ; restaurer la vale
+                                                            ur de i
+   47 0000002E 4618            mov              r0,r3       ; on met resultat e
+                                                            n r0 pour envoi
+   48 00000030 BD00            pop              {pc}
+   49 00000032         
+   50 00000032 4770            bx               lr
+   51 00000034                 endp
+   52 00000034                 end
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\somme.d -o.\somme.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\C
+MSIS\Include -IC:\Keil_v5\ARM\INC\ST\STM32F10x --predefine="__EVAL SETA 1" --pr
+edefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" --list=.\s
+omme.lst Sources\Somme.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RAM 00000000
+
+Symbol: RAM
+   Definitions
+      At line 10 in file Sources\Somme.s
+   Uses
+      None
+Comment: RAM unused
+maram 00000000
+
+Symbol: maram
+   Definitions
+      At line 5 in file Sources\Somme.s
+   Uses
+      None
+Comment: maram unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Somme 00000000
+
+Symbol: Somme
+   Definitions
+      At line 17 in file Sources\Somme.s
+   Uses
+      At line 14 in file Sources\Somme.s
+Comment: Somme used once
+debut 0000000C
+
+Symbol: debut
+   Definitions
+      At line 29 in file Sources\Somme.s
+   Uses
+      At line 44 in file Sources\Somme.s
+Comment: debut used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 13 in file Sources\Somme.s
+   Uses
+      None
+Comment: moncode unused
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+E_PER 00000010
+
+Symbol: E_PER
+   Definitions
+      At line 14 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_PER unused
+E_POS 00000000
+
+Symbol: E_POS
+   Definitions
+      At line 10 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_POS unused
+E_RES 0000000C
+
+Symbol: E_RES
+   Definitions
+      At line 13 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_RES unused
+E_SON 00000008
+
+Symbol: E_SON
+   Definitions
+      At line 12 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_SON unused
+E_TAI 00000004
+
+Symbol: E_TAI
+   Definitions
+      At line 11 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_TAI unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+LeSignal 00000000
+
+Symbol: LeSignal
+   Definitions
+      At line 8 in file Sources\Somme.s
+   Uses
+      None
+Comment: LeSignal unused
+TabCos 00000000
+
+Symbol: TabCos
+   Definitions
+      At line 7 in file Sources\Somme.s
+   Uses
+      None
+Comment: TabCos unused
+TabSin 00000000
+
+Symbol: TabSin
+   Definitions
+      At line 6 in file Sources\Somme.s
+   Uses
+      None
+Comment: TabSin unused
+3 symbols
+346 symbols in table
