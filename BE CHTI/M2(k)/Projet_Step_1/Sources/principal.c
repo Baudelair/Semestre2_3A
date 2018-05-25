@@ -1,27 +1,21 @@
 
 #include "stdio.h"
 
-int carre(int);
-
 int M2(short * signal, short k); 
 
 extern short LeSignal;
-extern short TabCos;
-extern short TabSin;
 
 int main(){
 
-int res[64] ;
-int i;
+		int res[64] ;
+		int k;
 
-for (i=0;i<63;i++){	
-	
-	res[i] =M2(&LeSignal, i);
-}	
-
-
+		for (k=0;k<63;k++){	
+			
+				res[k] =M2(&LeSignal, k);
+		}	
 
 
-while(1);
+		while(1);
 
 }

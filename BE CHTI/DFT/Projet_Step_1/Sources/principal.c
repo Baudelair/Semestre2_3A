@@ -12,12 +12,12 @@ int main(){
 
 int resCos[64] ;
 int resSin[64] ;
-int i, k;
+int k;
 
-for (i=0;i<63;i++){	
+for (k=0;k<63;k++){	
 	//i=k;
-	resCos[i] =reelle(&LeSignal, i, &TabCos);
-	resSin[i] =reelle(&LeSignal, i, &TabSin);
+	resCos[k] =reelle(&LeSignal, k, &TabCos);
+	resSin[k] =reelle(&LeSignal, k, &TabSin);
 
 }	
 

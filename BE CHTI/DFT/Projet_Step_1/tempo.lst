@@ -90,8 +90,8 @@ ARM Macro Assembler    Page 2
                                                             r6 F
    52 00000032 F932 6016       ldrsh            r6,[r2,r6, lsl #1] ;chargement 
                                                             cos/sin F
-   53 00000036 FB05 F506       mul              r5,r5,r6    ; multiplie cos et 
-                                                            signal 
+   53 00000036 FB05 F506       mul              r5,r5,r6    ; multiplie cos/sin
+                                                             et signal 
    54 0000003A 442B            add              r3,r3,r5    ; ajoute au total
    55 0000003C         
    56 0000003C         
@@ -101,7 +101,8 @@ ARM Macro Assembler    Page 2
                                                             ..
    60 00000044 E7EF            BNE              debut       ; on va au debut
    61 00000046         
-   62 00000046 463C            mov              r4, r7
+   62 00000046 463C            mov              r4, r7      ; restaurer la vale
+                                                            ur de i
    63 00000048 4618            mov              r0,r3       ; on met resultat e
                                                             n r0 pour envoi
    64 0000004A BD00            pop              {pc}

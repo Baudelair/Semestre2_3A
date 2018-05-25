@@ -6,8 +6,8 @@ Section Cross References
 
     principal.o(.text) refers to m2.o(moncode) for M2
     principal.o(.text) refers to signal.o(Signal) for LeSignal
-    m2.o(moncode) refers to trigo.o(Trigo) for TabCos
     m2.o(moncode) refers to somme.o(moncode) for Somme
+    m2.o(moncode) refers to trigo.o(Trigo) for TabCos
     startup-rvds.o(RESET) refers to startup-rvds.o(STACK) for __initial_sp
     startup-rvds.o(RESET) refers to startup-rvds.o(.text) for Reset_Handler
     startup-rvds.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
@@ -87,10 +87,10 @@ Image Symbol Table
     i.__scatterload_copy                     0x08000190   Section       14  handlers.o(i.__scatterload_copy)
     i.__scatterload_null                     0x0800019e   Section        2  handlers.o(i.__scatterload_null)
     i.__scatterload_zeroinit                 0x080001a0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    moncode                                  0x080001b0   Section       46  m2.o(moncode)
-    moncode                                  0x080001e0   Section       52  somme.o(moncode)
-    Signal                                   0x08000224   Section      128  signal.o(Signal)
-    Trigo                                    0x080002a4   Section      256  trigo.o(Trigo)
+    moncode                                  0x080001b0   Section       52  m2.o(moncode)
+    moncode                                  0x080001e4   Section       52  somme.o(moncode)
+    Signal                                   0x08000228   Section      128  signal.o(Signal)
+    Trigo                                    0x080002a8   Section      256  trigo.o(Trigo)
     STACK                                    0x20000000   Section     1024  startup-rvds.o(STACK)
 
     Global Symbols
@@ -176,13 +176,13 @@ Image Symbol Table
     __scatterload_copy                       0x08000191   Thumb Code    14  handlers.o(i.__scatterload_copy)
     __scatterload_null                       0x0800019f   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x080001a1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    M2                                       0x080001b1   Thumb Code    46  m2.o(moncode)
-    Somme                                    0x080001e1   Thumb Code    52  somme.o(moncode)
-    Region$$Table$$Base                      0x08000214   Number         0  anon$$obj.o(Region$$Table)
-    LeSignal                                 0x08000224   Data           0  signal.o(Signal)
-    Region$$Table$$Limit                     0x08000224   Number         0  anon$$obj.o(Region$$Table)
-    TabCos                                   0x080002a4   Data           0  trigo.o(Trigo)
-    TabSin                                   0x08000324   Data           0  trigo.o(Trigo)
+    M2                                       0x080001b1   Thumb Code    42  m2.o(moncode)
+    Somme                                    0x080001e5   Thumb Code    52  somme.o(moncode)
+    Region$$Table$$Base                      0x08000218   Number         0  anon$$obj.o(Region$$Table)
+    LeSignal                                 0x08000228   Data           0  signal.o(Signal)
+    Region$$Table$$Limit                     0x08000228   Number         0  anon$$obj.o(Region$$Table)
+    TabCos                                   0x080002a8   Data           0  trigo.o(Trigo)
+    TabSin                                   0x08000328   Data           0  trigo.o(Trigo)
     __initial_sp                             0x20000400   Data           0  startup-rvds.o(STACK)
 
 
@@ -193,9 +193,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000121
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x000003a4, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x000003a8, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000003a4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000003a8, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -216,20 +216,19 @@ Memory Map of the image
     0x0800019e   0x0800019e   0x00000002   Code   RO           63    i.__scatterload_null  mc_w.l(handlers.o)
     0x080001a0   0x080001a0   0x0000000e   Code   RO           64    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x080001ae   0x080001ae   0x00000002   PAD
-    0x080001b0   0x080001b0   0x0000002e   Code   RO           24    moncode             m2.o
-    0x080001de   0x080001de   0x00000002   PAD
-    0x080001e0   0x080001e0   0x00000034   Code   RO           30    moncode             somme.o
-    0x08000214   0x08000214   0x00000010   Data   RO           60    Region$$Table       anon$$obj.o
-    0x08000224   0x08000224   0x00000080   Data   RO           22    Signal              signal.o
-    0x080002a4   0x080002a4   0x00000100   Data   RO           21    Trigo               trigo.o
+    0x080001b0   0x080001b0   0x00000034   Code   RO           24    moncode             m2.o
+    0x080001e4   0x080001e4   0x00000034   Code   RO           30    moncode             somme.o
+    0x08000218   0x08000218   0x00000010   Data   RO           60    Region$$Table       anon$$obj.o
+    0x08000228   0x08000228   0x00000080   Data   RO           22    Signal              signal.o
+    0x080002a8   0x080002a8   0x00000100   Data   RO           21    Trigo               trigo.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080003a4, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080003a8, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x080003a4, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x080003a8, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -243,7 +242,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        46          0          0          0          0        356   m2.o
+        52         10          0          0          0        356   m2.o
         32          4          0          0          0       1959   principal.o
          0          0        128          0          0          0   signal.o
         52          0          0          0          0        336   somme.o
@@ -251,9 +250,9 @@ Image component sizes
          0          0        256          0          0          0   trigo.o
 
     ----------------------------------------------------------------------
-       208         24        636          0       1024       3471   Object Totals
+       212         34        636          0       1024       3471   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-         2          0          0          0          0          0   (incl. Padding)
+         0          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -290,15 +289,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-       296         40        636          0       1024       3587   Grand Totals
-       296         40        636          0       1024       3587   ELF Image Totals
-       296         40        636          0          0          0   ROM Totals
+       300         50        636          0       1024       3587   Grand Totals
+       300         50        636          0       1024       3587   ELF Image Totals
+       300         50        636          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                  932 (   0.91kB)
+    Total RO  Size (Code + RO Data)                  936 (   0.91kB)
     Total RW  Size (RW Data + ZI Data)              1024 (   1.00kB)
-    Total ROM Size (Code + RO Data + RW Data)        932 (   0.91kB)
+    Total ROM Size (Code + RO Data + RW Data)        936 (   0.91kB)
 
 ==============================================================================
 

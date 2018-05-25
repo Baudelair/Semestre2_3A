@@ -45,33 +45,54 @@ ARM Macro Assembler    Page 1
    17 00000000         
    18 00000000         M2      proc
    19 00000000         ;r0 = adresse du signal
-   20 00000000         ;r1 = valeur de i 
+   20 00000000         ;r1 = valeur de k
    21 00000000 B500            push             {lr}
-   22 00000002 F85F 2004       ldr              r2, TabCos
-   23 00000006 B402            push             {r1}
-   24 00000008 F7FF FFFE       bl               Somme
-   25 0000000C F04F 0300       mov              r3, #0
-   26 00000010 FB00 3400       MLA              r4,r0,r0,r3 ; carre de COS (MLA
+   22 00000002 4A0A            ldr              r2, =TabCos ;on récupére l'adre
+                                                            sse de cos
+   23 00000004 B403            push             {r1,r0}     ;on empile la valeu
+                                                            r de k et l'adresse
+                                                             du signal, afin de
+                                                             les sauvegarder
+   24 00000006 F7FF FFFE       bl               Somme       ;on calcul la parti
+                                                            e réelle et l'addre
+                                                            sse du signal
+   25 0000000A F04F 0300       mov              r3, #0
+   26 0000000E FB80 3400       SMULL            r3,r4,r0,r0 ; carre de COS (MLA
                                                              => r4 = r0*r0 +r3
-   27 00000014 F85F 2004       ldr              r2, TabSin
-   28 00000018 BC02            pop              {r1}
-   29 0000001A B402            push             {r1}
-   30 0000001C F7FF FFFE       bl               Somme
-   31 00000020 FB00 3500       MLA              r5,r0,r0,r3 ; carre de SIN (MLA
-                                                             => r4 = r0*r0 +r3
-   32 00000024 BC02            pop              {r1}
-   33 00000026 EB04 0005       add              r0, r4, r5
-   34 0000002A         
-   35 0000002A BD00            pop              {pc}
+   27 00000012 4A07            ldr              r2, =TabSin ;on récupére l'adre
+                                                            sse de sin
+   28 00000014 BC03            pop              {r0, r1}    ;on récupére la val
+                                                            eur de k et l'adres
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   36 0000002C 4770            bx               lr
-   37 0000002E                 endp
-   38 0000002E                 end
+                                                            se du signal, k mod
+                                                            ifié dans Somme et 
+                                                            r0 modifié par le r
+                                                            es de somme
+   29 00000016 B412            push             {r1, r4}    ;on empile la valeu
+                                                            r de k 
+   30 00000018 F7FF FFFE       bl               Somme
+   31 0000001C FB80 3500       SMULL            r3,r5,r0,r0 ; carre de SIN (MLA
+                                                             => r4 = r0*r0 +r3
+   32 00000020 BC12            pop              {r4, r1}    ;on récupére la val
+                                                            eur de k 
+   33 00000022 EB04 0005       add              r0, r4, r5  ; on fait la somme 
+                                                            des deux carrés
+   34 00000026         
+   35 00000026 BD00            pop              {pc}        ;on récupére l'adre
+                                                            sse de pc afin de r
+                                                            etourner dans la bo
+                                                            ucle de principal.c
+                                                            
+   36 00000028 4770            bx               lr
+   37 0000002A                 endp
+   38 0000002A                 end
+              00 00 00000000 
+              00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\m2.d -o.\m2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\I
 nclude -IC:\Keil_v5\ARM\INC\ST\STM32F10x --predefine="__EVAL SETA 1" --predefin
@@ -210,4 +231,4 @@ Symbol: TabSin
       At line 27 in file Sources\M2.s
 Comment: TabSin used once
 4 symbols
-346 symbols in table
+348 symbols in table
