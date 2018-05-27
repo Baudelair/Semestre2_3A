@@ -630,22 +630,6 @@
           <ExecCommand></ExecCommand>
           <Expression>\\Proj_Step_1\Sources/principal.c\19</Expression>
         </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>49</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134218226</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\Sources\Tempo.s</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Proj_Step_1\Sources/Tempo.s\49</Expression>
-        </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>

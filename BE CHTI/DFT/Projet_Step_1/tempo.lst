@@ -61,7 +61,7 @@ ARM Macro Assembler    Page 1
    33 0000001A         reelle  proc
    34 0000001A         
    35 0000001A         ;r0 = l'adresse du signal
-   36 0000001A         ;r1 = la valeur de i
+   36 0000001A         ;r1 = la valeur de k
    37 0000001A         ;r2 = l'adresse de la tab de COS/SIN
 
 
@@ -70,10 +70,10 @@ ARM Macro Assembler    Page 2
 
 
    38 0000001A B500            push             {lr}
-   39 0000001C F04F 0400       mov              r4,#0       ; notre k, on parco
-                                                            urt a l envers  F
+   39 0000001C F04F 0400       mov              r4,#0       ; notre i, on parco
+                                                            urt a l envers  
    40 00000020 F04F 0300       mov              r3,#0       ; ;r3 est la somme 
-                                                            F
+                                                            
    41 00000024 460F            mov              r7, r1
    42 00000026         ;r5 sert a stocker sig, r6 cos
    43 00000026         
@@ -82,14 +82,15 @@ ARM Macro Assembler    Page 2
    46 00000026         
    47 00000026         
    48 00000026         
-   49 00000026 F930 5014       ldrsh            r5,[r0,r4, lsl #1] ;chargement 
-                                                            signal F
+   49 00000026 F930 5014       ldrsh            r5,[r0,r4, lsl #1] 
+                                                            ;chargement signal 
+                                                            
    50 0000002A FB04 F607       mul              r6,r4,r7    ; multiplie i par k
-                                                             F
+                                                             
    51 0000002E F006 063F       and              r6,r6,#0x3F ;modulo 64 (#63)de 
-                                                            r6 F
+                                                            r6 
    52 00000032 F932 6016       ldrsh            r6,[r2,r6, lsl #1] ;chargement 
-                                                            cos/sin F
+                                                            cos/sin 
    53 00000036 FB05 F506       mul              r5,r5,r6    ; multiplie cos/sin
                                                              et signal 
    54 0000003A 442B            add              r3,r3,r5    ; ajoute au total
@@ -102,7 +103,7 @@ ARM Macro Assembler    Page 2
    60 00000044 E7EF            BNE              debut       ; on va au debut
    61 00000046         
    62 00000046 463C            mov              r4, r7      ; restaurer la vale
-                                                            ur de i
+                                                            ur de k
    63 00000048 4618            mov              r0,r3       ; on met resultat e
                                                             n r0 pour envoi
    64 0000004A BD00            pop              {pc}
