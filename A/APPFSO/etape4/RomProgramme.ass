@@ -1,0 +1,94 @@
+        ORG	0
+	WORD	0x0400	; initialisation SP
+	WORD	debut	; initialisation PC
+
+; déclarations pour Nexys3IO
+SW:	EQU 	0x4000
+BTN:	EQU 	0x4001
+LED:    EQU 	0x4002
+MODE:    EQU 	0x4003
+DigitHexa:EQU 	0x4004
+
+
+; déclarations pour carte Audio
+DataSPI:EQU	0x1000
+DataPWM:EQU	0x1001
+Status:	EQU	0x1002
+Format:	EQU	0x1003
+
+; déclarations pour carte NVIC
+ITVR:   EQU     0x2000
+IMR:	EQU	0x2001
+
+; déclarations pour carte GPIO
+ODR:    EQU     0x3000;
+IDR:    EQU     0x3001;
+CR:     EQU     0x3002;
+
+; déclarations pour carte RamDisk
+NoBlocPoidsForts: EQU 0x5000
+NoBlocPoidsFaibles: EQU 0x5002
+AdrZone:EQU 	0x5004
+CMD: 	EQU     0x5006
+STATUS:	EQU	0x5008
+
+TabIT:  
+	WORD    errIT ; HandlerIT0 
+	WORD 	errIT ; HandlerIT1 
+	WORD 	errIT ; HandlerIT2 
+	WORD 	errIT ; HandlerIT3 
+	WORD 	errIT ; HandlerIT4 
+	WORD 	errIT ; HandlerIT5 
+	WORD 	errIT ; HandlerIT6 
+	WORD 	errIT ; HandlerIT7 
+
+Tab:
+	WORD	0x0001
+	WORD	0x0002
+	WORD	0x0003
+	WORD	0x0004
+	WORD	0x0005
+	WORD	0x0006
+	WORD	0x0007
+	WORD	0x0008
+
+
+errIT: 	B    	errIT ; pour bloquer le programme si une IT imprévue est levée 
+
+debut: 	LDI 	R14, #TabIT
+		LDI 	R0, #0x0000
+		ST 		R0, [#AdrZone]
+		ST 		R0, [#NoBlocPoidsFaibles]
+		ST 		R0, [#NoBlocPoidsForts]
+
+		LD 		R0, [#STATUS]
+		LDI		R1,	#0x0002	
+		CMP		R0, R1	;on regarde si le bus est libre
+		BZ		debut			;si oui on lance écriture ou lecture 
+		LD 		R1, #0x0002		;si non on revient au debut
+		ST 		R1, [#STATUS]	;on bloque le bus pour les autres programmes
+		
+
+lecture: 
+		LDI		R0, #0x0001		;lecture dans RAM
+		ST 		R0, [#CMD]
+
+loop: 	LDI		R0, #0x0000
+ 		LD 		R1, [#AdrZone]
+ 		ST 		R1, [#Tab]
+ 		CMP 	R0, #0x0008
+ 		BGE		loop
+		LDI		R0, #0x0002
+		ST 		R0, [#STATUS]
+		B 	fin
+
+ecriture: 
+		LDI		R0, #0x0003		;ecriture dans RAM
+		ST 		R0, [#CMD]
+
+
+
+		B 	fin
+
+
+fin:   	B	fin
