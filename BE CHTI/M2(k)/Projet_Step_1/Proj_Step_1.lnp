@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+--cpu Cortex-M3
+>>>>>>> 6c789b8480a7925f397c402c5439f9da5bfa566d
 ".\principal.o"
 ".\bruitverre.o"
 ".\trigo.o"
@@ -7,6 +11,10 @@
 ".\somme.o"
 ".\Lib\gassp72.lib"
 ".\startup-rvds.o"
+<<<<<<< HEAD
 --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --strict --map --load_addr_map_info --xref --callgraph --symbols
+=======
+--library_type=microlib --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+>>>>>>> 6c789b8480a7925f397c402c5439f9da5bfa566d
 --info sizes --info totals --info unused --info veneers
 --list ".\Proj_Step_1.map" -o .\Proj_Step_1.axf

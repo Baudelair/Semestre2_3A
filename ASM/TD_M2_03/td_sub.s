@@ -12,7 +12,7 @@ subtest	proc
 	; jai le cube de i dans r0
 	; ladr de la struct dans r2
 	; je dois récupérer j
-	ldr 	r1, [r2, #4]
+	ldr r1, [r2, #4]
 	add	r1, r0
 	str	r1, [r2, #4]
 	pop	{pc}

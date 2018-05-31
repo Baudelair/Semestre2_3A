@@ -477,7 +477,11 @@
       <TargetName>Cible_Simulateur</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+<<<<<<< HEAD
       <pCCUsed>5050041::5.06 update 4 (build 528)::ARMCC</pCCUsed>
+=======
+      <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+>>>>>>> 6c789b8480a7925f397c402c5439f9da5bfa566d
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
