@@ -1,0 +1,12 @@
+
+".\principal.o"
+".\bruitverre.o"
+".\trigo.o"
+".\signal.o"
+".\m2.o"
+".\somme.o"
+".\Lib\gassp72.lib"
+".\startup-rvds.o"
+--ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --strict --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Proj_Step_1.map" -o .\Proj_Step_1.axf

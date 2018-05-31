@@ -1,0 +1,7 @@
+SI : signal1 =0
+
+	mise a 1 PB1
+	signal mis a 1
+Sinon :
+	mise a 0 PB1
+	signal mise a 0
