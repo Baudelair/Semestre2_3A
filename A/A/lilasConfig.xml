@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><config>
+    <jar path="F:\Cours\INSA\Semestre2_3A\A\LILASHOME\lib"/>
+    <var name="javaLibraryPath" value="F:\Cours\INSA\Semestre2_3A\A\LILASHOME\lib"/>
+    <var name="dirSrc" value="F:\Cours\INSA\Semestre2_3A\A\APPFSO"/>
+    <var name="logLevel" value="SEVERE"/>
+    <var name="ms6LoadCmd" value="lilas"/>
+    <var name="nexys3LoadCmd" value="lilas"/>
+    <var name="ftdiJava" value="ftdi"/>
+</config>

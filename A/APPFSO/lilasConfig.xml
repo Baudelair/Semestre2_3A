@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><config>
-<jar path="/mnt/c/Users/Manu/Documents/Cours/Semestre 2/A/LILASHOME/lib"/>
-<var name="javaLibraryPath" value="/mnt/c/Users/Manu/Documents/Cours/Semestre 2/A/LILASHOME/lib"/>
-<var name="dirSrc" value="/mnt/c/Users/Manu/Documents/Cours/Semestre 2/A/APPFSO"/>
-<var name="logLevel" value="SEVERE"/>
-<var name="ms6LoadCmd" value="lilas"/>
-<var name="nexys3LoadCmd" value="lilas"/>
-<var name="ftdiJava" value="ftdi"/>
-</config>
