@@ -1,0 +1,75 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+   <title>Examen de Langage d'Assemblage (Mai 2015)</title>
+</head>
+<body text="#000000" bgcolor="#DDDDDD" link="#000099" vlink="#990099" alink="#000099">
+
+<style type="text/css">
+table.bw { border: 2px solid black; border-collapse:collapse; }
+table.bw td { border: 1px solid green; background-color:white;
+		padding: 1px 5px 1px 10px; }
+.bk { page-break-before: always; }
+h2 { margin-top: 50px; color: blue }
+h3 { margin-top: 40px; color: blue }
+h4 { background-color:#dfd; }
+.toc { list-style-type: none; }
+.toc ul{ list-style-type: none; }
+.toc li { margin: 0; font-size: 125% }
+.toc ul li { margin: 0px; font-size: 80% }
+li { margin-top: 6px; }
+ul ul li { margin-top: 3px; }
+.lilli li { margin-top: 3px; }
+img { margin-top: 0px; }
+.large { margin: 0 auto; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;
+width: 880px; padding-left: 10px; padding-right: 8px; background-color:white; }
+.boite { overflow: auto }
+.leftim { float: left; margin-right: 50px }
+.rightim { float: right; margin-left: 20px; margin-right: 20px}
+</style>
+
+<div class="large">
+<h2>Projet Sinus Haute Définition</h2>
+Le but de ce projet est de fournir à une application de traitement de signal
+sur microcontrôleur cortex M3 des valeurs de sinus avec une précision élevée
+(de l'ordre de 10<sup>-5</sup>)
+tout en utilisant une petite table de 257 entrées seulement.<br />
+Pour cela on met en oeuvre :
+<ul><li>exploitation des symétries de la fonction sinus</li>
+<li>interpolation linéaire</li>
+</ul>
+<h3>Votre mission</h3>
+Vous devrez compléter 5 étapes de ce projet, dont le code est inachevé :
+<ol><li>lecture de la table (fournie) et première symétrie (fonction <b>sin_pi</b>)</li>
+<li>seconde symétrie (fonction <b>sin_2pi</b>)</li>
+<li>modulo 2 pi (fontion <b>sin_q10)</b></li>
+<li>interpolation linéaire (fonction <b>sin_q24</b>)</li>
+<li>changement d'unité d'angle (fonction <b>sin_deg</b>)</li>
+</ol>
+La spécification détaillée de chacune de ces 5 fonctions est donnée en commentaire dans le code source
+fourni.
+<h3>Détails pratiques</h3>
+On vous fournit 5 projets "Keil" prêts à compiler.
+Chaque projet contient un fichier source en langage d'assemblage,
+dans lequel les éléments à compléter sont représentés par des <b>"???"</b>.
+<ul><li>vous <b>devez</b> compléter le code pour qu'il s'assemble sans erreur et produise
+un résultat conforme à l'objectif du projet</li>
+<li>vous <b>pouvez</b> utiliser le simulateur de l'outil Keil pour vérifier votre code</li>
+<li>le code est organisé (artificiellement) de manière à ce que les 5 projets soient <b>indépendants</b>
+bien que contribuant au même objectif,
+c'est à dire qu'un échec sur l'étape N n'empèche pas de réussir l'étape N+1.</li>
+</ul>
+Documents recommandés :
+<ul><li><a href="http://sourcecode.fr/insa/ASM/Aide_Memoire_du_Programmeur_Cortex_M3.pdf" target="_blank">aide-mémoire de l'INSA</a>
+</li>
+<li><a href="http://sourcecode.fr/insa/ASM/DOC_ARM/Quick_Ref_Card_QRC0001_UAL.pdf" target="_blank">Quick Reference Card</a></li>
+</ul>
+Remise des résultats :
+<ul><li>laissez dans le répertoire <b>"U:"</b> les 5 projets complétés</li>
+<li><b>n'oubliez pas</b> de mettre votre nom dans le fichier <b>mon_nom.txt</b></li>
+</ul>
+
+</div>
+</body></html>
