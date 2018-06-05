@@ -1,0 +1,126 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape2/index.html?part=ID_PubliTool_N10035 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 2&nbsp;: Les interruptions</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 2&nbsp;: Les interruptions</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 2&nbsp;: Les interruptions</a></li><li class="niv1sel"><a href="index0246.html?part=ID_PubliTool_N10035" onClick="return chargerURLsansHistorique(this)">1 Gestion des Interruptions</a></li><li class="niv1"><a href="index753d.html?part=ID_PubliTool_N100DA" onClick="return chargerURLsansHistorique(this)">2 Utilisation des interruptions sur la carte Audio</a></li><li class="niv1"><a href="indexc0c1.html?part=ID_PubliTool_N100EE" onClick="return chargerURLsansHistorique(this)">3 Interruptions imbriqu&eacute;es</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 1 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">Gestion des Interruptions</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Il s'agit de g&eacute;rer des demandes d'interruption pouvant provenir de
+plusieurs dispositifs connect&eacute;s au cœur  du processeur (timer,
+circuit audio, ...). La gestion mat&eacute;rielle des demandes d'interruption
+est r&eacute;alis&eacute;e par le contr&ocirc;leur NVIC (Nested Vecteur Interrupt Controller).
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Le dispositif  pour la prise en compte d'une interruption est d&eacute;crit dans la figure  1.1 (voir Chapitre 8 du polycopi&eacute;).
+<div class="centr&eacute;e"><embed src="cascadeITD23f0.svg?echelle=0.8" type="image/svg+xml"></embed></div><div class="centr&eacute;e"> Fig 1.1  : Dispositif de prise en compte des interruptions.</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Vous pouvez simuler l'ex&eacute;cution du nvic en ex&eacute;cutant la commande&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /arch/nvic/NVIC2.lilas -test -awt=awt</strong></span>
+
+</div>
+
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+L'arriv&eacute;e d'une interruption <span style="font-family:monospace;">IT<sub>i</sub></span> doit tout d'abord passer par le
+filtre du masque <span style="font-family:monospace;">IT<sub>i</sub></span>. Ensuite, la demande doit
+passer par le filtre de l'encodeur de priorit&eacute; (analogue &agrave; celui
+d&eacute;crit dans le polycopi&eacute; page 193). Si aucune demande plus prioritaire et non masqu&eacute;e
+n'est pas apparue ou n'a pas d&eacute;j&agrave; &eacute;t&eacute; prise en compte, alors une
+demande d'interruption est transmise au cœur  du processeur.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+La demande deviendra active et sera m&eacute;moris&eacute;e dans la bascule <span style="font-family:monospace;">A<sub>i</sub></span>
+lorsque le cœur   effectura une lecture du vecteur d'IT qui donnera
+le num&eacute;ro de l'interruption activ&eacute;e (le signal <span style="font-family:monospace;">AS<sub>i</sub></span> indique &agrave; tout
+instant l'interruption active la plus prioritaire.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Lorsque l'interruption <span style="font-family:monospace;">IT<sub>i</sub></span> est trait&eacute;e, le cœur  doit remettre &agrave; z&eacute;ro la
+bascule <span style="font-family:monospace;">A<sub>i</sub></span>.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Depuis le processeur, la carte NVIC est vue comme une m&eacute;moire de 2
+registres d'un octet chacun. La figure  1.2
+pr&eacute;sente l'organisation de ces registres ainsi que les adresses
+d'acc&egrave;s dans l'espace m&eacute;moire du cœur. 
+<div class="centr&eacute;e"><embed src="PlanMemoireNVICa23f0.svg?echelle=0.8" type="image/svg+xml"></embed></div><div class="centr&eacute;e"> Fig 1.2  : Plan M&eacute;moire des registres du contr&ocirc;leur NVIC.</div>
+
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Le contr&ocirc;leur NVIC de votre circuit peut g&eacute;rer 8 demandes
+d'interruptions. Lorsqu'une demande d'interruption activable (demande
+non masqu&eacute;e, pas de IT en demande ou active plus prioritaire), le
+contr&ocirc;leur g&eacute;n&egrave;re le signal IT pour signaler que cette demande doit
+&ecirc;tre prise en compte. La lecture du vecteur d'IT permet alors au
+cœur  d'identifier la source de l'interruption afin de donner le
+contr&ocirc;le au programme charg&eacute; de traiter la demande.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Le programme charg&eacute; de traiter la demande d'interruption num&eacute;ro i
+sera identifiable dans une table de 8 mots situ&eacute;e dans la rom
+programme. L'entr&eacute;e i de cette table donnera l'adresse du programme de
+gestion de l'interruption i. Le d&eacute;but de la table sera m&eacute;moris&eacute; dans
+le registre TabIT (en fait le registre num&eacute;ro 14). L'initialisation de
+ce registre avec l'adresse de debut de la table devra se faire avant le d&eacute;masquage
+de toute IT (en g&eacute;n&eacute;ral en d&eacute;but de programme, apr&egrave;s le reset). 
+Le d&eacute;but de la Rom Programme devra donc ressembler &agrave;&nbsp;:
+	<div class="" style="white-space:pre;background-color:#e7e3e7;margin:1cm"> <span style="background:#99FF66"><a href="Exemple1.html">Exemple1.ass</a> : </span><div class="" style="white-space:pre;font-family:monospace;background-color:#e7e3e7;margin-top:0.2cm;margin-left:1cm">        ORG	0
+	WORD	0x0400	; initialisation SP (premier mot suivant le dernier mot de la ram)
+	WORD	debut	; initialisation PC
+
+TabIT:  WORD	errIT ; ou HandlerIT0
+        WORD	errIT ; ou HandlerIT1
+        WORD	errIT ; ou HandlerIT2
+        WORD	errIT ; ou HandlerIT3
+        WORD	errIT ; ou HandlerIT4
+        WORD	errIT ; ou HandlerIT5
+        WORD	errIT ; ou HandlerIT6
+        WORD	errIT ; ou HandlerIT7
+
+errIT:	B	errIT ; pour bloquer le programme si une IT impr&eacute;vue est lev&eacute;e
+
+debut:  LDI     R14, #TabIT
+;
+;  	... suite du programme
+;	
+fin:	B	fin
+ </div></div>
+
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+
+A la fin de la prise en compte d'une interruption, l'activit&eacute; de
+l'interruption qui vient d'&ecirc;tre trait&eacute;e doit &ecirc;tre remise &agrave; z&eacute;ro, ce qui
+est r&eacute;alis&eacute; par une simple &eacute;criture dans le registre ITVR (en fait,
+peut importe l'information qui est &eacute;crite, c'est l'action d'&eacute;crire &agrave;
+l'adresse associ&eacute;e &agrave; ITVR qui provoque la remise &agrave; z&eacute;ro de la bascule
+Ai).
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">R&eacute;cup&eacute;rez les images m&eacute;moire <span style="font-family:monospace;">etape2/RomMicrocode.mem</span>, <span style="font-family:monospace;">etape2/RomTranscode.mem</span> et <span style="font-family:monospace;">etape2/RomProgramme.ass</span> en utilisant les commandes&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /etape2/RomMicrocode.mem -extract</strong></span>
+$ <span style="color:#000086;"><strong>lilas /etape2/RomTranscode.mem -extract</strong></span>
+$ <span style="color:#000086;"><strong>lilas /etape2/RomProgramme.ass -extract</strong></span>
+
+</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour lancer la simulation, utilisez dans un terminal la commande 
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /arch/processeurComplet/ProcesseurComplet2015.lilas -awt=awtEtape2 -script=initEtape2 -test</strong></span>
+
+</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: Prise en compte d'une interruption</strong><i><p style="text-align:justify;">
+Avant de modifier le &micro;-code  pour
+r&eacute;aliser la prise en compte d'une demande d'interruption r&eacute;pondez aux
+questions suivantes&nbsp;:
+<ul id="ID_PubliTool_N100C3">
+<li> A quel moment du microcode est-il judicieux de prendre en compte
+l'arriv&eacute;e d'une nouvelle interruption&nbsp;?</li>
+<li> Avant de donner la main au programme charg&eacute; de traiter
+  l'interruption (handler d'IT) dont
+  l'adresse en m&eacute;moire est m&eacute;moris&eacute;e &agrave; l'adresse 2xnoIT+TabIT, quelles sont
+  les informations qui doivent &ecirc;tre sauvegard&eacute;es dans la pile (dont le
+  pointeur sur le sommet est m&eacute;moris&eacute; dans le registre SP)&nbsp;?
+</li>
+</ul>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;">
+Au niveau du microcode, au moment de l'apparition d'une demande
+d'interruption, vous ne sauvegarderez dans la pile que l'adresse de
+l'instruction dont l'ex&eacute;cution a &eacute;t&eacute; suspendue, le registre condition de l'ALU, ainsi que les registres R0 et R1. Le reste des informations &agrave; sauvegarder (par exemple des registres autres que R0 et R1) sera trait&eacute; par le handler d'IT si c'est n&eacute;cessaire.
+</p></i></div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: Instruction RTI</strong><i><p style="text-align:justify;">La reprise du
+programme interrompu sera r&eacute;alis&eacute;e par l'instruction RTI (Retour
+d'IT). Quelles sont les op&eacute;rations &agrave; r&eacute;aliser pour cette instruction&nbsp;?
+Modifier le &micro;-code  pour ajouter cette instruction au jeu
+d'instructions d&eacute;j&agrave; existant. Pour RTI, on utilisera COP=6, SCO=2.
+</p></i></div></p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape2/index.html?part=ID_PubliTool_N10035 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:13 GMT -->
+</html>

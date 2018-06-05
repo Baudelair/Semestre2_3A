@@ -1,0 +1,21 @@
+        ORG	0
+	WORD	0x0400	; initialisation SP (premier mot suivant le dernier mot de la ram)
+	WORD	debut	; initialisation PC
+
+TabIT:  WORD	errIT ; ou HandlerIT0
+        WORD	errIT ; ou HandlerIT1
+        WORD	errIT ; ou HandlerIT2
+        WORD	errIT ; ou HandlerIT3
+        WORD	errIT ; ou HandlerIT4
+        WORD	errIT ; ou HandlerIT5
+        WORD	errIT ; ou HandlerIT6
+        WORD	errIT ; ou HandlerIT7
+
+errIT:	B	errIT ; pour bloquer le programme si une IT imprévue est levée
+
+debut:  LDI     R14, #TabIT
+;
+;  	... suite du programme
+;	
+fin:	B	fin
+ 

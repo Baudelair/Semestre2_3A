@@ -1,0 +1,46 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/tutoriel_assembleur/index.html?part=ID_PubliTool_N10066 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:09:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Assembleur APP SFO</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">Assembleur APP SFO</div><div id="toc"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">Assembleur APP SFO</a></li><li class="niv1"><a href="indexd3c0.html?part=ID_PubliTool_N10045" onClick="return chargerURLsansHistorique(this)">1 Utilisation de l'assembleur</a></li><li class="niv1sel"><a href="indexcc65.html?part=ID_PubliTool_N10066" onClick="return chargerURLsansHistorique(this)">2 BNF de l'assembleur</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 2 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">BNF de l'assembleur</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+<div style="white-space:pre;font-family:monospace;">
+Start			:= ( ( Etiquette )? ( DirEqu | DirWord | DirOrg | Instruction | LigneVide) )*
+Etiquette		:= ( IDENTIFIER ":" )
+Identificateur		:= ( IDENTIFIER )
+Entier			:= ( INTEGER_LITERAL )
+DirEqu			:= EQU INTEGER_LITERAL FinDeLigne
+DirWord			:= WORD ( Entier | Identificateur ) FinDeLigne
+DirOrg			:= ORG INTEGER_LITERAL FinDeLigne
+LigneVide		:= FinDeLigne
+Instruction		:= ( InstReg | InstBr ) FinDeLigne
+Immediat8		:= ( Identificateur )
+Immediat16		:= "#" ( Entier | Identificateur )
+Registre		:= "R" ["0"-"15"]
+IndirectRegistre	:= "[" Registre "]"
+IndirectImmediat16	:= "[" "#" ( Entier | Identificateur ) "]"
+Instruction		:= ( Identificateur
+			      ( ( Registre | Immediat8 | Immediat16 | Identificateur)
+			     	( , ( Registre | Immediat16 | Identificateur | IndirectRegistre | IndirectImmediat16 )
+				)?
+			      )? ) FinDeLigne
+
+
+FinDeLigne		:= "caract&egrave;re de fin de ligne"
+INTEGER_LITERAL		:= DECIMAL_LITERAL | HEX_LITERAL | BINARY_LITERAL
+DECIMAL_LITERAL		:= (["0"-"9"])+
+HEX_LITERAL		:= "0" ["x","X"] (["0"-"9","a"-"f","A"-"F"])+
+BINARY_LITERAL		:= "0" ["b","B"] (["0"-"1"])*
+
+IDENTIFIER		:= "_","a"-"z","A"-"Z" ("_","a"-"z","A"-"Z" | "0"-"9")*
+
+</div>
+
+Les commentaires apparaissent entre ";" et la fin de la ligne. L'identificateur d'instruction doit &ecirc;tre l'un des codes op&eacute;rations parmi ceux indiqu&eacute;s dans le sujet de l'&eacute;tape 1.
+</p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/tutoriel_assembleur/index.html?part=ID_PubliTool_N10066 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:09:00 GMT -->
+</html>

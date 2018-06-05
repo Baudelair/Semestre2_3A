@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+srv-gei.insa-toulouse.fr	TRUE	/PubliToolGEI	FALSE	1999999999	JSESSIONID	D452A70061622AB5B9DA93CD41327C5A
+

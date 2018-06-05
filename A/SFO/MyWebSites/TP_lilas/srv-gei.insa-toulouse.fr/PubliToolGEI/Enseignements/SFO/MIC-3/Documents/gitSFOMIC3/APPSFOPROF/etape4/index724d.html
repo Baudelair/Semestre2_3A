@@ -1,0 +1,32 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape4/index.html?part=ID_PubliTool_N1002A by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 4&nbsp;: R&eacute;alisation d'un module RamDisk</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 4&nbsp;: R&eacute;alisation d'un module RamDisk</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 4&nbsp;: R&eacute;alisation d'un module RamDisk</a></li><li class="niv1"><a href="indexf3f7.html?part=ID_PubliTool_N10026" onClick="return chargerURLsansHistorique(this)">1 Sp&eacute;cifications du RamDisk</a></li><li class="niv2sel"><a href="index724d.html?part=ID_PubliTool_N1002A" onClick="return chargerURLsansHistorique(this)">1.1 Qu'est ce qu'un RamDisk &nbsp;?</a></li><li class="niv2"><a href="indexa113.html?part=ID_PubliTool_N100FD" onClick="return chargerURLsansHistorique(this)">1.2 Sp&eacute;cification du RamDisk</a></li><li class="niv2"><a href="indexe40d.html?part=ID_PubliTool_N1012B" onClick="return chargerURLsansHistorique(this)">1.3 L'acc&egrave;s direct m&eacute;moire du RamDisk</a></li><li class="niv1"><a href="indexe6c1.html?part=ID_PubliTool_N10154" onClick="return chargerURLsansHistorique(this)">2 Programmation</a></li><li class="niv1"><a href="indexaa2e.html?part=ID_PubliTool_N1018B" onClick="return chargerURLsansHistorique(this)">3 Applications</a></li><li class="niv2"><a href="indexe73b.html?part=ID_PubliTool_N10192" onClick="return chargerURLsansHistorique(this)">3.1 Chambre d'&eacute;cho</a></li><li class="niv2"><a href="index026c.html?part=ID_PubliTool_N101A2" onClick="return chargerURLsansHistorique(this)">3.2 Enregistreur</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 1.1 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">Qu'est ce qu'un RamDisk &nbsp;?</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Il s'agit de simuler une partition d'un disque dur &agrave; partir d'une
+m&eacute;moire de type ram. Nous utiliserons ici la m&eacute;moire de 128Mb Cellular
+RAM part number M45W8MW16 (<a href="128mb_burst_cr1_5_p26z.pdf">m&eacute;moire</a>) disponible sur la carte
+Nexys3. Cette m&eacute;moire est organis&eacute;e sous forme de 2<sup>23</sup> mots de 16
+bits. Elle permet un acc&egrave;s al&eacute;atoire
+avec un temps d'acc&egrave;s de 70ns,
+mais aussi un acc&egrave;s en mode page pour des pages de 16 mots maximum
+(temps d'acc&egrave;s du premier mot&nbsp;: 70ns, temps d'acc&egrave;s d'un mot
+suppl&eacute;mentaire dans la m&ecirc;me page&nbsp;: 20ns).
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Nous assimilerons cette m&eacute;moire &agrave; un disque de 128Mb organis&eacute; en 
+2<sup>20</sup> blocs (secteurs logiques) de 8 mots de 16 bits chacun. Le module
+RamDisk doit donc g&eacute;rer le transfert, en lecture ou en &eacute;criture, entre
+un bloc RamDisk (secteur logique) et une zone de 8 mots de la carte Ram de notre machine.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">La m&eacute;moire sera utilis&eacute;e en mode asynchrone (mode le plus simple), autant pour la lecture que pour l'&eacute;criture. Dans ce mode, le signal Clk du boitier RAM (signal appel&eacute; ici CellRamCLK) sera positionn&eacute; &agrave; 0 (voir &eacute;ventuellement note 1 page 8 du document d&eacute;crivant la <a href="128mb_burst_cr1_5_p26z.pdf">m&eacute;moire</a>. Ces deux op&eacute;rations sont d&eacute;crites dans les chronogrammes suivants (voir aussi Figure 5 et 6, page 11 du document d&eacute;crivant la <a href="128mb_burst_cr1_5_p26z.pdf">m&eacute;moire</a>).
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Op&eacute;ration de lecture&nbsp;:
+<div class="centr&eacute;e"><embed src="indexd968.svg?part=ID_PubliTool_N1004C&amp;id=ID_PubliTool_N1004C" type="image/svg+xml"></embed></div>
+
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Op&eacute;ration d'&eacute;criture&nbsp;:
+<div class="centr&eacute;e"><embed src="index3eba.svg?part=ID_PubliTool_N100A6&amp;id=ID_PubliTool_N100A6" type="image/svg+xml"></embed></div>
+
+</p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape4/index.html?part=ID_PubliTool_N1002A by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:26 GMT -->
+</html>

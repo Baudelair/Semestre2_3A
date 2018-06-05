@@ -1,0 +1,36 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/tutoriel_assembleur/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:02:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Assembleur APP SFO</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">Assembleur APP SFO</div><div id="toc"><ul><li class="niv0sel"><a href="index.html" onClick="return chargerURLsansHistorique(this)">Assembleur APP SFO</a></li><li class="niv1"><a href="indexd3c0.html?part=ID_PubliTool_N10045" onClick="return chargerURLsansHistorique(this)">1 Utilisation de l'assembleur</a></li><li class="niv1"><a href="indexcc65.html?part=ID_PubliTool_N10066" onClick="return chargerURLsansHistorique(this)">2 BNF de l'assembleur</a></li></ul></div><div class="zoneMain"><div class="" xmlns:url="http://whatever/java/java.net.URLEncoder"><p class="H2c">Tutoriel</p><p style="top:10pt;bottom:5mm;text-align:justify;"></p></div><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Le contenu de la m&eacute;moire peut &ecirc;tre d&eacute;fini en utilisant le langage d'assemblage disponible avec le simulateur. Une ligne d'un programme &eacute;crit dans ce langage poss&egrave;de la syntaxe suivante (la syntaxe compl&egrave;te est indiqu&eacute;e dans la section intitul&eacute;e BNF)&nbsp;:
+<div style="white-space:pre;font-family:monospace;">
+           ORG  adresse               &nbsp;; commentaires
+&eacute;tiquette: EQU  valeur                &nbsp;; commentaires
+&eacute;tiquette: WORD valeur                &nbsp;; commentaires
+&eacute;tiquette: COP  param&egrave;tre1            &nbsp;; commentaires
+&eacute;tiquette: COP  param&egrave;tre1, param&egrave;tre2&nbsp;; commentaires
+
+</div>
+
+ORG EQU et WORD sont des directives, COP est l'un des codes op&eacute;rations pr&eacute;sent&eacute;s dans le sujet de l'&eacute;tape 4.
+<ul id="ID_PubliTool_N10023">
+<li>ORG permet de sp&eacute;cifier l'adresse courante du prochain mot g&eacute;n&eacute;r&eacute;</li>
+<li>EQU permet d'associer un nom (l'&eacute;tiquette) &agrave; une valeur. Il n'y a pas de g&eacute;n&eacute;ration de mot m&eacute;moire.</li>
+<li>WORD permet de d&eacute;finir un emplacement m&eacute;moire et sa valeur d'initialisation. L'&eacute;tiquette permet d'associer un nom &agrave; l'adresse de cet emplacement m&eacute;moire.</li>
+<li>COP permet de d&eacute;finir l'une des instructions de la machine (&agrave; une ou deux op&eacute;randes). L'&eacute;tiquette optionnelle permet d'associer un nom &agrave; l'emplacement d'une instruction. Suivant le code op&eacute;ration, les param&egrave;tres utilisent l'un des modes d'adressage suivants:
+<ul id="ID_PubliTool_N10030">
+<li>registre&nbsp;: Ri avec i dans l'intervalle 0..7</li>
+<li>imm&eacute;diat8b&nbsp;: &eacute;tiquette</li>
+<li>imm&eacute;diat16b&nbsp;: #valeur ou #&eacute;tiquette</li>
+<li>direct&nbsp;: [#valeur] ou [#&eacute;tiquette]</li>
+<li>indirect&nbsp;: [Ri] i dans l'intervalle 0..15</li>
+</ul>
+</li>
+</ul>
+</p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/tutoriel_assembleur/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:02:30 GMT -->
+</html>

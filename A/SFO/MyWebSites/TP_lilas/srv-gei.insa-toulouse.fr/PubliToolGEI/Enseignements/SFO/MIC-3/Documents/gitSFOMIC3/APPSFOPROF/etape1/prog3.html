@@ -1,0 +1,26 @@
+    	ORG	0x0
+	WORD    0x400	; initialisation SP
+	WORD	debut	; initialisation PC
+
+SW:	EQU 	0x4000
+BTN:	EQU 	0x4001
+LED:    EQU 	0x4002
+MODE:   EQU 	0x4003
+DigitHexa:EQU 	0x4004
+
+debut:	
+        ; R1 initialisé à 1
+        LDI     R1, #0x0001
+        ; lecture des switch dans R0
+        LDB     R0, [#SW]
+boucle: 
+        ; on affiche R0 sur les afficheurs 7-segments
+        ST      R0, [#DigitHexa]
+	; on décrémente R0
+	SUB     R0, R1
+        ; on boucle si on n'a pas de retenue
+	BNC     boucle
+fin:    ; on affiche R0 sur les lesd (R0 est égal à 0xFFFF)
+	STB     R0, [#LED]
+	B       fin
+

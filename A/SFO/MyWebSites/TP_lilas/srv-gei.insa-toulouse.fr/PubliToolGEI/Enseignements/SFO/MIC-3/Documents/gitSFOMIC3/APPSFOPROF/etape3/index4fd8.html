@@ -1,0 +1,37 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape3/index.html?part=ID_PubliTool_N10158 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 3&nbsp;: R&eacute;alisation d'un port d'E/S</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 3&nbsp;: R&eacute;alisation d'un port d'E/S</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 3&nbsp;: R&eacute;alisation d'un port d'E/S</a></li><li class="niv1"><a href="indexf3f7.html?part=ID_PubliTool_N10026" onClick="return chargerURLsansHistorique(this)">1 Rappel</a></li><li class="niv2"><a href="index9f76.html?part=ID_PubliTool_N1002B" onClick="return chargerURLsansHistorique(this)">1.1 La bascule D</a></li><li class="niv2"><a href="index7bc4.html?part=ID_PubliTool_N100A4" onClick="return chargerURLsansHistorique(this)">1.2 Le buffer 3 &eacute;tats</a></li><li class="niv1"><a href="indexf96a.html?part=ID_PubliTool_N100FC" onClick="return chargerURLsansHistorique(this)">2 Sp&eacute;cifications du GPIO</a></li><li class="niv2"><a href="index829c.html?part=ID_PubliTool_N10100" onClick="return chargerURLsansHistorique(this)">2.1 Qu'est ce qu'un port d'E/S &nbsp;?</a></li><li class="niv2"><a href="indexb267.html?part=ID_PubliTool_N10117" onClick="return chargerURLsansHistorique(this)">2.2 Sp&eacute;cifications du GPIO</a></li><li class="niv2sel"><a href="index4fd8.html?part=ID_PubliTool_N10158" onClick="return chargerURLsansHistorique(this)">2.3 La carte GPIO</a></li><li class="niv2"><a href="indexbf4a.html?part=ID_PubliTool_N10182" onClick="return chargerURLsansHistorique(this)">2.4 Contr&ocirc;le du GPIO</a></li><li class="niv1"><a href="index9a12.html?part=ID_PubliTool_N101E7" onClick="return chargerURLsansHistorique(this)">3 Programmation du GPIO</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 2.3 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">La carte GPIO</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Le cœur communique
+avec le GPIO via les 3 adresses suivantes&nbsp;:
+<div class="centr&eacute;e"><embed src="PlanMemoireGPIO.svg" type="image/svg+xml"></embed></div><div class="centr&eacute;e"> Fig 2.2  : Plan M&eacute;moire des registres du GPIO</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Il faut donc interfacer le GPIO avec le bus de notre machine pour
+former notre module <span style="font-family:monospace;">carteGPIO</span>. L'organisation de ce module
+est d&eacute;crit dans la figure suivante. L'<a href="http://srv-gei.insa-toulouse.fr/PubliToolGEI/Git/gitLILASV4tst/LILASV4tst/src/arch/index.html">interface Bus</a> fait le lien entre
+la carte et le bus de la machine (on retrouve cette m&ecirc;me interface
+pour tous les dispositifs connect&eacute;s au bus tels que Coeur, NVIC, ROM,
+RAM, ...). 
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Entre l'interface Bus et le GPIO se trouve la logique de contr&ocirc;le du
+GPIO. Cette logique, purement combinatoire, permet de g&eacute;n&eacute;rer les
+signaux envoy&eacute;s soit &agrave; l'interface bus (OutAdresse, OutDonn&eacute;es, OutLE,
+...), soit &agrave; la carte GPIO (Din, ceCR, ceODR) &agrave; partir des signaux
+re&ccedil;us soit de l'interface bus (InAdresse, InDonn&eacute;e, InLE, ...) soit du
+GPIO (Dout). C'est cette logique de contr&ocirc;le que vous allez cr&eacute;er (les
+signaux OutBRi, ClrBBY, associ&eacute;s &agrave; la phase de prise du bus, ou
+OutAdresse, OutLE et Out OutMO, positionn&eacute;s par une carte Ma&icirc;tre, 
+sont directement connect&eacute;s &agrave; la valeur 0 et n'apparaissent pas dans le
+module ControleGPIO &eacute;tant donn&eacute; que la carte GPIO
+ne fonctionnera qu'en tant que carte esclave).
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+<div class="centr&eacute;e"><embed src="carteGPIO358b.svg?echelle=0.6" type="image/svg+xml"></embed></div><div class="centr&eacute;e"> Fig 2.3  : Carte GPIO</div>
+</p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape3/index.html?part=ID_PubliTool_N10158 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:18 GMT -->
+</html>

@@ -1,0 +1,55 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape3/index.html?part=ID_PubliTool_N10182 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 3&nbsp;: R&eacute;alisation d'un port d'E/S</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 3&nbsp;: R&eacute;alisation d'un port d'E/S</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 3&nbsp;: R&eacute;alisation d'un port d'E/S</a></li><li class="niv1"><a href="indexf3f7.html?part=ID_PubliTool_N10026" onClick="return chargerURLsansHistorique(this)">1 Rappel</a></li><li class="niv2"><a href="index9f76.html?part=ID_PubliTool_N1002B" onClick="return chargerURLsansHistorique(this)">1.1 La bascule D</a></li><li class="niv2"><a href="index7bc4.html?part=ID_PubliTool_N100A4" onClick="return chargerURLsansHistorique(this)">1.2 Le buffer 3 &eacute;tats</a></li><li class="niv1"><a href="indexf96a.html?part=ID_PubliTool_N100FC" onClick="return chargerURLsansHistorique(this)">2 Sp&eacute;cifications du GPIO</a></li><li class="niv2"><a href="index829c.html?part=ID_PubliTool_N10100" onClick="return chargerURLsansHistorique(this)">2.1 Qu'est ce qu'un port d'E/S &nbsp;?</a></li><li class="niv2"><a href="indexb267.html?part=ID_PubliTool_N10117" onClick="return chargerURLsansHistorique(this)">2.2 Sp&eacute;cifications du GPIO</a></li><li class="niv2"><a href="index4fd8.html?part=ID_PubliTool_N10158" onClick="return chargerURLsansHistorique(this)">2.3 La carte GPIO</a></li><li class="niv2sel"><a href="indexbf4a.html?part=ID_PubliTool_N10182" onClick="return chargerURLsansHistorique(this)">2.4 Contr&ocirc;le du GPIO</a></li><li class="niv1"><a href="index9a12.html?part=ID_PubliTool_N101E7" onClick="return chargerURLsansHistorique(this)">3 Programmation du GPIO</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 2.4 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">Contr&ocirc;le du GPIO</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour cette partie, vous devez r&eacute;cup&eacute;rer le module <span style="font-family:monospace;">etape3.ControleGPIO</span> en utilisant la commande suivante&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /etape3/ControleGPIO.lilas -extract</strong></span>
+
+</div>
+Ce module est utilis&eacute; par le module <span style="font-family:monospace;">arch.gpio.CarteGPIOTstSimulation</span> que vous pourrez simuler en en ex&eacute;cutant la commande 
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /arch/gpio/CarteGPIOTstSimulation.lilas -awt=awt</strong></span>
+
+</div>
+Vous obtiendrez alors la fen&ecirc;tre suivante&nbsp;:
+<div class="centr&eacute;e"><embed src="CarteGPIOTstSimulationSnapshot358b.svg?echelle=0.6" type="image/svg+xml"></embed></div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Cette fen&ecirc;tre contient l'&eacute;l&eacute;ment carteGPIO (partie en jaune) et les dispositifs connect&eacute;s (LED et SWITCH). L'&eacute;l&eacute;ment carteGPIO est connect&eacute; sur bus sur lequel est &eacute;galement connect&eacute; une interface de bus nomm&eacute;e Test sur le dession (en haut &agrave; gauche). Pour faire fonctionner la carte, vous pourrez envoyer les commandes sur ce bus via cette interface, ou utiliser les scripts fournis dans le module.</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+La d&eacute;finition du module ControleGPIO de la carte GPIO est fournie par le fichier
+<span style="font-family:monospace;">etape3/ControleGPIO.lilas</span> que vous devez avoir dans votre r&eacute;pertoire (voir d&eacute;but de cette page). Vous modifierez la d&eacute;finition des signaux apparaisant
+dans la balise XML <span style="font-family:monospace;">code language="logic"</span> en vous utilisant le <a href="http://srv-gei.insa-toulouse.fr/PubliToolGEI/LILASV4/Eclipse/doc/index.html?part=sect_language_logic">langage
+de description logique</a>. Les
+&eacute;quations donn&eacute;es dans le fichier initial ne servent qu'&agrave; fournir des
+valeurs de mani&egrave;re &agrave; produire un circuit sans erreur. Vous pouvez
+tester directement votre carte GPIO en utilisant le module pr&eacute;c&eacute;dent <span style="font-family:monospace;">etape3.CarteGPIOTstSimulation</span>.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Nous allons proc&eacute;der &agrave; la g&eacute;n&eacute;ration des diff&eacute;rents signaux, &eacute;tape par
+&eacute;tape.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: G&eacute;n&eacute;ration de Din et OutDonn&eacute;e</strong><i><p style="text-align:justify;">Le bus travaille avec des donn&eacute;es sur 16 bits alors que le GPIO ne
+travaille qu'avec des octets non sign&eacute;s. Modifiez les &eacute;quations
+logiques de la production des signaux suivants&nbsp;:
+<ul id="ID_PubliTool_N101BB">
+<li>Din (en direction du GPIO) en utilisant InDonnee</li>
+<li>OutDonnee (en direction du Bus) en utilisant Dout</li>
+</ul>
+</p></i></div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: G&eacute;n&eacute;ration de OutBusError</strong><i><p style="text-align:justify;">Un BusError doit &ecirc;tre g&eacute;n&eacute;r&eacute; lorsque la carte GPIO devient esclave
+(indiqu&eacute; par le signal Ei) et qu'un transfert est demand&eacute; (indiqu&eacute; par
+le signal InDR) et lorsque l'une des conditions suivantes
+appara&icirc;t&nbsp;:
+<ul id="ID_PubliTool_N101CC">
+<li>lecture ou &eacute;criture d'une information autre que ODR, IDR ou CR</li>
+<li>lecture du registre ODR ou du registre CR</li>
+<li>&eacute;criture du registre IDR</li>
+<li>op&eacute;ration sur un mot au lieu d'un octet</li>
+</ul>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;">Attention, le signal BusError c&ocirc;t&eacute; Bus ne suit OutBusError produit par
+la carte qu'apr&egrave;s le front montant du signal clk. En effet, il est
+m&eacute;moris&eacute; dans une bascule dans l'interface Bus!
+</p></i></div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: G&eacute;n&eacute;ration de OutDR, OutDA, ceCR, ceODR</strong><i><p style="text-align:justify;">Le chargement des registres CR ou ODR ne doivent &ecirc;tre effectifs que
+s'il n'y a pas d'erreur Bus (interne &agrave; la carte ou externe). De m&ecirc;me,
+la g&eacute;n&eacute;ration de OutDA ne peut avoir lieu si une erreur de bus intervient.
+</p></i></div></p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape3/index.html?part=ID_PubliTool_N10182 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:20 GMT -->
+</html>

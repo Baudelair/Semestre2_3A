@@ -1,0 +1,33 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/doc/Exercice6.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:02:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Assemblage d'instructions inconnues de l'assembleur</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../../BASE/CSS/Article.css" id="ID_PubliTool_N1000E" rel="stylesheet"><style type="text/css">
+.ok { background-color:LightGreen; }
+.err { background-color:red; }
+    </style><style type="text/css">
+.editor {
+  border: 1px dashed green;
+  padding: 1px 5px 1px 5px;
+} 
+</style><script src="../../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div class="zoneTitreCentr&eacute;eSimple" id="titre">Assemblage d'instructions inconnues de l'assembleur</div><div><div xmlns:url="http://whatever/java/java.net.URLEncoder" class=""><p style="text-align:justify;"></p></div><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><form action="http://srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/doc/Exercice6.html" id="ID_PubliTool_N10021" method="post"><p style="text-align:justify;">Vous avez d&eacute;fini l'instruction machine SWAP (COP=OxB, SCO=0x1)  et vous voulez l'utiliser dans le programme ci-dessous alors que l'assembleur ne connait pas cette instruction. Que vous faut-il mettre dans la ligne de mani&egrave;re &agrave; ce que l'assembleur g&eacute;n&egrave;re le code correct et validez votre r&eacute;ponse par le bouton 'Envoyer'&nbsp;:
+<div style="white-space:pre;font-family:monospace;">
+      ORG     0
+      WORD    0x400&nbsp;; initialisation de SP
+      WORD    main &nbsp;; initialisation de PC
+
+      ORG     0x10
+main: 
+      MOV     R2, #2222
+      MOV     R4, #4444
+      <select class="err" id="ID_PubliTool_N1002C" name="txt-val1"><option xmlns:ext="publitool.Extensions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:str="http://exslt.org/strings" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" id="ID_PubliTool_N10013" value="EQU">EQU</option><option id="ID_PubliTool_N10015" value="WORD" xmlns:ext="publitool.Extensions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:str="http://exslt.org/strings" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink">WORD</option><option id="ID_PubliTool_N10017" value="SWAP" xmlns:ext="publitool.Extensions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:str="http://exslt.org/strings" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink">SWAP</option></select> <input class="err" id="ID_PubliTool_N1003A" name="txt-val2" size="5" type="text" value="????">; SWAP R2, R4
+      B       main
+</div>           
+
+</p><p style="top:10pt;bottom:5mm;text-align:justify;"></p><input id="ID_PubliTool_N10043" name="txt-encore" type="hidden" value="non"><input id="ID_PubliTool_N10046" type="submit" xmlns:ext="publitool.Extensions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:str="http://exslt.org/strings" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></form></p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/doc/Exercice6.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:02:30 GMT -->
+</html>

@@ -1,0 +1,144 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N106A0 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</a></li><li class="niv1"><a href="index7081.html?part=ID_PubliTool_N10038" onClick="return chargerURLsansHistorique(this)">1 Comment marche le s&eacute;quenceur d'un cœur?</a></li><li class="niv1"><a href="index27d2.html?part=ID_PubliTool_N1006C" onClick="return chargerURLsansHistorique(this)">2 Ma&icirc;trise du simulateur</a></li><li class="niv2"><a href="index7baf.html?part=ID_PubliTool_N100C4" onClick="return chargerURLsansHistorique(this)">2.1 Ma&icirc;trise du &micro;-s&eacute;quenceur</a></li><li class="niv2"><a href="index7dc5.html?part=ID_PubliTool_N10118" onClick="return chargerURLsansHistorique(this)">2.2 Ma&icirc;trise du chemin des donn&eacute;es</a></li><li class="niv2"><a href="indexf185.html?part=ID_PubliTool_N102E3" onClick="return chargerURLsansHistorique(this)">2.3 La boucle Von Neumann</a></li><li class="niv1"><a href="index5cd8.html?part=ID_PubliTool_N10445" onClick="return chargerURLsansHistorique(this)">3 D&eacute;veloppement du jeu d'instructions et modes d'adressages</a></li><li class="niv1sel"><a href="index9d66.html?part=ID_PubliTool_N106A0" onClick="return chargerURLsansHistorique(this)">4 Ma&icirc;trise de la carte Nexys3</a></li><li class="niv1"><a href="index674d.html?part=ID_PubliTool_N10740" onClick="return chargerURLsansHistorique(this)">5 Application&nbsp;: pilotage d'un filtre audio</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 4 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">Ma&icirc;trise de la carte Nexys3</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Si votre carte semble ne pas fonctionner, v&eacute;rifiez les connexions de la carte Audio ou de la carte GPIO, mais aussi, la connexion 
+	USB-PC ainsi que la configuration des diff&eacute;rents cavaliers bleus sur la carte gr&acirc;ce &agrave; l'image ci-dessous (cliquez sur l'image pour 
+	l'examiner plus en d&eacute;tail)&nbsp;:
+<div class="centr&eacute;e"><a href="doc/CarteNexys3AvecCommentaires.png"><img src="doc/CarteNexys3AvecCommentaires1a26.png?echelle=0.19"></a></div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour allumer la carte, utilisez le bouton de marche/arr&ecirc;t. Le bouton rouge d&eacute;sign&eacute; par "Reset Carte" permet de faire un reset du FPGA 
+	de la carte, c'est &agrave; dire un effacement du FPGA. Pour charger le circuit que vous microprogrammez avec le simulateur, il suffit 
+	d'utiliser la commande&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /arch/processeurComplet/ProcesseurComplet2015.lilas -awt=debugAWT -script=initEtape1 -remote</strong></span>
+
+</div>
+La fen&ecirc;tre affiche moins d'informations que lors de la simulation, de plus, ces informations ne peuvent pas &ecirc;tre modifi&eacute;es.
+Une fois cette commande ex&eacute;cut&eacute;e, le circuit est charg&eacute; dans le FPGA. On peut lui appliquer le m&ecirc;me signal reset utilis&eacute; 
+dans le simulateur en appyant sur le bouton not&eacute; BTC (Reset) sur l'image. Le reset &eacute;teint les afficheurs 7 segments. 
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Les 8 leds peuvent afficher des informations via l'ex&eacute;cution d'un programme r&eacute;sidant dans la rom programme. Ils peuvent &eacute;galement afficher des informations de debug. Pour passer d'un affichage normal ou Debug, il suffit d'appuyer sur le bouton BTL. Le mode debug s'identifie par l'allumage des quatres points associ&eacute;s aux afficheurs. En mode debug, les informations affich&eacute;es sont&nbsp;:
+<ul id="ID_PubliTool_N106BA">
+<li>Led7&nbsp;: SW7</li>
+<li>Led6&nbsp;: SW6</li>
+<li>Led5&nbsp;: SW5</li>
+<li>Led4&nbsp;: BusBBY</li>
+<li>Led3&nbsp;: BusError</li>
+<li>Led2&nbsp;: modeDebug</li>
+<li>Led1&nbsp;: clkMode (0 =&gt; clock permanent, 1=&gt; clock manuel</li>
+<li>Led0&nbsp;: clk manuel</li>
+</ul>
+Les afficheurs 7 segments affichent les informations suivantes en fonction des
+switch 3 &agrave; 0&nbsp;:
+<ul id="ID_PubliTool_N106D5">
+	<li>SW30=0000&nbsp;: microPC</li>
+	<li>SW30=0001&nbsp;: BusDonn&eacute;e</li>
+	<li>SW30=0010&nbsp;: BusAdresse</li>
+	<li>SW30=0011&nbsp;: noZoneDebug</li>
+	<li>SW30=0100&nbsp;: dataDebugIn[15:0]</li>
+	<li>SW30=0101&nbsp;: dataDebugIn[31:16]</li>
+	<li>SW30=0110&nbsp;: dataDebugIn[47:32]</li>
+	<li>SW30=0111&nbsp;: dataDebugIn[63:48]</li>
+	<li>SW30=1000&nbsp;: dataDebugIn[79:64]</li>
+	<li>SW30=1001&nbsp;: dataDebugIn[83:80]</li>
+</ul>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">On peut contr&ocirc;ler ce qui se passe dans une carte de la mani&egrave;re suivante&nbsp;:
+	<ul id="ID_PubliTool_N106F9">
+		<li>Pour imprimer le contenu des registres (ici de R0 &agrave; R5): 
+			<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas arch.processeurComplet.ProcesseurCompletTools.java -special="dump Registres 0:5"</strong></span>
+V&eacute;rification de la cible pour arch.processeurComplet.ProcesseurComplet2015_nexys3_fpga
+** Chgt Library
+adeptjava Charg&eacute;!
+dmgrOpen
+Cible OK
+dmgrOpen
+0&nbsp;: 0x00 ==&gt; 0xFA37
+1&nbsp;: 0x01 ==&gt; 0x00EC
+2&nbsp;: 0x02 ==&gt; 0x0001
+3&nbsp;: 0x03 ==&gt; 0x0773
+4&nbsp;: 0x04 ==&gt; 0x0038
+5&nbsp;: 0x05 ==&gt; 0x0000
+Lib&eacute;ration interface jtag...
+Interface jtag lib&eacute;r&eacute;e&nbsp;!
+$ 			
+</div>
+			</li>
+		<li>Pour imprimer le contenu d'un espace m&eacute;moire&nbsp;: 
+			<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas arch.processeurComplet.ProcesseurCompletTools.java -special="dump Bus 0x0:0x10"</strong></span>
+V&eacute;rification de la cible pour arch.processeurComplet.ProcesseurComplet2015_nexys3_fpga
+** Chgt Library
+adeptjava Charg&eacute;!
+dmgrOpen
+Cible OK
+dmgrOpen
+*** DUMP Bus ***
+ @ 0x0000&nbsp;: 0x0400
+ @ 0x0002&nbsp;: 0x003A
+ @ 0x0004&nbsp;: 0x0014
+ @ 0x0006&nbsp;: 0x0016
+ @ 0x0008&nbsp;: 0x0018
+ @ 0x000A&nbsp;: 0x0038
+ @ 0x000C&nbsp;: 0x0020
+ @ 0x000E&nbsp;: 0x0038
+ @ 0x0010&nbsp;: 0x001A
+Lib&eacute;ration interface jtag...
+Interface jtag lib&eacute;r&eacute;e&nbsp;!
+$					
+</div></li>
+		<li>Pour imprimer le contenu de la pile&nbsp;: 
+			<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas arch.processeurComplet.ProcesseurCompletTools.java -special="dump Pile"</strong></span>
+V&eacute;rification de la cible pour arch.processeurComplet.ProcesseurComplet2015_nexys3_fpga
+** Chgt Library
+adeptjava Charg&eacute;!
+dmgrOpen
+Cible OK
+dmgrOpen
+**** Dump Pile ****
+SP=0x03F8
+ @ 0x03F8&nbsp;: 0x0052
+ @ 0x03FA&nbsp;: 0x0004
+ @ 0x03FC&nbsp;: 0x00EC
+ @ 0x03FE&nbsp;: 0xFA37
+Lib&eacute;ration interface jtag...
+Interface jtag lib&eacute;r&eacute;e&nbsp;!
+$					
+</div></li>
+		<li>Pour faire un reset et red&eacute;marrer en mode permanent&nbsp;: 
+			<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas arch.processeurComplet.ProcesseurCompletTools.java -special="remoteResetAndStart"</strong></span>
+V&eacute;rification de la cible pour arch.processeurComplet.ProcesseurComplet2015_nexys3_fpga
+** Chgt Library
+adeptjava Charg&eacute;!
+dmgrOpen
+Cible OK
+dmgrOpen
+Lib&eacute;ration interface jtag...
+Interface jtag lib&eacute;r&eacute;e&nbsp;!
+$					
+</div></li>
+	</ul>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour initialiser la RomProgramme, utilisez l'option "-chargement" de l'assembleur&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas -classToRun=assembleur.MainMIC3 -listing -chargement etape1/prog2.ass</strong></span>
+
+</div>
+Lorsque le chargement est termin&eacute;, un reset de la machine est effectu&eacute; et le programme s'ex&eacute;cute sur la carte Nexys3.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">La machine impl&eacute;ment&eacute;e sur la carte Nexyx3 dispose d'une interface permettant d'utiliser les &eacute;l&eacute;ments d'Entr&eacute;e/Sortie de la carte nexys3 (bouton, switch, digit, led). Ces &eacute;l&eacute;ments sont accessibles &agrave; travers le syst&egrave;me d'adressage de la machine via les adresses suivantes&nbsp;:
+<div class="centr&eacute;e"><embed src="doc/PlanMemoireNexys3IO9f8e.svg?echelle=1.0" type="image/svg+xml"></embed></div>
+Le mode permet d'utiliser les afficheurs soit pour afficher une donn&eacute;e hexa sur 16 bits (mode=0), soit pour afficher individuellement chaque segment en mode graphique (mode=1).
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Les segments sont nomm&eacute;s comme suit&nbsp;:
+<div class="centr&eacute;e"><embed src="doc/Digit7Segmentsc581.svg?echelle=4.0" type="image/svg+xml"></embed></div>
+
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour faciliter la programmation en assembleur de la carte Nexys3, vous pouvez utiliser les d&eacute;clarations suivantes&nbsp;:
+<div style="white-space:pre;font-family:monospace;">
+          &nbsp;; d&eacute;clarations pour Nexys3IO
+IO_SW:     EQU  0x4000
+IO_BTN:    EQU  0x4001
+IO_LED:    EQU  0x4002
+IO_MODE:   EQU  0x4003
+IO_Digit:  EQU  0x4004
+	
+</div>
+</p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N106A0 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:08 GMT -->
+</html>

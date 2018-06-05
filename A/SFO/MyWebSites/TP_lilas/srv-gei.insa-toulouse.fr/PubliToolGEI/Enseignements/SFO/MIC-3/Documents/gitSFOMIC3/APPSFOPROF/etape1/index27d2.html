@@ -1,0 +1,42 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N1006C by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:00:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</a></li><li class="niv1"><a href="index7081.html?part=ID_PubliTool_N10038" onClick="return chargerURLsansHistorique(this)">1 Comment marche le s&eacute;quenceur d'un cœur?</a></li><li class="niv1sel"><a href="index27d2.html?part=ID_PubliTool_N1006C" onClick="return chargerURLsansHistorique(this)">2 Ma&icirc;trise du simulateur</a></li><li class="niv2"><a href="index7baf.html?part=ID_PubliTool_N100C4" onClick="return chargerURLsansHistorique(this)">2.1 Ma&icirc;trise du &micro;-s&eacute;quenceur</a></li><li class="niv2"><a href="index7dc5.html?part=ID_PubliTool_N10118" onClick="return chargerURLsansHistorique(this)">2.2 Ma&icirc;trise du chemin des donn&eacute;es</a></li><li class="niv2"><a href="indexf185.html?part=ID_PubliTool_N102E3" onClick="return chargerURLsansHistorique(this)">2.3 La boucle Von Neumann</a></li><li class="niv1"><a href="index5cd8.html?part=ID_PubliTool_N10445" onClick="return chargerURLsansHistorique(this)">3 D&eacute;veloppement du jeu d'instructions et modes d'adressages</a></li><li class="niv1"><a href="index9d66.html?part=ID_PubliTool_N106A0" onClick="return chargerURLsansHistorique(this)">4 Ma&icirc;trise de la carte Nexys3</a></li><li class="niv1"><a href="index674d.html?part=ID_PubliTool_N10740" onClick="return chargerURLsansHistorique(this)">5 Application&nbsp;: pilotage d'un filtre audio</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 2 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">Ma&icirc;trise du simulateur</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour ce projet, vous utiliserez un simulateur pour
+&micro;-programmer un cœur capable de s'initialiser et d'ex&eacute;cuter des programmes simples utilisant
+un jeu d'instructions machine.</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Le lancement du simulateur s'effectue par l'ex&eacute;cution de la commande&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /arch/processeurComplet/ProcesseurComplet2015.lilas -awt=coeurAWT -test -script=initSimuCtr</strong></span>
+
+</div>
+On obtient alors la fen&ecirc;tre ci-dessous&nbsp;:
+<div class="centr&eacute;e"><embed src="doc/ProcesseurComplet2015_tst_coeurAWTc449.svg?echelle=0.5" type="image/svg+xml"></embed></div>
+Le simulateur utilise une logique &agrave; 9 valeurs (celles d&eacute;finies par le standard <a href="http://en.wikipedia.org/wiki/IEEE_1164">IEEE 1164: </a>)&nbsp;:
+<ul id="ID_PubliTool_N10084">
+<li>U&nbsp;: Non initialis&eacute;</li>
+<li>X&nbsp;: Inconnu</li>
+<li>0&nbsp;: faux</li>
+<li>1&nbsp;: vrai</li>
+<li>Z&nbsp;: haute imp&eacute;dance</li>
+<li>W&nbsp;: inconnu faible</li>
+<li>L&nbsp;: faux faible</li>
+<li>H&nbsp;: vrai faible</li>
+<li>-&nbsp;: sans importance</li>
+</ul>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Certains &eacute;l&eacute;ments graphiques permettent de modifier des valeurs. Lorsqu'il s'agit de valeur cod&eacute;e sur plusieurs bits (par exemple le contenu du registre microPC), la valeur apparait en caract&egrave;res verts et soulign&eacute;s. Il suffit de cliquer sur la valeur (elle apparait alors sur fond jaune), puis introduire une valeur et terminer par la touche return (le fond jaune disparait). Le format utilis&eacute; est le suivant&nbsp;:
+<ul id="ID_PubliTool_N100A5">
+<li>0x1234 pour une valeur en hexad&eacute;cimal sur 16 bits</li>
+<li>0b001010 pour une valeur binaire sur 6 bits</li>
+<li>12:16 pour une valeur d&eacute;cimale (12) cod&eacute;e sur 16 bits</li>
+</ul>
+
+Lorsqu'il s'agit d'une valeur cod&eacute;e sur un seul bit, la valeur appara&icirc;t dans un cercle colori&eacute; suivant la valeur. Si la valeur est 0 ou 1, un simple cli permet d'inverser la valeur (de 0 on obtient 1, et de 1 on obtient 0). Si on veut obtenir une autre valeur, ou si la valeur n'est ni 0 ni 1 (par exemple U), on obtient un menu d&eacute;roulant en cliquant sur le bouton tout en maintenant le bouton shift du clavier enfonc&eacute;. Il suffit de cliquer sur la valeur que l'on souhaite dans le menu pour la s&eacute;lectionner.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">L'interface graphique poss&egrave;de &eacute;galement des boutons particuliers (il y en a deux, mais vous pourrez en ajouter d'autres par la suite). Le bouton <i>Reset</i> permet d'ex&eacute;cuter un script d'initialisation (passage du signal reset successivement &agrave; 1 puis &agrave; 0). Le bouton <i>Clk</i> permet d'ex&eacute;cuter l'avancement du signal Clk sur une p&eacute;riode (passge du signal d'horloge successivement &agrave; 1 puis &agrave; 0).
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: Que fait le microprogramme RomMicrocodeCtr.mem</strong><i><p style="text-align:justify;">Apr&egrave;s avoir cliqu&eacute; sur Reset, cliquez plusieurs fois sur le bouton Clock en examinant, &agrave; chaque microinstruction, les diff&eacute;rentes commandes qui sont envoy&eacute;es sur le chemin de donn&eacute;e, et en regardant l'&eacute;volution des registres. D&eacute;terminez ce que fait la machine ainsi configur&eacute;e.
+</p></i></div></p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N1006C by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:00:48 GMT -->
+</html>

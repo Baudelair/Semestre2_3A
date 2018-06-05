@@ -1,0 +1,45 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape0/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:00:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>APP SFO Etape 0</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;eSimple" id="titre">APP SFO Etape 0</div><div><div class="" xmlns:url="http://whatever/java/java.net.URLEncoder"><p style="text-align:justify;"></p></div><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"></p><p class="H1" xmlns:url="http://whatever/java/java.net.URLEncoder">1 Installation de Lilas en TP</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Le syst&egrave;me LilasV4 travaille &agrave; partir de deux r&eacute;pertoires&nbsp;: le
+r&eacute;pertoire d'installation (d&eacute;sign&eacute; par LILASHOME) <span style="font-family:monospace;">/home/commetud/3eme\ Annee\ MIC/APPSFO/LILASHOME</span>  et le r&eacute;pertoire de
+travail <span style="font-family:monospace;">~/APPSFO</span>.</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour cr&eacute;er votre r&eacute;pertoire de travail, utilisez la commande suivante&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <font color="#0x000086">/home/commetud/3eme\ Annee\ MIC/APPSFO/LILASHOME/installAPPSFO.sh</font>
+</div>
+Effectuez les tests comme indiqu&eacute;
+<div style="white-space:pre;font-family:monospace;">$ <font color="#0x000086">source ~/.bashrc</font>
+$  <font color="#0x000086"> cd ~/APPSFO </font>
+$ <font color="#0x000086">lilas -version</font>
+Lilas Version V4 du xx xx 201x xx:xx:xx
+</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Autre test possible (avant installation) de la machine Java et Adept&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>java -jar /home/commetud/3eme\ Annee\ MIC/APPSFO/LILASHOME/lib/lilasV4.jar -config=/home/commetud/3eme\ Annee\ MIC/APPSFO/LILASHOME/lilasConfigTestInstallation.xml etape0/TestInstallation.class -special</strong></span>
+</div>
+</p><p class="H1" xmlns:url="http://whatever/java/java.net.URLEncoder">2 Installation de Lilas sur votre machine perso</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Installez le r&eacute;pertoire
+simplement en d&eacute;zippant le fichier <a href="http://srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/lilasApp.zip">lilasApp.zip</a> dans un r&eacute;pertoire quelconque de votre espace de travail, par exemple votre r&eacute;pertoire principal (/home/xxx); vous obtiendrez alors le r&eacute;pertoire de nom <span style="font-family:monospace;">LILASHOME</span>.
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour cr&eacute;er votre r&eacute;pertoire de travail, &nbsp;:
+<ul id="ID_PubliTool_N10061">
+	<li>Premi&egrave;re mani&egrave;re&nbsp;:
+		sous linux ou window, rendre ex&eacute;cutable le fichier <span style="font-family:monospace;">LILASHOME/lib/lilasV4.jar</span>, puis cliquez sur ce fichier pour l'ex&eacute;cuter.
+		</li>
+	
+	<li>Deuxi&egrave;me mani&egrave;re&nbsp;:
+		<ul id="ID_PubliTool_N1006B">
+		<li>sous linux&nbsp;:<div style="white-space:pre;font-family:monospace;">$ <font color="#0x000086">~/LILASHOME/runLILASV4.sh</font>
+</div>
+			</li>
+			<li>sous window (modifier le fichier de commande pour utiliser les bons r&eacute;pertoires pour java, &eacute;ventuellement), cliquer sur
+				le fichier <span style="font-family:monospace;">LILASHOME/runLILASV4.bat</span></li>
+	</ul></li>
+</ul>
+Une fen&ecirc;tre demandant la cr&eacute;ation du fichier de configuration <span style="font-family:monospace;">lilasConfig.xml</span> appara&icirc;t. Cliquer sur "Oui".
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Une fen&ecirc;tre demande ensuite l'enregistrement du fichier <span style="font-family:monospace;">lilasConfig.xml</span>. Cr&eacute;er un r&eacute;pertoire de travail, par exemple APPSFO, et
+demander l'enregistrement du fichier <span style="font-family:monospace;">lilasConfig.xml</span> dans ce r&eacute;pertoire.</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour lancer lilas, utilisez simplement le fichier <span style="font-family:monospace;">lilas.sh</span> cr&eacute;&eacute; dans le r&eacute;pertoire APPSFO (sous window, cr&eacute;er un fichier bat
+analogue).</p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape0/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:00:36 GMT -->
+</html>

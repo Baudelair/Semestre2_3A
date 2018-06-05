@@ -1,0 +1,19 @@
+    	ORG	0x0
+	WORD    0x400	; initialisation SP
+	WORD	debut	; initialisation PC
+
+valInit:WORD	0x1234
+mask:   WORD    0x0FF0  ; masque de remise à zéro
+debut:	LDI     R0, #0x0200 ; adresse premier mot de la ram
+        LDI     R1, #0x0209 ; adresse dixième mot de la ram
+        LDI     R2, #0x0002 ; valeur d'incrémentation de l'adresse (2)
+        LD      R3, [#valInit]
+boucle: LDR     R4, [R0]
+        AND     R4, R3
+        STR     R3, [R0]
+        CMP     R0, R1
+        BZ      fin
+        ADD     R0, R2
+        B       boucle
+fin:    B       fin
+ 

@@ -1,0 +1,38 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N100C4 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:00:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</a></li><li class="niv1"><a href="index7081.html?part=ID_PubliTool_N10038" onClick="return chargerURLsansHistorique(this)">1 Comment marche le s&eacute;quenceur d'un cœur?</a></li><li class="niv1"><a href="index27d2.html?part=ID_PubliTool_N1006C" onClick="return chargerURLsansHistorique(this)">2 Ma&icirc;trise du simulateur</a></li><li class="niv2sel"><a href="index7baf.html?part=ID_PubliTool_N100C4" onClick="return chargerURLsansHistorique(this)">2.1 Ma&icirc;trise du &micro;-s&eacute;quenceur</a></li><li class="niv2"><a href="index7dc5.html?part=ID_PubliTool_N10118" onClick="return chargerURLsansHistorique(this)">2.2 Ma&icirc;trise du chemin des donn&eacute;es</a></li><li class="niv2"><a href="indexf185.html?part=ID_PubliTool_N102E3" onClick="return chargerURLsansHistorique(this)">2.3 La boucle Von Neumann</a></li><li class="niv1"><a href="index5cd8.html?part=ID_PubliTool_N10445" onClick="return chargerURLsansHistorique(this)">3 D&eacute;veloppement du jeu d'instructions et modes d'adressages</a></li><li class="niv1"><a href="index9d66.html?part=ID_PubliTool_N106A0" onClick="return chargerURLsansHistorique(this)">4 Ma&icirc;trise de la carte Nexys3</a></li><li class="niv1"><a href="index674d.html?part=ID_PubliTool_N10740" onClick="return chargerURLsansHistorique(this)">5 Application&nbsp;: pilotage d'un filtre audio</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 2.1 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">Ma&icirc;trise du &micro;-s&eacute;quenceur</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">R&eacute;cup&eacute;rez les images m&eacute;moire <span style="font-family:monospace;">etape1/RomMicrocode.mem</span>, <span style="font-family:monospace;">etape1/RomTranscode.mem</span> et <span style="font-family:monospace;">etape1/RomProgramme.ass</span> en utilisant le commandes&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /etape1/RomMicrocode.mem -extract</strong></span>
+$ <span style="color:#000086;"><strong>lilas /etape1/RomTranscode.mem -extract</strong></span>
+$ <span style="color:#000086;"><strong>lilas /etape1/RomProgramme.ass -extract</strong></span>
+
+</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Lorsqu'on ex&eacute;cute dans un terminal la commande 
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /arch/processeurComplet/ProcesseurComplet2015.lilas -awt=coeurAWT -script=initEtape1 -test</strong></span>
+
+</div>
+apr&egrave;s avoir construit un mod&egrave;le de la machine, le simulateur d&eacute;bute par l'ex&eacute;cution du script de nom <span style="font-family:monospace;">initEtape1</span> d&eacute;fini dans le 
+module <span style="font-family:monospace;">arch.processeurComplet.ProcesseurComplet2015</span> . </p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Le module <span style="font-family:monospace;">etape1/ProcesseurComplet2015_tst.lilas</span> dispose &eacute;galement d'un script nomm&eacute; 
+<span style="font-family:monospace;">exit</span>. Ce script est utilis&eacute; automatiquement lorsqu'on quitte l'application. Il contient une commande permettant 
+de sauvegarder
+ automatiquement le contenu de la m&eacute;moire de microprogramme dans le fichier <span style="font-family:monospace;">etape1/SaveRomMicrocode.mem</span> si la 
+ m&eacute;moire a &eacute;t&eacute; 
+ modifi&eacute; et non sauvegard&eacute;e. Si un fichier de m&ecirc;me nom existait d&eacute;j&agrave;, il est conserv&eacute; avec le nom 
+ <span style="font-family:monospace;">etape1/etape1/SaveRomMicrocode.mem.save.aaaa-mm-jj-hh-mn-ss-msc</span> (o&ugrave; aaaa-mm-jj-hh-mn-ss-msc correspond &agrave; la date 
+ de sauvegarde
+ du fichier). Vous pouvez voir ces fichiers en utilisant la commande&nbsp;:
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>ls -a etape1</strong></span>
+
+</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Votre premier travail consiste &agrave; &micro;-programmer le s&eacute;quenceur de microprogramme (cf Polycopi&eacute; Chapitre 7.3)
+pour obtenir la s&eacute;quence de &micro;-instructions suivante&nbsp;:
+<div class="centr&eacute;e"><embed src="doc/dessin-graphe-init358b.svg?echelle=0.6" type="image/svg+xml"></embed></div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: Ma&icirc;triser le &micro;-s&eacute;quenceur</strong><i><p style="text-align:justify;">Modifiez le &micro;-code  pour obtenir la s&eacute;quence ci-dessus, n'oubliez pas de sauver votre &micro;-code en cliquant le bouton <span style="font-family:monospace;">save</span> associ&eacute; &agrave; la rom Microcode, pour ne pas perdre votre travail en cas de bug du simulateur (not zero-bug program).
+</p></i></div></p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N100C4 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:00:49 GMT -->
+</html>

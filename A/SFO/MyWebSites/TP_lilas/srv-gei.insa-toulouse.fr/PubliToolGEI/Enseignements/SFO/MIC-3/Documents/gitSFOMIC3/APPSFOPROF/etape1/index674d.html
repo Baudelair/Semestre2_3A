@@ -1,0 +1,90 @@
+<html>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N10740 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</title><!--Généré dynamiquement par PubliTool 2009--><link href="../../../../../../../BASE/CSS/Article.css" rel="stylesheet"><script src="../../../../../../../BASE/JS/Article.js" type="text/javascript">
+   </script><script src="../../../../../../../BASE/JS/Mozile08/mozile.js" type="text/javascript"></script><script type="text/javascript">
+      mozile.root = "../../../../../../../BASE/JS/Mozile08";
+      mozile.useSchema("../../../../../../../BASE/JS/xhtmlPubliTool.rng");
+      mozile.help = "http://srv-gei.insa-toulouse.fr/PubliToolGEI/BASE/JS/Mozile08/doc/html/index.html";
+     </script><script src="../../../../../../../BASE/JS/formulaire.js" type="text/javascript"></script><script src="../../../../../../../BASE/JS/mozilePubliTool.js" type="text/javascript"></script></head><body><div id="zoneBoutons"><table style="padding: 0px;border:0px;"><tr style="padding: 0px;border:0px;"><td style="padding: 0px;border:0px;"><a href="../index.html"><img xmlns:url="http://whatever/java/java.net.URLEncoder" src="../pucePRpetiteee0c.png?echelle=0.60"></a></td></tr></table></div><div class="zoneTitreCentr&eacute;e" id="titre">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</div><div id="tocFixe"><ul><li class="niv0"><a href="index.html" onClick="return chargerURLsansHistorique(this)">&Eacute;tape 1&nbsp;:  Le cœur et les &micro;-s&eacute;quences</a></li><li class="niv1"><a href="index7081.html?part=ID_PubliTool_N10038" onClick="return chargerURLsansHistorique(this)">1 Comment marche le s&eacute;quenceur d'un cœur?</a></li><li class="niv1"><a href="index27d2.html?part=ID_PubliTool_N1006C" onClick="return chargerURLsansHistorique(this)">2 Ma&icirc;trise du simulateur</a></li><li class="niv2"><a href="index7baf.html?part=ID_PubliTool_N100C4" onClick="return chargerURLsansHistorique(this)">2.1 Ma&icirc;trise du &micro;-s&eacute;quenceur</a></li><li class="niv2"><a href="index7dc5.html?part=ID_PubliTool_N10118" onClick="return chargerURLsansHistorique(this)">2.2 Ma&icirc;trise du chemin des donn&eacute;es</a></li><li class="niv2"><a href="indexf185.html?part=ID_PubliTool_N102E3" onClick="return chargerURLsansHistorique(this)">2.3 La boucle Von Neumann</a></li><li class="niv1"><a href="index5cd8.html?part=ID_PubliTool_N10445" onClick="return chargerURLsansHistorique(this)">3 D&eacute;veloppement du jeu d'instructions et modes d'adressages</a></li><li class="niv1"><a href="index9d66.html?part=ID_PubliTool_N106A0" onClick="return chargerURLsansHistorique(this)">4 Ma&icirc;trise de la carte Nexys3</a></li><li class="niv1sel"><a href="index674d.html?part=ID_PubliTool_N10740" onClick="return chargerURLsansHistorique(this)">5 Application&nbsp;: pilotage d'un filtre audio</a></li></ul></div><div class="zoneMain"><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">
+   - 5 -</p><p class="H2c" xmlns:url="http://whatever/java/java.net.URLEncoder">Application&nbsp;: pilotage d'un filtre audio</p><p style="top:10pt;bottom:5mm;text-align:justify;background-color:#C0FFC0;" xmlns:url="http://whatever/java/java.net.URLEncoder"><strong>Attention&nbsp;:</strong> si vous n'avez pas microprogramm&eacute; les instructions n&eacute;cessaires ou si vous pensez avoir commis des errreurs dans la microprogrammation de ces instructions, utilisez le microprogramme par d&eacute;faut, simplement en changeant, dans le r&eacute;pertoire <span style="font-family:monospace;">etape1</span> le nom des fichiers <span style="font-family:monospace;">etape1/RomMicroprogramme.mem</span> et <span style="font-family:monospace;">etape1/RomTranscode.mem</span> de mani&egrave;re &agrave; ce que ces deux noms n'apparaissent plus dans le r&eacute;pertoire <span style="font-family:monospace;">etape1</span>. Ainsi, les fichiers qui seront pris en compte seront ceux disponibles dans le syst&egrave;me lilas.</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Le processeur dont vous avez microprogramm&eacute; le jeu d'instructions
+dispose d'une carte son rudimentaire. Cette carte (figure  5.1) est compos&eacute;e&nbsp;:
+<ul id="ID_PubliTool_N1075E">
+<li>d'un module SPI (Serial Peripheral Interface) charg&eacute; de recevoir
+  la num&eacute;risation d'un son &agrave; travers une liaison s&eacute;rie
+</li><li>d'un module PWM (Pulse Width Modulation) charg&eacute; de g&eacute;n&eacute;rer des
+  impulsions dont le rapport cyclique permet de synth&eacute;tiser un
+  son sur un haut-parleur
+</li><li>d'un ADC (<i>Analog to Digital Converter</i>) pcm1801 externe communiquant avec le module
+  SPI par une liaison s&eacute;rie.
+</li></ul>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="centr&eacute;e"><embed src="doc/CarteAudio358b.svg?echelle=0.6" type="image/svg+xml"></embed></div><div class="centr&eacute;e"> Fig 5.1  : La carte Audio compos&eacute;e des modules SPI et PWM et d'un ADC externe.</div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Depuis le processeur, la carte audio est vue comme une m&eacute;moire de 4 registres d'un octet chacun. La figure  5.2 pr&eacute;sente l'organisation de ces registres ainsi que les adresses d'acc&egrave;s dans l'espace m&eacute;moire du cœur.
+<div class="centr&eacute;e"><embed src="doc/PlanMemoireAudio358b.svg?echelle=0.6" type="image/svg+xml"></embed></div><div class="centr&eacute;e"> Fig 5.2  : Plan M&eacute;moire des registres de la carte Audio.</div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">
+Au niveau du registre Status, le bit Pr&ecirc;tSPI est mis &agrave; 1 par le
+hardware lorsqu'une donn&eacute;e a &eacute;t&eacute; re&ccedil;ue dans DataSPI.  La remise &agrave; z&eacute;ro de ce bit
+se fait automatiquement lors de la lecture du registre
+DataSPI. De m&ecirc;me, le bit Pr&ecirc;tPWN est mis &agrave; 1 par le
+hardware lorsque la donn&eacute;e m&eacute;moris&eacute;e dans DataPWN a &eacute;t&eacute; prise en compte par la
+PWM. La remise &agrave; z&eacute;ro de ce bit
+se fait automatiquement lors de l'&eacute;criture du registre
+DataPWN.</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Une tentative de lecture (resp. &eacute;criture) des registres DataPWM et
+Cmd (resp. DataSPI et Status) se traduit par la lev&eacute;e du signal
+BusError.</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour voir la carte Audio ainsi que les autres cartes utilis&eacute;es dans cette &eacute;tape (Nexys3, CarteRom, CarteRam), vous pouvez
+	ex&eacute;cuter le simulateur avec la commande
+<div style="white-space:pre;font-family:monospace;">$ <span style="color:#000086;"><strong>lilas /arch/processeurComplet/ProcesseurComplet2015.lilas -awt=awtEtape1 -script=initEtape1 -test</strong></span>
+
+</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder">Pour faciliter la programmation en assembleur de la carte Audio, vous pouvez utiliser les d&eacute;clarations suivantes&nbsp;:
+<div style="white-space:pre;font-family:monospace;">
+           &nbsp;; d&eacute;clarations pour carte Audio
+SPI_Data:   EQU  0x1000
+SPI_PWM:    EQU  0x1001
+SPI_Status: EQU  0x1002
+		
+</div>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: Programmation de la carte Audio</strong><i><p style="text-align:justify;">
+Il s'agit de programmer en langage machine assembleur
+l'acquisition d'un &eacute;chantillon de son venant de SPI pour le transf&eacute;rer
+aussit&ocirc;t vers la PWM&nbsp;:
+<div style="white-space:pre;font-family:monospace;">
+#define SPI_DATA (*((volatile signed char * )(0x1000))) 
+#define SPI_PWM (*((volatile signed char * )(0x1001))) 
+#define SPI_STATUS (*((volatile unsigned char * )(0x1002))) 
+#define SPI_STATUS_PRET (1&lt;&lt;0) 
+
+#define IO_DIGITS (*((volatile unsigned int * )(0x4004))) 
+
+void main(void) 
+{ 
+  signed int sample; 
+  while(1) 
+    { 
+      // Attends que le SPI soit pret =&gt; il y a une donn&eacute;e qui est arriv&eacute;e 
+      while (&nbsp;!(SPI_STATUS &amp; SPI_STATUS_PRET) )&nbsp;;
+
+      // R&eacute;cup&egrave;re l'&eacute;chantillon 
+      sample = (signed int) SPI_DATA; 
+      
+      // L'envoie sur la sortie PWM 
+      SPI_PWM = (signed char) sample;
+      
+      // Et aussi sur l'afficheur 
+      IO_DIGITS = (unsigned int) sample; 
+    } 
+  
+} 
+</div>
+</p></i></div></p><p style="top:10pt;bottom:5mm;text-align:justify;" xmlns:url="http://whatever/java/java.net.URLEncoder"><div class="" style="background-color:#FFCCFF;margin-top:1cm;margin-bottom:1cm;margin-left:0.25cm;margin-right:0.25cm"><strong>Travail&nbsp;: Programmation du filtre audio</strong><i><p style="text-align:justify;">
+Il s'agit de programmer en langage machine assembleur un filtre audio permettant
+de rendre un son plus m&eacute;tallique. Le programme doit utiliser l'espace
+RAM comme un tableau de 256 octets pour y m&eacute;moriser les 256 derniers
+&eacute;chantillons sonores &eacute;mis sur la PWM. L'op&eacute;ration de filtrage consiste
+alors &agrave; transformer la n<sup>ieme</sup> donn&eacute;e re&ccedil;ue de SPI suivant la formule
+suivante avant d'envoyer le r&eacute;sultat sur la PWM&nbsp;:
+<p style="top:10pt;bottom:5mm;text-align:center;">
+PWM(n) = 1/4 x SPI(n) + 3/4 x PWM(n-256)
+</p>
+</p><p style="top:10pt;bottom:5mm;text-align:justify;">Pour mieux comprendre ce filtre, voir le document de J.L. Noullet&nbsp;: <a href="http://sourcecode.fr/insa/SFO/FILTRE_AUDIO/">Filtre Audio</a>.</p></i></div></p></div></body>
+<!-- Mirrored from srv-gei.insa-toulouse.fr/PubliToolGEI/Enseignements/SFO/MIC-3/Documents/gitSFOMIC3/APPSFOPROF/etape1/index.html?part=ID_PubliTool_N10740 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 May 2018 14:01:10 GMT -->
+</html>
