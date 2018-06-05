@@ -6,13 +6,13 @@ int M2(unsigned short * signal, short k);
 extern short LeSignal;
 unsigned  short dma_buf[64];
 int compt[6];
-int M2TIR = 5;// seuil deteciton tir
-int valk[6] = {17,18,19,20,23,24};
+int M2TIR = 40000;// seuil deteciton tir
+int valk[6] = {17,18,19,20,23,24}; // la moitié de la valeur correspond à la valeur d'un pistolet (*100000)
 
 
 unsigned int SYSTICK_PER=72000000*0.005 ; //pour 5 ms
 
-
+int res[64] ;
 
 void sys_callback(){
 		GPIO_Set(GPIOB, 1);// ouvre sortie pour observation a l oscillo
@@ -22,7 +22,7 @@ void sys_callback(){
 	
 		//calcul DFT
 	
-		int res[64] ;
+
 
 		for (int k=0;k<64;k++){	// FAIRE JUSTE VALEURS INTERESSANTES DE K
 				res[k] =M2(dma_buf, k);
@@ -33,8 +33,9 @@ void sys_callback(){
 		for (int i=0;i<6;i++){
 				if (res[valk[i]]>M2TIR){
 						compt[i]++;
-						if (i==6){
+						if (compt[i]==6){
 							 //ON INCREMENTE SCORE JOUEUR
+							int e=0;
 						}
 				}
 				else{

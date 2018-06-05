@@ -172,22 +172,6 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>21</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134217994</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\Sources\principal.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Proj_Step_1\Sources/principal.c\21</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>39</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
@@ -248,10 +232,6 @@
       <pszMrule></pszMrule>
       <pSingCmds></pSingCmds>
       <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
     </TargetOption>
   </Target>
 
@@ -396,9 +376,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>25</LineNumber>
+          <LineNumber>39</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134225596</Address>
+          <Address>134225614</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -407,7 +387,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\Sources\Tempo.s</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Proj_Step_1\Sources/Tempo.s\25</Expression>
+          <Expression>\\Proj_Step_1\Sources/Tempo.s\39</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -420,8 +400,8 @@
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
-          <SubType>9</SubType>
-          <ItemText>0x08001EDD</ItemText>
+          <SubType>10</SubType>
+          <ItemText>0x8001F40</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
@@ -463,15 +443,11 @@
       <pszMrule></pszMrule>
       <pSingCmds></pSingCmds>
       <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
       <LogicAnalyzers>
         <Wi>
           <IntNumber>0</IntNumber>
           <FirstString>`TIM3_CCR3</FirstString>
-          <SecondString>FF00000000000000000000000000000000E085400000000000000000000000000000000054494D335F4343523300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000500000001000000000000000000F03F100000000000000000000000000000000000000000010008</SecondString>
+          <SecondString>FF00000000000000000000000000000000E085400000000000000000000000000000000054494D335F4343523300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000500000001000000000000000000F03F110000000000000000000000000000000000000000010008</SecondString>
         </Wi>
       </LogicAnalyzers>
     </TargetOption>

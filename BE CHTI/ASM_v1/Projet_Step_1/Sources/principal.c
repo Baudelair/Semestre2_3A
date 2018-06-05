@@ -22,7 +22,7 @@ int main(void)
 		etat.periode_ticks = PeriodeSonMicroSec*Periode_en_Tck;
 		etat.position= 0;
 		etat.son=Son;
-		//etat.resolution = PWM_Init_ff( TIM3, 3,etat.periode_ticks  );
+		etat.resolution = PWM_Init_ff( TIM3, 3,etat.periode_ticks  );
 			
 		// activation de la PLL qui multiplie la fréquence du quartz par 9
 		CLOCK_Configure();

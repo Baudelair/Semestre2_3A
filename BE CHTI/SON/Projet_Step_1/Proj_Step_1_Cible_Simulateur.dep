@@ -1,0 +1,16 @@
+Dependencies for Project 'Proj_Step_1', Target 'Cible_Simulateur': (DO NOT MODIFY !)
+F (.\Sources\principal.c)(0x5B11155C)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I .\Lib-I.\RTE\_Cible_Simulateur-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_MD-o .\principal.o --omf_browse .\principal.crf --depend .\principal.d)
+I (.\Lib\gassp72.h)(0x5AF4387E)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\stm32f10x.h)(0x58259ADC)
+I (.\RTE\_Cible_Simulateur\RTE_Components.h)(0x5AF3B4C4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898ABFA)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F66928)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x5898ABFA)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x5898ABFA)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include\system_stm32f10x.h)(0x58259ADC)
+I (.\Lib\etat.h)(0x5AF4387C)
+F (.\Sources\Tempo.s)(0x5B111492)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_Cible_Simulateur-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 523" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list .\tempo.lst --xref -o .\tempo.o --depend .\tempo.d)
+I (Lib\etat.inc)(0x5AF4387C)
+F (.\Sources\bruitverre.asm)(0x5AF43880)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_Cible_Simulateur-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 523" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list .\bruitverre.lst --xref -o .\bruitverre.o --depend .\bruitverre.d)
+F (.\Lib\gassp72.lib)(0x5AF4387E)()
+F (.\Systeme\startup-rvds.s)(0x5AF43882)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_Cible_Simulateur-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 523" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list .\startup-rvds.lst --xref -o .\startup-rvds.o --depend .\startup-rvds.d)

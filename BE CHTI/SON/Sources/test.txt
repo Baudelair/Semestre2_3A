@@ -1,0 +1,50 @@
+
+// Code en C pour les premiers test de cos et sin
+
+// Variables de trigo
+extern u16 TabCos[];
+extern u16 TabSin[];
+extern int SumCosSin(int a);
+int MinSum;
+int MaxSum;
+void test_trigo(void);
+int a;
+
+
+void test_trigo(void){
+	int result;
+	MaxSum = 0;
+	MinSum = 99999999;
+	for (a = 0; a < 64; a++){
+		result = SumCosSin(a);
+		if (result > MaxSum) MaxSum = result;
+		if (result < MinSum) MinSum = result;
+	}
+}
+
+// Fonction ASM
+
+; ce programme est pour l'assembleur RealView (Keil)
+	thumb
+	area  moncode, code, readonly
+	export SumCosSin
+	import TabCos
+	import TabSin
+		
+SumCosSin	proc
+	mov	r2, r0; on recupère a dans r2
+	ldr	r0, =TabCos
+	ldr	r1, =TabSin
+	ldrsh	r0, [r0, r2, lsl #1]	; 1.15
+	ldrsh	r1, [r1, r2, lsl #1]	; 1.15
+	mul	r0, r0			; 2.30
+	mul	r1, r1			; 2.30
+	add	r0, r0, r1			; 3.30 -> tronqué 2.30
+	lsr	r0, #15			; 2.15
+	bx	lr
+	
+	endp
+		
+	end
+	
+	

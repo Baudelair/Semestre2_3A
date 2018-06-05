@@ -80,7 +80,7 @@ ARM Macro Assembler    Page 2
    36 00000010         timer_callback
                                proc
    37 00000010         
-   38 00000010 B500            push{lr}
+   38 00000010 B500            push{lr}                     ; Empiler LR
    39 00000012 480E            ldr              r0,=etat
    40 00000014         ;///RECUPERATION SON
    41 00000014         
@@ -161,8 +161,8 @@ ARM Macro Assembler    Page 3
               4000043C 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\tempo.d -o.\tempo.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\C
-MSIS\Include -IC:\Keil_v5\ARM\INC\ST\STM32F10x --predefine="__EVAL SETA 1" --pr
-edefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" --list=.\t
+MSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F10x --predefine="__EVAL SETA 1" --pr
+edefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" --list=.\t
 empo.lst Sources\Tempo.s
 
 

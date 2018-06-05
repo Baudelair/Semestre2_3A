@@ -1,0 +1,259 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 include          Lib\etat.inc
+    1 00000000         ;typedef struct {
+    2 00000000         ;int position;  // 0
+    3 00000000         ;int taille;  // 4
+    4 00000000         ;void * son;  // 8
+    5 00000000         ;int resolution; // 12
+    6 00000000         ;int periode_ticks; // 16
+    7 00000000         ;} type_etat;
+    8 00000000         
+    9 00000000         ;/*
+   10 00000000 00000000 
+                       E_POS   equ              0
+   11 00000000 00000004 
+                       E_TAI   equ              4
+   12 00000000 00000008 
+                       E_SON   equ              8
+   13 00000000 0000000C 
+                       E_RES   equ              12
+   14 00000000 00000010 
+                       E_PER   equ              16
+   15 00000000                 end
+    3 00000000         ;include bruitverre.asm
+    4 00000000                 thumb
+    5 00000000         
+    6 00000000                 area             maram, data, readwrite
+    7 00000000                 import           TabSin
+    8 00000000                 import           TabCos
+    9 00000000                 import           LeSignal
+   10 00000000         
+   11 00000000         RAM
+   12 00000000 20004000        dcd              0x20004000  ; stack en fin de l
+                                                            a zone de 20k de RA
+                                                            M
+   13 00000004         
+   14 00000004                 area             moncode, code, readonly
+   15 00000000                 export           test
+   16 00000000                 export           reelle
+   17 00000000         
+   18 00000000         test    proc
+   19 00000000         
+   20 00000000 4913            ldr              r1,=TabSin
+   21 00000002 F931 1010       ldrsh            r1,[r1,r0,lsl #1]
+   22 00000006 4A13            ldr              r2,=TabCos
+   23 00000008 F932 2010       ldrsh            r2,[r2,r0,lsl #1]
+   24 0000000C F04F 0300       mov              r3, #0
+   25 00000010 FB01 3101       MLA              r1,r1,r1,r3
+   26 00000014 FB02 1002       MLA              r0,r2,r2,r1
+   27 00000018         
+   28 00000018 4770            bx               lr
+   29 0000001A                 endp
+   30 0000001A         
+   31 0000001A         
+   32 0000001A         
+   33 0000001A         reelle  proc
+   34 0000001A         
+   35 0000001A         ;r0 = l'adresse du signal
+   36 0000001A         ;r1 = la valeur de k
+   37 0000001A         ;r2 = l'adresse de la tab de COS/SIN
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   38 0000001A B4F0            push             {r4-r7}
+   39 0000001C F04F 0400       mov              r4,#0       ; notre i, on parco
+                                                            urt a l envers  
+   40 00000020 F04F 0300       mov              r3,#0       ; ;r3 est la somme 
+                                                            
+   41 00000024 460F            mov              r7, r1
+   42 00000026         ;r5 sert a stocker sig, r6 cos
+   43 00000026         
+   44 00000026         
+   45 00000026         debut
+   46 00000026         
+   47 00000026 F930 5014       ldrsh            r5,[r0,r4, lsl #1] 
+                                                            ;chargement signal 
+                                                            
+   48 0000002A FB04 F607       mul              r6,r4,r7    ; multiplie i par k
+                                                             
+   49 0000002E F006 063F       and              r6,r6,#0x3F ;modulo 64 (#63)de 
+                                                            r6 
+   50 00000032 F932 6016       ldrsh            r6,[r2,r6, lsl #1] ;chargement 
+                                                            cos/sin 
+   51 00000036 FB05 F506       mul              r5,r5,r6    ; multiplie cos/sin
+                                                             et signal 
+   52 0000003A 442B            add              r3,r3,r5    ; ajoute au total
+   53 0000003C         
+   54 0000003C         
+   55 0000003C F104 0401       add              r4,#1       ;
+   56 00000040 2C40            cmp              r4,#64
+   57 00000042 BF18            IT               NE          ;if not equal then.
+                                                            ..
+   58 00000044 E7EF            BNE              debut       ; on va au debut
+   59 00000046         
+   60 00000046 463C            mov              r4, r7      ; restaurer la vale
+                                                            ur de k
+   61 00000048 4618            mov              r0,r3       ; on met resultat e
+                                                            n r0 pour envoi
+   62 0000004A BCF0            pop              {r4-r7}
+   63 0000004C         
+   64 0000004C 4770            bx               lr
+   65 0000004E                 endp
+   66 0000004E                 end
+              00 00 00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\tempo.d -o.\tempo.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\C
+MSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F10x --predefine="__EVAL SETA 1" --pr
+edefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" --list=.\t
+empo.lst Sources\Tempo.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RAM 00000000
+
+Symbol: RAM
+   Definitions
+      At line 11 in file Sources\Tempo.s
+   Uses
+      None
+Comment: RAM unused
+maram 00000000
+
+Symbol: maram
+   Definitions
+      At line 6 in file Sources\Tempo.s
+   Uses
+      None
+Comment: maram unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+debut 00000026
+
+Symbol: debut
+   Definitions
+      At line 45 in file Sources\Tempo.s
+   Uses
+      At line 58 in file Sources\Tempo.s
+Comment: debut used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 14 in file Sources\Tempo.s
+   Uses
+      None
+Comment: moncode unused
+reelle 0000001A
+
+Symbol: reelle
+   Definitions
+      At line 33 in file Sources\Tempo.s
+   Uses
+      At line 16 in file Sources\Tempo.s
+Comment: reelle used once
+test 00000000
+
+Symbol: test
+   Definitions
+      At line 18 in file Sources\Tempo.s
+   Uses
+      At line 15 in file Sources\Tempo.s
+Comment: test used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+E_PER 00000010
+
+Symbol: E_PER
+   Definitions
+      At line 14 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_PER unused
+E_POS 00000000
+
+Symbol: E_POS
+   Definitions
+      At line 10 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_POS unused
+E_RES 0000000C
+
+Symbol: E_RES
+   Definitions
+      At line 13 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_RES unused
+E_SON 00000008
+
+Symbol: E_SON
+   Definitions
+      At line 12 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_SON unused
+E_TAI 00000004
+
+Symbol: E_TAI
+   Definitions
+      At line 11 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_TAI unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+LeSignal 00000000
+
+Symbol: LeSignal
+   Definitions
+      At line 9 in file Sources\Tempo.s
+   Uses
+      None
+Comment: LeSignal unused
+TabCos 00000000
+
+Symbol: TabCos
+   Definitions
+      At line 8 in file Sources\Tempo.s
+   Uses
+      At line 22 in file Sources\Tempo.s
+Comment: TabCos used once
+TabSin 00000000
+
+Symbol: TabSin
+   Definitions
+      At line 7 in file Sources\Tempo.s
+   Uses
+      At line 20 in file Sources\Tempo.s
+Comment: TabSin used once
+3 symbols
+349 symbols in table

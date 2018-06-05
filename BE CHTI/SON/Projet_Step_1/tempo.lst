@@ -1,0 +1,229 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 include          Lib\etat.inc
+    1 00000000         ;typedef struct {
+    2 00000000         ;int position;  // 0
+    3 00000000         ;int taille;  // 4
+    4 00000000         ;void * son;  // 8
+    5 00000000         ;int resolution; // 12
+    6 00000000         ;int periode_ticks; // 16
+    7 00000000         ;} type_etat;
+    8 00000000         
+    9 00000000         ;/*
+   10 00000000 00000000 
+                       E_POS   equ              0
+   11 00000000 00000004 
+                       E_TAI   equ              4
+   12 00000000 00000008 
+                       E_SON   equ              8
+   13 00000000 0000000C 
+                       E_RES   equ              12
+   14 00000000 00000010 
+                       E_PER   equ              16
+   15 00000000                 end
+    3 00000000         ;include bruitverre.asm
+    4 00000000                 thumb
+    5 00000000                 area             moncode, code, readonly
+    6 00000000         
+    7 00000000                 export           timer_callback
+    8 00000000                 import           etat
+    9 00000000                 import           LongueurSon
+   10 00000000                 import           PeriodeSonMicroSec
+   11 00000000                 import           Son
+   12 00000000         ;
+   13 00000000 40010C10 
+                       GPIOB_BSRR
+                               equ              0x40010C10  ; Bit Set/Reset reg
+                                                            ister
+   14 00000000 4000043C 
+                       TIM3_CCR3
+                               equ              0x4000043C  ; adresse registre 
+                                                            PWM
+   15 00000000         
+   16 00000000         timer_callback
+                               proc
+   17 00000000 E92D 01F0       push             {r4-r8}
+   18 00000004 480C            ldr              r0, =etat   ;on lit etat
+   19 00000006 6801            ldr              r1, [r0, #E_POS] ;on lit l'inde
+                                                            x du tableau
+   20 00000008 6842            ldr              r2, [r0, #E_TAI]
+   21 0000000A 428A            cmp              r2, r1      ;on vérifie qu'on e
+                                                            st pas à la fin du 
+                                                            son
+   22 0000000C D010            beq              Exit
+   23 0000000E 6883            ldr              r3, [r0, #E_SON] ;on lit l'adre
+                                                            sse du Son
+   24 00000010 68C4            ldr              r4, [r0, #E_RES]
+   25 00000012 F933 6011       ldrsh            r6, [r3, r1, lsl #1] ;on lit la
+                                                             valeur du tableau
+   26 00000016 F506 4600       add              r6, #32768  ;ajoute 2*15
+   27 0000001A FB06 F704       mul              r7, r6, r4  ; * res 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   28 0000001E EA4F 4717       lsr              r7, #16     ; /2**16
+   29 00000022 F8DF 8018       ldr              r8, =TIM3_CCR3 ;on envoie la va
+                                                            leur
+   30 00000026 F8C8 7000       str              r7, [r8]
+   31 0000002A F101 0101       add              r1, r1, #1  ;incrémente l'index
+                                                            
+   32 0000002E 6001            str              r1, [r0, #E_POS]
+   33 00000030         ;   
+   34 00000030         Exit
+   35 00000030 E8BD 01F0       pop              {r4-r8}
+   36 00000034 4770            bx               lr
+   37 00000036         ; 
+   38 00000036                 endp
+   39 00000036         ;
+   40 00000036                 end
+              00 00 00000000 
+              4000043C 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\tempo.d -o.\tempo.o -I.\RTE\_Cible_STM103RB -IC:\Keil_v5\ARM\PAC
+K\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\
+Device\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --pr
+edefine="__UVISION_VERSION SETA 523" --predefine="_RTE_ SETA 1" --predefine="ST
+M32F10X_MD SETA 1" --list=.\tempo.lst Sources\Tempo.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Exit 00000030
+
+Symbol: Exit
+   Definitions
+      At line 34 in file Sources\Tempo.s
+   Uses
+      At line 22 in file Sources\Tempo.s
+Comment: Exit used once
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 5 in file Sources\Tempo.s
+   Uses
+      None
+Comment: moncode unused
+timer_callback 00000000
+
+Symbol: timer_callback
+   Definitions
+      At line 16 in file Sources\Tempo.s
+   Uses
+      At line 7 in file Sources\Tempo.s
+Comment: timer_callback used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+E_PER 00000010
+
+Symbol: E_PER
+   Definitions
+      At line 14 in file Lib\etat.inc
+   Uses
+      None
+Comment: E_PER unused
+E_POS 00000000
+
+Symbol: E_POS
+   Definitions
+      At line 10 in file Lib\etat.inc
+   Uses
+      At line 19 in file Sources\Tempo.s
+      At line 32 in file Sources\Tempo.s
+
+E_RES 0000000C
+
+Symbol: E_RES
+   Definitions
+      At line 13 in file Lib\etat.inc
+   Uses
+      At line 24 in file Sources\Tempo.s
+Comment: E_RES used once
+E_SON 00000008
+
+Symbol: E_SON
+   Definitions
+      At line 12 in file Lib\etat.inc
+   Uses
+      At line 23 in file Sources\Tempo.s
+Comment: E_SON used once
+E_TAI 00000004
+
+Symbol: E_TAI
+   Definitions
+      At line 11 in file Lib\etat.inc
+   Uses
+      At line 20 in file Sources\Tempo.s
+Comment: E_TAI used once
+GPIOB_BSRR 40010C10
+
+Symbol: GPIOB_BSRR
+   Definitions
+      At line 13 in file Sources\Tempo.s
+   Uses
+      None
+Comment: GPIOB_BSRR unused
+TIM3_CCR3 4000043C
+
+Symbol: TIM3_CCR3
+   Definitions
+      At line 14 in file Sources\Tempo.s
+   Uses
+      At line 29 in file Sources\Tempo.s
+Comment: TIM3_CCR3 used once
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+LongueurSon 00000000
+
+Symbol: LongueurSon
+   Definitions
+      At line 9 in file Sources\Tempo.s
+   Uses
+      None
+Comment: LongueurSon unused
+PeriodeSonMicroSec 00000000
+
+Symbol: PeriodeSonMicroSec
+   Definitions
+      At line 10 in file Sources\Tempo.s
+   Uses
+      None
+Comment: PeriodeSonMicroSec unused
+Son 00000000
+
+Symbol: Son
+   Definitions
+      At line 11 in file Sources\Tempo.s
+   Uses
+      None
+Comment: Son unused
+etat 00000000
+
+Symbol: etat
+   Definitions
+      At line 8 in file Sources\Tempo.s
+   Uses
+      At line 18 in file Sources\Tempo.s
+Comment: etat used once
+4 symbols
+351 symbols in table

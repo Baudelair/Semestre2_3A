@@ -16,11 +16,11 @@ signal1 dcd 0
 	
 	area  moncode, code, readonly	
 	
-	ldr	r0,=etat
-	ldr r1,=LongueurSon
-	str	r1 , [r0, #E_TAI]
-	ldr r1,=Son
-	str	r1,[r0, #E_SON]
+	;ldr	r0,=etat
+	;ldr r1,=LongueurSon
+	;str	r1 , [r0, #E_TAI]
+	;ldr r1,=Son
+	;str	r1,[r0, #E_SON]
 	
 OFFSET	equ 32768;	
 GPIOB_BSRR	equ	0x40010C10	; Bit Set/Reset register
