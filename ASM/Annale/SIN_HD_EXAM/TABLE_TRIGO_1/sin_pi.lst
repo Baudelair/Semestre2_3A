@@ -1,0 +1,119 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; ce programme est pour l'assembleur RealView (Keil)
+    2 00000000                 thumb
+    3 00000000                 area             moncode, code, readonly
+    4 00000000         ;
+    5 00000000                 import           TabSin
+    6 00000000                 export           sin_pi
+    7 00000000         
+    8 00000000 00000100 
+                       pisur2  equ              (1<<8)
+    9 00000000 00000200 
+                       pi      equ              (1<<9)
+   10 00000000         
+   11 00000000         ; cette fonction rend le sinus d'un angle compris entre 
+                       0 et pi (inclus)
+   12 00000000         ; en utilisant une table construite pour les angles de 0
+                        a pi/2 (inclus)
+   13 00000000         ; ----- format d'entree -----
+   14 00000000         ; l'angle est exprime par un nombre t.q. 2pi <==> 1<<10
+   15 00000000         ; En prenant le tour comme unite d'angle, on peut dire q
+                       ue l'angle
+   16 00000000         ; est exprime en format virgule fixe Q10 ou 22.10  
+   17 00000000         ; ----- format de sortie -----
+   18 00000000         ; le sinus est rendu en virgule fixe sur 32 bits signes
+   19 00000000         ; en format virgule fixe Q23 ou 9.23 
+   20 00000000         
+   21 00000000         sin_pi  proc
+   22 00000000 F5B0 7F80       cmp              r0, #pisur2
+   23 00000004 D901            bls              quad1
+   24 00000006 F5C0 7000       rsb              r0, r0, #pi ; soustraction inve
+                                                            rsee : r0 = pi - r0
+                                                            
+   25 0000000A 4901    quad1   ldr              r1, =TabSin
+   26 0000000C 5808            ldr              r0, [r1, r0]
+   27 0000000E 4770            bx               lr
+   28 00000010                 endp
+   29 00000010         
+   30 00000010                 end
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\sin_pi.d -o.\sin_pi.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM
+\CMSIS\Include -IC:\Keil_v5\ARM\INC\ST\STM32F10x --predefine="__EVAL SETA 1" --
+predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" --list=.
+\sin_pi.lst sin_pi.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+moncode 00000000
+
+Symbol: moncode
+   Definitions
+      At line 3 in file sin_pi.s
+   Uses
+      None
+Comment: moncode unused
+quad1 0000000A
+
+Symbol: quad1
+   Definitions
+      At line 25 in file sin_pi.s
+   Uses
+      At line 23 in file sin_pi.s
+Comment: quad1 used once
+sin_pi 00000000
+
+Symbol: sin_pi
+   Definitions
+      At line 21 in file sin_pi.s
+   Uses
+      At line 6 in file sin_pi.s
+Comment: sin_pi used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+pi 00000200
+
+Symbol: pi
+   Definitions
+      At line 9 in file sin_pi.s
+   Uses
+      At line 24 in file sin_pi.s
+Comment: pi used once
+pisur2 00000100
+
+Symbol: pisur2
+   Definitions
+      At line 8 in file sin_pi.s
+   Uses
+      At line 22 in file sin_pi.s
+Comment: pisur2 used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+TabSin 00000000
+
+Symbol: TabSin
+   Definitions
+      At line 5 in file sin_pi.s
+   Uses
+      At line 25 in file sin_pi.s
+Comment: TabSin used once
+1 symbol
+341 symbols in table

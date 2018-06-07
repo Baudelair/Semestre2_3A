@@ -13,6 +13,7 @@
     <tExt>*.txt; *.h; *.inc</tExt>
     <pExt>*.plm</pExt>
     <CppX>*.cpp</CppX>
+    <nMigrate>0</nMigrate>
   </Extensions>
 
   <DaveTm>
@@ -31,6 +32,7 @@
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>1</RunSim>
         <RunTarget>0</RunTarget>
+        <RunAbUc>0</RunAbUc>
       </OPTTT>
       <OPTHX>
         <HexSelection>1</HexSelection>
@@ -93,16 +95,6 @@
           <Path>datashts\arm\cortex_m3\r2p1\DUI0552A_CORTEX_M3_DGUG.PDF</Path>
         </Book>
       </Books>
-      <DllOpt>
-        <SimDllName>SARMCM3.DLL</SimDllName>
-        <SimDllArguments></SimDllArguments>
-        <SimDlgDllName>DARMSTM.DLL</SimDlgDllName>
-        <SimDlgDllArguments>-pSTM32F103RB</SimDlgDllArguments>
-        <TargetDllName>SARMCM3.DLL</TargetDllName>
-        <TargetDllArguments></TargetDllArguments>
-        <TargetDlgDllName>TARMSTM.DLL</TargetDlgDllName>
-        <TargetDlgDllArguments>-pSTM32F103RB</TargetDlgDllArguments>
-      </DllOpt>
       <DebugOpt>
         <uSim>1</uSim>
         <uTrg>0</uTrg>
@@ -121,8 +113,11 @@
         <tRfunc>0</tRfunc>
         <tRbox>1</tRbox>
         <tRtrace>1</tRtrace>
+        <sRSysVw>1</sRSysVw>
+        <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
+        <bEvRecOn>1</bEvRecOn>
         <nTsel>1</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
@@ -183,6 +178,9 @@
           <ItemText>j</ItemText>
         </Ww>
       </WatchWindow1>
+      <Tracepoint>
+        <THDelay>0</THDelay>
+      </Tracepoint>
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
@@ -209,11 +207,19 @@
         <newCpu>0</newCpu>
         <uProt>0</uProt>
       </DebugFlag>
-      <Tracepoint>
-        <THDelay>0</THDelay>
-      </Tracepoint>
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
+      <bLintAuto>0</bLintAuto>
+      <bAutoGenD>0</bAutoGenD>
+      <LntExFlags>0</LntExFlags>
+      <pMisraName></pMisraName>
+      <pszMrule></pszMrule>
+      <pSingCmds></pSingCmds>
+      <pMultCmds></pMultCmds>
+      <pMisraNamep></pMisraNamep>
+      <pszMrulep></pszMrulep>
+      <pSingCmdsp></pSingCmdsp>
+      <pMultCmdsp></pMultCmdsp>
     </TargetOption>
   </Target>
 
@@ -228,11 +234,7 @@
       <FileNumber>1</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>104</TopLine>
-      <CurrentLine>117</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\STM32F10x.s</PathWithFileName>
       <FilenameWithoutPath>STM32F10x.s</FilenameWithoutPath>
@@ -244,11 +246,7 @@
       <FileNumber>2</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>15</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -260,11 +258,7 @@
       <FileNumber>3</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>13</TopLine>
-      <CurrentLine>25</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\trigo.asm</PathWithFileName>
       <FilenameWithoutPath>trigo.asm</FilenameWithoutPath>
@@ -276,11 +270,7 @@
       <FileNumber>4</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\sin_pi.s</PathWithFileName>
       <FilenameWithoutPath>sin_pi.s</FilenameWithoutPath>
