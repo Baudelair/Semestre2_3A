@@ -23,7 +23,7 @@ sin_pi  proc
         bls     quad1
         rsb     r0, r0, #pi     ; soustraction inversee : r0 = pi - r0
 quad1   ldr     r1, =TabSin
-        ldr     ???
+        ldr     r0, [r1, r0]
         bx      lr
         endp
 

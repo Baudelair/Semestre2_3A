@@ -1,0 +1,1 @@
+.\trigo.o: trigo.asm
